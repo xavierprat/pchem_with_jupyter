@@ -1,0 +1,954 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Module 1 - Day 4: Polyelectronic atoms. Electronic correlation and self-consistent field methods &#8212; Physical Chemistry with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'M1.D4._Polyelectronic_atoms._Electronic_correlation_and_self_consistent_field_methods';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="M1.D5: Electronic energy of molecules" href="M1.D5._Electronic_energy_of_molecules.html" />
+    <link rel="prev" title="M1.D3: Schrodinger’s hydrogen atom" href="M1.D3._Schrodingers_hydrogen_atom.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="Introduction.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Physical Chemistry with Python - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Physical Chemistry with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Introduction.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Module_0_Introduction_to_Python.html">M0: Introduction to Python</a></li>
+
+
+
+
+
+
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Module_1_Energy_levels_of_atoms_and_molecules.html">Module 1: Energy levels of atoms and molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="M1.D1._Bohrs_hydrogen_atom.html">M1.D1: Bohr’s hydrogen atom</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D2._Introduction_to_Quantum_Mechanics._Particle_in_a_box.html">M1.D2: Introduction to Quantum Mechanics. Particle in a box.</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D3._Schrodingers_hydrogen_atom.html">M1.D3: Schrodinger’s hydrogen atom</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Module 1 - Day 4: Polyelectronic atoms. Electronic correlation and self-consistent field methods</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D5._Electronic_energy_of_molecules.html">M1.D5: Electronic energy of molecules</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D6._Vibrational_levels_of_diatomic_molecules.html">M1.D6: Vibrational levels of diatomic molecules</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D7._Vibrational_levels_of_polyatomic_molecules.html">M1.D7: Vibrational levels of polyatomic molecules</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D8._Rotational_levels_of_molecules.html">M1.D8: Rotational levels of molecules</a></li>
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Module_2_Exploration_of_the_potential_energy_surface.html">Module 2: Exploration of the PES</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Module_3_Statistical_Thermodynamics.html">Module 3: Statistical Thermodynamics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="M3.D1._Boltzmann_factor_and_partition_functions.html">M3.D1: Boltzmann factor and partition functions</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D2._Partition_functions_of_atoms.html">M3.D2: Partition functions of atoms</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D3._Thermodynamic_properties_of_molecular_ideal_gases.html">M3.D3: Thermodynamic properties of molecular ideal gases</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D4._Thermodynamic%20potentials.html">M3.D4: Thermodynamic potentials for spontaneity and other thermodynamic properties</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Module_4_Molecular_simulations_and_Thermodynamics.html">Module 4: Molecular simulations and Thermodynamics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="M4.D1._Introduction_to_molecular_dynamics.html">M4.D1: Introduction to molecular dynamics</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M4.D2._Introduction_to_molecular_simulations.html">M4.D2: Introduction to molecular simulations</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M4.D3._Calculating_free_energies_of_chemical_systems.html">M4.D3: Calculating free energies of chemical systems</a></li>
+
+
+
+
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FM1.D4._Polyelectronic_atoms._Electronic_correlation_and_self_consistent_field_methods.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/M1.D4._Polyelectronic_atoms._Electronic_correlation_and_self_consistent_field_methods.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Module 1 - Day 4: Polyelectronic atoms. Electronic correlation and self-consistent field methods</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Module 1 - Day 4: Polyelectronic atoms. Electronic correlation and self-consistent field methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning objectives:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hamiltonian-for-polyelectronic-atoms">The Hamiltonian for polyelectronic atoms</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-self-consistent-field-solution-scf-or-hartree-fock">The Self-Consistent Field solution (SCF) or Hartree-Fock</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-need-for-a-base">The need for a base</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-chemistry-packages-pyscf">Quantum chemistry packages: pyscf</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-point-calculations-reading-the-output">Single point calculations. Reading the output</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-basis-sets">Testing basis sets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#different-levels-of-theory">Different levels of theory</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ionization-energy-of-atoms">Ionization energy of atoms</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="module-1-day-4-polyelectronic-atoms-electronic-correlation-and-self-consistent-field-methods">
+<h1>Module 1 - Day 4: Polyelectronic atoms. Electronic correlation and self-consistent field methods<a class="headerlink" href="#module-1-day-4-polyelectronic-atoms-electronic-correlation-and-self-consistent-field-methods" title="Link to this heading">#</a></h1>
+<section id="learning-objectives">
+<h2>Learning objectives:<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Explain the “many-body” problem in terms of how the Schrodinger equation for polyelectronic atoms has a term that does not allow us to separate the problem into independent electrons and therefore obtaining an exact solution.</p></li>
+<li><p>The Hartree-Fock method: Explain variational and mean-field approaches to the solution and the need for a basis set. Explain the Self Consistent Field method.</p></li>
+<li><p>Understand and predict the possible spin multiplicity in an atom</p></li>
+<li><p>Using pyscf package to calculate ground states of atoms and other excited spin states.</p></li>
+<li><p>Using pyscf package to calculate ionization energies</p></li>
+<li><p>Learning to read and write files with Python</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-hamiltonian-for-polyelectronic-atoms">
+<h1>The Hamiltonian for polyelectronic atoms<a class="headerlink" href="#the-hamiltonian-for-polyelectronic-atoms" title="Link to this heading">#</a></h1>
+<div class="math notranslate nohighlight">
+\[
+\hat{H} = \text{Kinetic Energy} + \text{Potential Energy}
+\]</div>
+<p>For atoms in atomic units:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H} = -\frac{1}{2}\nabla_{nucleus} -\frac{1}{2}\sum_{i=elec} \nabla_i + \sum_{i=elec} \frac{q_{i}q_{nucl}}{r_{i}} + \sum_{i,j=elec} \frac{q_{i}q_{j}}{r_{ij}}
+\]</div>
+<p>Translated into English we have:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H} = \text{Kinetic of nucleus} + \sum{\text{Kinetic of e-}} + \sum{\text{attraction of elec-nucl}} + \sum{\text{Repulsion elec-elect}}
+\]</div>
+<p>Notice that if it weren’t for the last term, the electron-electron repulsion, our Hamiltonian could be written just like a sum of hydrogen-like hamiltonians (independent electrons <span class="math notranslate nohighlight">\(\hat{h}_i\)</span>)</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H} = \sum_{i=elec} \hat{h}_i + \sum_{i,j=elec} \frac{q_{i}q_{j}}{r} 
+\]</div>
+<p><strong>The good news</strong>: if we could ignore the repulsion e-e (<span class="math notranslate nohighlight">\(\sum_{i,j=elec} \frac{q_{i}q_{j}}{r_{ij}}\)</span>) we could use the hydrogen atom solutions (1s, 2s, 2p…).
+Algebra of operators tell us that sum of operators give product of eigenfunctions and sum of energies. In other words, <strong>IF</strong> we ignore the electron repulsions:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{H} = \sum_{i=elec} \hat{h}_i\)</span></p></li>
+<li><p>The wavefunction is what we know as electronic configurations: <span class="math notranslate nohighlight">\(\Psi=\phi_{1s}\phi_{2s}\phi_{2p}...\)</span></p></li>
+<li><p>The energy is the sum of each electron on separate orbitals: <span class="math notranslate nohighlight">\(E=E(1s) + E(2s) + E(2p)\)</span></p></li>
+</ul>
+<p><strong>The bad news</strong>: While we may still use the electronic configuration (1s2s2p…) to rationalize a lot of atom behavior in chemistry, the energy contribution of the electronic repulsion is too large to obtain any quantitative energetic study.</p>
+<p>This problem is yet another example of what is known as <a class="reference external" href="https://en.wikipedia.org/wiki/Many-body_problem">the many-body problem</a> where an interacting system cannot be simplified as a sum of its parts.</p>
+<p>Another complication is that electrons because they are fermions (fractional spin) cannot be expressed just as a linear combination of basis, they need to be described with a determinant (<a class="reference external" href="https://en.wikipedia.org/wiki/Slater_determinant">Slater determinant</a>). So, just keep in mind that in the above equation <span class="math notranslate nohighlight">\(\Psi\)</span> cannot just be a product of functions, it has to be a <em>symmetrized product</em>. Nothing to worry about, but it will bring two types of electron repulsions, the coulomb repulsions that we already know but also the fermionic ones. Stay tuned.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-self-consistent-field-solution-scf-or-hartree-fock">
+<h1>The Self-Consistent Field solution (SCF) or Hartree-Fock<a class="headerlink" href="#the-self-consistent-field-solution-scf-or-hartree-fock" title="Link to this heading">#</a></h1>
+<p>A very common approach to many-body problems like polyelectronic atoms is the use the Variational method. In this case, this method tell us that any function that we try for our Hamiltonian has an expectation value of the energy that is an upper bound to the ground state energy of the system. We could just do some trial-and-error, put any function in the Hamiltonian and see which one gives us the lowest value. A more elegant way is to minimize the energy using the <a class="reference external" href="https://en.wikipedia.org/wiki/Lagrange_multiplier">Lagrange Multiplier Method</a></p>
+<p>We still need to start with a function, a guess.</p>
+<section id="the-need-for-a-base">
+<h2>The need for a base<a class="headerlink" href="#the-need-for-a-base" title="Link to this heading">#</a></h2>
+<p>As we said above, the hydrogen atomic orbitals (1s,2s,2p…) are not the solution, but they can be used as a beginning! We can use what is called in linear algebra a <a class="reference external" href="https://en.wikipedia.org/wiki/Basis_(linear_algebra)">base</a>.</p>
+<p>You know that a 3D vector can be expressed in terms of the base <span class="math notranslate nohighlight">\(\overrightarrow{i}, \overrightarrow{j}, \overrightarrow{k}\)</span>. So:</p>
+<div class="math notranslate nohighlight">
+\[
+(2,-3,3) = 2\cdot\overrightarrow{i} - 3\cdot\overrightarrow{j} + 3\cdot\overrightarrow{k}
+\]</div>
+<p>or more generally we can generate any vector <span class="math notranslate nohighlight">\(\overrightarrow{v}\)</span> as a linear combination of a base <span class="math notranslate nohighlight">\(\{u_i\}\)</span> and its coefficients <span class="math notranslate nohighlight">\(\{u_i\}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+\overrightarrow{v} = \sum_{i} c_i\cdot u_i
+\]</div>
+<p>We can express the wavefunction that we need to know as a combination of functions (bases) that we already know</p>
+<div class="math notranslate nohighlight">
+\[
+\Psi = \sum_i c_i \cdot \phi_i
+\]</div>
+<p>The problem is now numerical a numerical one, this is . We need to find the best coefficients <span class="math notranslate nohighlight">\(\{c_i\}\)</span> that give us the lowest possible energy.</p>
+<p>We are skipping many steps but what is important is that</p>
+<ol class="arabic simple">
+<li><p>The choice of a base is important</p></li>
+<li><p>The process will be iterative</p></li>
+</ol>
+<p>This whole process is called the <a class="reference external" href="https://en.wikipedia.org/wiki/Hartree%E2%80%93Fock_method">Hartree-Fock method</a></p>
+<ol class="arabic simple">
+<li><p>Suggest a base (a collection of functions), a charge (number of electrons) and spin (number of unpaired electrons)</p></li>
+<li><p>Give a guess to the coefficients <span class="math notranslate nohighlight">\(\{c_i\}\)</span></p></li>
+<li><p>Build the Fock matrix</p></li>
+<li><p>Because our base is not orthogonal we have to carry what is called an overlap matrix which takes care of the orthonormalization of our base.</p></li>
+<li><p>Diagonzalize the matrices.</p></li>
+<li><p>Find out if the energy has lowered enough from the previous point. That is, if <span class="math notranslate nohighlight">\(\Delta E\)</span> is lower than a threshold. If not, suggest a new change to <span class="math notranslate nohighlight">\(\{c_i\}\)</span> and go back to point 2.</p></li>
+</ol>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="quantum-chemistry-packages-pyscf">
+<h1>Quantum chemistry packages: pyscf<a class="headerlink" href="#quantum-chemistry-packages-pyscf" title="Link to this heading">#</a></h1>
+<p>The <a class="reference external" href="https://pyscf.org/">PySCF</a> is a quantum chemistry package that will take care of all the calculations. We will have to input the following information:</p>
+<ul class="simple">
+<li><p>Geometry of the system in xyz coodinates. For one atom of course we can just place it in (0,0,0)</p></li>
+<li><p>Identity of the atoms that compose our system: H, He, Li…</p></li>
+<li><p>Charge of the system, if it’s neutral the charge is zero.</p></li>
+<li><p>Spin: the number of unpaired electrons in the electronic configuration that you want to calculate. When there are unpaired electrons we will use the UHF method.</p></li>
+</ul>
+<p>Before you run the scripts below, make sure you have installed the pyscf libraries</p>
+<section id="single-point-calculations-reading-the-output">
+<h2>Single point calculations. Reading the output<a class="headerlink" href="#single-point-calculations-reading-the-output" title="Link to this heading">#</a></h2>
+<p>We are going to run a single-point calculation of the energy for the atom of lithium.
+Notice that the basis set used here is ‘sto-3g’ which is the smallest, also known minimimal basis set where each orbital is represented by one function.</p>
+<p>Pay attention to the geometry:</p>
+<ul class="simple">
+<li><p>charge is zero</p></li>
+<li><p>spin in this case refers to the number of unpaired electrons</p></li>
+<li><p>one single atom can be in the center of the xyz space: x=0, y=0, z=0.</p></li>
+</ul>
+<p>The set_options are:</p>
+<ul class="simple">
+<li><p>basis is sto-3g</p></li>
+<li><p>reference uhf because of unpaired electrons (use rhf for all paired electrons)</p></li>
+<li><p><a class="reference external" href="https://psicode.org/psi4manual/master/autodir_options_c/globals__scf_type.html">scf_type</a> specifies one specific convergece algorithm.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">scf</span>
+
+<span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span><span class="n">atom</span><span class="o">=</span><span class="s2">&quot;Li 0 0 0&quot;</span><span class="p">,</span> 
+            <span class="n">basis</span><span class="o">=</span><span class="s2">&quot;sto-3g&quot;</span><span class="p">,</span> 
+            <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+            <span class="n">spin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="c1"># spin=1 for one unpaired electron: 1s2 2s1</span>
+            <span class="n">verbose</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+            <span class="n">output</span><span class="o">=</span><span class="s1">&#39;m1d4_lithium.out&#39;</span><span class="p">)</span>  <span class="c1">#you can write a verbose output into a file</span>
+
+
+
+<span class="n">li</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">UHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span> <span class="c1">#Using UHF for unpaired electrons instead of RHF for paired electrons</span>
+<span class="n">li</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+<span class="c1"># Orbital energies, Mulliken population etc.</span>
+<span class="n">li</span><span class="o">.</span><span class="n">analyze</span><span class="p">()</span>
+
+<span class="c1"># Access information about the calculation</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SCF Converged:&quot;</span><span class="p">,</span> <span class="n">li</span><span class="o">.</span><span class="n">converged</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total Energy:&quot;</span><span class="p">,</span> <span class="n">li</span><span class="o">.</span><span class="n">e_tot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The output in the previous cell is so large that it masks the line where we print the energy.
+We are now going to run the same calculation. However, we will write the results in a file that will appear in the same folder as where this notebook is.</p>
+<p>Pay special attention to the code below. It opens the file and reads it line by line until it finds the line where the “Total Energy” is written.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#myoutput will be an array containing the lines of the file</span>
+<span class="n">myoutput</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;m1d4_lithium.out&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">myoutput</span><span class="p">:</span>
+    <span class="c1">#print(line)</span>
+    <span class="k">if</span> <span class="s1">&#39;Total Energy&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+        <span class="n">ene</span> <span class="o">=</span> <span class="n">line</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ene</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Your turn:</p>
+<ul class="simple">
+<li><p>How many iterations of the “Self Consistent Field” did it take to converge the energy?</p></li>
+<li><p>What is the energy of the 1s and 2s orbitals?</p></li>
+</ul>
+</section>
+<section id="testing-basis-sets">
+<h2>Testing basis sets<a class="headerlink" href="#testing-basis-sets" title="Link to this heading">#</a></h2>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Variational_method_(quantum_mechanics)">variational method</a> tell us that the larger the basis set the better the result is. Since we know that the energy of hydrogen is -0.5 hartrees we can test this assumption by changing the basis set.</p>
+<p><a class="github reference external" href="https://github.com/pyscf/pyscf/blob/master/examples/gto/04-input_basis.py">pyscf/pyscf</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ==&gt; Compute H atom energy with Hartree-Fock using pyscf &lt;==</span>
+
+<span class="c1"># the H atom has a charge of 0, and one unpaired electron</span>
+<span class="c1"># and we place it at the xyz origin (0,0,0)</span>
+
+
+<span class="n">basis</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sto3g&quot;</span><span class="p">,</span><span class="s2">&quot;3-21g&quot;</span><span class="p">,</span><span class="s2">&quot;6-31g&quot;</span><span class="p">,</span><span class="s2">&quot;ccpvdz&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">basis</span><span class="p">:</span>
+    <span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span><span class="n">atom</span><span class="o">=</span><span class="s2">&quot;H 0 0 0&quot;</span><span class="p">,</span> 
+        <span class="n">basis</span><span class="o">=</span><span class="n">base</span><span class="p">,</span> 
+        <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+        <span class="n">spin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="c1"># spin=1 for one unpaired electron: 1s1</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="n">output</span><span class="o">=</span><span class="s1">&#39;m1d4_H_&#39;</span><span class="o">+</span><span class="n">base</span><span class="o">+</span><span class="s1">&#39;.out&#39;</span><span class="p">)</span>  
+    <span class="n">h</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">UHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="c1">#Using UHF for unpaired electrons instead of RHF for paired electrons</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">e_tot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="different-levels-of-theory">
+<h2>Different levels of theory<a class="headerlink" href="#different-levels-of-theory" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">dft</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_H_level</span><span class="p">(</span><span class="n">level</span><span class="p">,</span><span class="n">basisset</span><span class="p">,</span><span class="n">myatom</span><span class="p">,</span><span class="n">mycharge</span><span class="p">,</span><span class="n">myspin</span><span class="p">):</span>
+    <span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span><span class="n">atom</span><span class="o">=</span><span class="n">myatom</span><span class="o">+</span><span class="s2">&quot; 0 0 0&quot;</span><span class="p">,</span> 
+        <span class="n">basis</span><span class="o">=</span><span class="n">basisset</span><span class="p">,</span> 
+        <span class="n">charge</span><span class="o">=</span><span class="n">mycharge</span><span class="p">,</span> 
+        <span class="n">spin</span><span class="o">=</span><span class="n">myspin</span><span class="p">,</span><span class="c1"># spin=1 for one unpaired electron: 1s2 2s1</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="n">output</span><span class="o">=</span><span class="s1">&#39;m1d4_&#39;</span><span class="o">+</span><span class="n">myatom</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">mycharge</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="n">basisset</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="n">level</span><span class="o">+</span><span class="s1">&#39;.out&#39;</span><span class="p">)</span>  
+
+    <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="s2">&quot;HF&quot;</span><span class="p">:</span>
+        <span class="n">li</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">UHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> 
+    <span class="k">elif</span> <span class="n">level</span> <span class="o">==</span> <span class="s2">&quot;b3lyp&quot;</span><span class="p">:</span>
+        <span class="n">li</span> <span class="o">=</span> <span class="n">dft</span><span class="o">.</span><span class="n">UKS</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span> <span class="c1">#unrestricted kohn-sham instead of hartree fock</span>
+        <span class="n">li</span><span class="o">.</span><span class="n">xc</span> <span class="o">=</span> <span class="s1">&#39;b3lyp&#39;</span>
+        <span class="n">li</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">level</span> <span class="o">==</span> <span class="s2">&quot;MP2&quot;</span><span class="p">:</span>
+        <span class="n">li</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">UHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> 
+        <span class="n">li</span><span class="o">.</span><span class="n">MP2</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">level</span> <span class="o">==</span> <span class="s2">&quot;CISD&quot;</span><span class="p">:</span>
+        <span class="n">li</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">UHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> 
+        <span class="n">li</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="n">CISD</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">level</span> <span class="o">==</span> <span class="s2">&quot;CCSD&quot;</span><span class="p">:</span>
+        <span class="n">li</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">UHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> 
+        <span class="n">li</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="n">CCSD</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">li</span><span class="o">.</span><span class="n">converged</span><span class="p">:</span>
+        <span class="k">return</span><span class="p">(</span><span class="n">li</span><span class="o">.</span><span class="n">e_tot</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span><span class="p">(</span><span class="s2">&quot;not converged&quot;</span><span class="p">)</span>
+
+<span class="n">levels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;HF&quot;</span><span class="p">,</span><span class="s2">&quot;b3lyp&quot;</span><span class="p">,</span><span class="s2">&quot;MP2&quot;</span><span class="p">,</span><span class="s2">&quot;CISD&quot;</span><span class="p">]</span>
+<span class="n">H_energy</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">level</span> <span class="ow">in</span> <span class="n">levels</span><span class="p">:</span>
+   <span class="n">thisEne</span> <span class="o">=</span> <span class="n">calc_H_level</span><span class="p">(</span><span class="n">level</span><span class="p">,</span><span class="s1">&#39;6-31g&#39;</span><span class="p">,</span><span class="s1">&#39;H&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+   <span class="n">H_energy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thisEne</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;**Level: &quot;</span><span class="o">+</span><span class="n">level</span><span class="o">+</span><span class="s2">&quot; energy =&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span> <span class="n">thisEne</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">H_energy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="ionization-energy-of-atoms">
+<h1>Ionization energy of atoms<a class="headerlink" href="#ionization-energy-of-atoms" title="Link to this heading">#</a></h1>
+<p>The ionization energy is the energy that it takes to remove the electron.</p>
+<ul class="simple">
+<li><p>The first ionization energy of lithium will be = <span class="math notranslate nohighlight">\(E_{Li}\)</span> - <span class="math notranslate nohighlight">\(E_{Li^+}\)</span></p></li>
+<li><p>The second ionization energy of lithium will be = <span class="math notranslate nohighlight">\(E_{Li^+}\)</span> - <span class="math notranslate nohighlight">\(E_{Li^{2+}}\)</span></p></li>
+</ul>
+<p>So one just need to calculate the energy of those different atoms and do the difference.
+Notice that the spin state is different in each case.</p>
+<ul class="simple">
+<li><p>Li has 1s2 2s1, so one unpaired electron s=1/2; 2s+1=2; use the uhf method</p></li>
+<li><p>Li(+) has 1s2, and no unpaired electrons s=0; 2s+1=1; use the rhf method</p></li>
+<li><p>Li(2+) has 1s1, so one unpaired electron again s=1/2; 2s+1=2; use the uhf method</p></li>
+</ul>
+<p><strong>Restricted and Unrestricted wavefunctions</strong></p>
+<img width="300" src="./restricted.png">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">constants</span>
+
+<span class="n">hartree_value</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Value in Hartree</span>
+<span class="n">electronvolt_value</span> <span class="o">=</span> <span class="n">hartree_value</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">physical_constants</span><span class="p">[</span><span class="s2">&quot;Hartree energy in eV&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">level</span> <span class="o">=</span> <span class="s1">&#39;b3lyp&#39;</span>
+<span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;6-31g&#39;</span>
+<span class="n">atom</span> <span class="o">=</span> <span class="s1">&#39;Li&#39;</span>
+<span class="n">ene_Li_neutral</span> <span class="o">=</span> <span class="n">calc_H_level</span><span class="p">(</span><span class="n">level</span><span class="p">,</span><span class="n">basis</span><span class="p">,</span><span class="n">atom</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ene_Li_cation</span> <span class="o">=</span> <span class="n">calc_H_level</span><span class="p">(</span><span class="n">level</span><span class="p">,</span><span class="n">basis</span><span class="p">,</span><span class="n">atom</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">ionE_Li</span> <span class="o">=</span> <span class="n">ene_Li_cation</span> <span class="o">-</span> <span class="n">ene_Li_neutral</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ionE_Li</span><span class="o">*</span><span class="n">electronvolt_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">level</span> <span class="o">=</span> <span class="s1">&#39;b3lyp&#39;</span>
+<span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;6-31g&#39;</span>
+<span class="n">atom</span> <span class="o">=</span> <span class="s1">&#39;Be&#39;</span>
+<span class="n">ene_Be_neutral</span> <span class="o">=</span> <span class="n">calc_H_level</span><span class="p">(</span><span class="n">level</span><span class="p">,</span><span class="n">basis</span><span class="p">,</span><span class="n">atom</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ene_Be_cation</span> <span class="o">=</span> <span class="n">calc_H_level</span><span class="p">(</span><span class="n">level</span><span class="p">,</span><span class="n">basis</span><span class="p">,</span><span class="n">atom</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ionE_Be</span> <span class="o">=</span> <span class="n">ene_Be_cation</span> <span class="o">-</span> <span class="n">ene_Be_neutral</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ionE_Be</span><span class="o">*</span><span class="n">electronvolt_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="questions">
+<h1>Questions<a class="headerlink" href="#questions" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Calculate the 1st, 2nd and 3rd ionization energies of Beryllium, Boron, and Carbon. Pay special attention to the charge and spin multiplicity in each case. Remember to use uhf for unpaired electrons and rhf for paired electrons.</p>
+<ol class="arabic simple">
+<li><p>Investigate the effect of using different methods: the scf and the b3lyp method.</p></li>
+<li><p>Investigate the effect of using different bassis sets: sto-3g and 6-31G**</p></li>
+</ol>
+</li>
+<li><p>Save the output of each calculation in a separate file. Be systematic in the naming so you can read it in a loop. Since you are submitting your assignments folder, create a subfolder called M1D4 with all these files.</p></li>
+<li><p>Build a table containing ionization energies, number of basis sets in each calculation and time that it took to run the calculation. Do not do this manually, do it with a loop that opens each of the files. Start simple and grow in complexity checking every step.</p></li>
+<li><p>Plot the ionization energies</p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="M1.D3._Schrodingers_hydrogen_atom.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">M1.D3: Schrodinger’s hydrogen atom</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="M1.D5._Electronic_energy_of_molecules.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">M1.D5: Electronic energy of molecules</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Module 1 - Day 4: Polyelectronic atoms. Electronic correlation and self-consistent field methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning objectives:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-hamiltonian-for-polyelectronic-atoms">The Hamiltonian for polyelectronic atoms</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-self-consistent-field-solution-scf-or-hartree-fock">The Self-Consistent Field solution (SCF) or Hartree-Fock</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-need-for-a-base">The need for a base</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#quantum-chemistry-packages-pyscf">Quantum chemistry packages: pyscf</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#single-point-calculations-reading-the-output">Single point calculations. Reading the output</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-basis-sets">Testing basis sets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#different-levels-of-theory">Different levels of theory</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ionization-energy-of-atoms">Ionization energy of atoms</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Xavier Prat-Resina pratr001@r.umn.edu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024 CC BY.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

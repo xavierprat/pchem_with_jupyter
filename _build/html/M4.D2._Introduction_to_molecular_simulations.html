@@ -1,0 +1,961 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>M4.D2: Introduction to molecular simulations &#8212; Physical Chemistry with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'M4.D2._Introduction_to_molecular_simulations';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="M4.D3: Calculating free energies of chemical systems" href="M4.D3._Calculating_free_energies_of_chemical_systems.html" />
+    <link rel="prev" title="M4.D1: Introduction to molecular dynamics" href="M4.D1._Introduction_to_molecular_dynamics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="Introduction.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Physical Chemistry with Python - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Physical Chemistry with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Introduction.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Module_0_Introduction_to_Python.html">M0: Introduction to Python</a></li>
+
+
+
+
+
+
+<li class="toctree-l1 has-children"><a class="reference internal" href="Module_1_Energy_levels_of_atoms_and_molecules.html">Module 1: Energy levels of atoms and molecules</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="M1.D1._Bohrs_hydrogen_atom.html">M1.D1: Bohr’s hydrogen atom</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D2._Introduction_to_Quantum_Mechanics._Particle_in_a_box.html">M1.D2: Introduction to Quantum Mechanics. Particle in a box.</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D3._Schrodingers_hydrogen_atom.html">M1.D3: Schrodinger’s hydrogen atom</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D4._Polyelectronic_atoms._Electronic_correlation_and_self_consistent_field_methods.html">Module 1 - Day 4: Polyelectronic atoms. Electronic correlation and self-consistent field methods</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D5._Electronic_energy_of_molecules.html">M1.D5: Electronic energy of molecules</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D6._Vibrational_levels_of_diatomic_molecules.html">M1.D6: Vibrational levels of diatomic molecules</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D7._Vibrational_levels_of_polyatomic_molecules.html">M1.D7: Vibrational levels of polyatomic molecules</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D8._Rotational_levels_of_molecules.html">M1.D8: Rotational levels of molecules</a></li>
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Module_2_Exploration_of_the_potential_energy_surface.html">Module 2: Exploration of the PES</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Module_3_Statistical_Thermodynamics.html">Module 3: Statistical Thermodynamics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="M3.D1._Boltzmann_factor_and_partition_functions.html">M3.D1: Boltzmann factor and partition functions</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D2._Partition_functions_of_atoms.html">M3.D2: Partition functions of atoms</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D3._Thermodynamic_properties_of_molecular_ideal_gases.html">M3.D3: Thermodynamic properties of molecular ideal gases</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D4._Thermodynamic%20potentials.html">M3.D4: Thermodynamic potentials for spontaneity and other thermodynamic properties</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Module_4_Molecular_simulations_and_Thermodynamics.html">Module 4: Molecular simulations and Thermodynamics</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="M4.D1._Introduction_to_molecular_dynamics.html">M4.D1: Introduction to molecular dynamics</a></li>
+
+
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">M4.D2: Introduction to molecular simulations</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M4.D3._Calculating_free_energies_of_chemical_systems.html">M4.D3: Calculating free energies of chemical systems</a></li>
+
+
+
+
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FM4.D2._Introduction_to_molecular_simulations.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/M4.D2._Introduction_to_molecular_simulations.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>M4.D2: Introduction to molecular simulations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">M4.D2: Introduction to molecular simulations</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-the-main-charactersitics-of-molecular-simulations">Identifying the main charactersitics of molecular simulations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#running-a-molecular-dynamics-simulation-of-water">Running a molecular dynamics simulation of water</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-a-molecular-dynamics-simulation-of-water">Analyzing a molecular dynamics simulation of water</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="m4-d2-introduction-to-molecular-simulations">
+<h1>M4.D2: Introduction to molecular simulations<a class="headerlink" href="#m4-d2-introduction-to-molecular-simulations" title="Link to this heading">#</a></h1>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Explain the need for molecular dynamics software packages to run more accurate simulations. List all the variables that need to be taken into account when running an atomistic simulation.</p></li>
+<li><p>Run a simulation of a water liquid. Briefly describe the forcefield, the type of intermolecular interactions, algorithm for the equations of motion, time step, length of the simulation.</p></li>
+<li><p>Plot properties of the simulation through time. Identify the equilibration period in a molecular dynamics simulation.</p></li>
+<li><p>Calculate the heat capacity of the liquid</p></li>
+<li><p>Use MDAnalysis to analyze a molecular dynamics trajectory</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="identifying-the-main-charactersitics-of-molecular-simulations">
+<h1>Identifying the main charactersitics of molecular simulations<a class="headerlink" href="#identifying-the-main-charactersitics-of-molecular-simulations" title="Link to this heading">#</a></h1>
+<p>In order to run an accurate molecular dynamics simulation there are list of technical decisions that need to be made. Using a molecular dynamics software package helps mainstream those decisions.</p>
+<p>In class we will briefly talk about:</p>
+<ul class="simple">
+<li><p>The Molecular Mechanics Force Field: <a class="reference external" href="https://en.wikipedia.org/wiki/Force_field_(chemistry)">https://en.wikipedia.org/wiki/Force_field_(chemistry)</a></p></li>
+<li><p>Long-range interactions: <a class="reference external" href="https://en.wikibooks.org/wiki/Molecular_Simulation/Treatment_of_Long_Range_Forces">https://en.wikibooks.org/wiki/Molecular_Simulation/Treatment_of_Long_Range_Forces</a></p></li>
+<li><p>The equations of motion: integrators <a class="reference external" href="https://en.wikipedia.org/wiki/Molecular_dynamics#Molecular_dynamics_algorithms">https://en.wikipedia.org/wiki/Molecular_dynamics#Molecular_dynamics_algorithms</a></p></li>
+<li><p>Thermostats and barostats</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="running-a-molecular-dynamics-simulation-of-water">
+<h1>Running a molecular dynamics simulation of water<a class="headerlink" href="#running-a-molecular-dynamics-simulation-of-water" title="Link to this heading">#</a></h1>
+<p>Optional: Watch the video on Canvas showing step by step how to run the simulation of a cube of waters</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="analyzing-a-molecular-dynamics-simulation-of-water">
+<h1>Analyzing a molecular dynamics simulation of water<a class="headerlink" href="#analyzing-a-molecular-dynamics-simulation-of-water" title="Link to this heading">#</a></h1>
+<p>The files water.out, water-processed.pdb, and water.dcd are created after you run the simulation and they will be in the folder that you have indicated. These files will be easier to read if you select the same folder as where you have this notebook, if not, you may just need to copy them to the current folder.</p>
+<p>It is important that your simulation paramaters include:</p>
+<ul class="simple">
+<li><p>Write your results every 10 steps</p></li>
+<li><p>At least 50 ps of simulation, that’s 50000 steps of 1fs timestep.</p></li>
+<li><p>Your output should include temperature, KE, PE and Total E.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;water_box/water.out&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="c1">#using iloc I can select the 3rd column</span>
+<span class="n">myPE</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">myKE</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">myT</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">myDens</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">7</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>#"Step"</th>
+      <th>Time (ps)</th>
+      <th>Potential Energy (kJ/mole)</th>
+      <th>Kinetic Energy (kJ/mole)</th>
+      <th>Total Energy (kJ/mole)</th>
+      <th>Temperature (K)</th>
+      <th>Box Volume (nm^3)</th>
+      <th>Density (g/mL)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10</td>
+      <td>0.11</td>
+      <td>-15852.863671</td>
+      <td>1946.993188</td>
+      <td>-13905.870483</td>
+      <td>176.001094</td>
+      <td>9.353182</td>
+      <td>0.946724</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20</td>
+      <td>0.12</td>
+      <td>-15597.068406</td>
+      <td>1758.497530</td>
+      <td>-13838.570876</td>
+      <td>158.961773</td>
+      <td>9.353182</td>
+      <td>0.946724</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>30</td>
+      <td>0.13</td>
+      <td>-15719.284506</td>
+      <td>1757.676208</td>
+      <td>-13961.608297</td>
+      <td>158.887529</td>
+      <td>9.338105</td>
+      <td>0.948253</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>40</td>
+      <td>0.14</td>
+      <td>-15856.482367</td>
+      <td>2010.354291</td>
+      <td>-13846.128076</td>
+      <td>181.728707</td>
+      <td>9.338105</td>
+      <td>0.948253</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>50</td>
+      <td>0.15</td>
+      <td>-15583.168041</td>
+      <td>1850.758898</td>
+      <td>-13732.409143</td>
+      <td>167.301865</td>
+      <td>9.268756</td>
+      <td>0.955348</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>4995</th>
+      <td>49960</td>
+      <td>50.06</td>
+      <td>-14399.581223</td>
+      <td>3315.126929</td>
+      <td>-11084.454295</td>
+      <td>299.675402</td>
+      <td>8.586259</td>
+      <td>1.031285</td>
+    </tr>
+    <tr>
+      <th>4996</th>
+      <td>49970</td>
+      <td>50.07</td>
+      <td>-14448.337692</td>
+      <td>3320.166359</td>
+      <td>-11128.171332</td>
+      <td>300.130949</td>
+      <td>8.586259</td>
+      <td>1.031285</td>
+    </tr>
+    <tr>
+      <th>4997</th>
+      <td>49980</td>
+      <td>50.08</td>
+      <td>-14448.884486</td>
+      <td>3343.899860</td>
+      <td>-11104.984626</td>
+      <td>302.276371</td>
+      <td>8.556562</td>
+      <td>1.034865</td>
+    </tr>
+    <tr>
+      <th>4998</th>
+      <td>49990</td>
+      <td>50.09</td>
+      <td>-14419.638159</td>
+      <td>3334.846615</td>
+      <td>-11084.791544</td>
+      <td>301.457990</td>
+      <td>8.648801</td>
+      <td>1.023828</td>
+    </tr>
+    <tr>
+      <th>4999</th>
+      <td>50000</td>
+      <td>50.10</td>
+      <td>-14345.658959</td>
+      <td>3278.600705</td>
+      <td>-11067.058254</td>
+      <td>296.373565</td>
+      <td>8.568750</td>
+      <td>1.033393</td>
+    </tr>
+  </tbody>
+</table>
+<p>5000 rows × 8 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">myPE</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">myPE</span><span class="p">[</span><span class="mi">200</span><span class="p">:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x13f6c0140&gt;]
+</pre></div>
+</div>
+<img alt="_images/ac54a0de454d5b491634322112dd399aa93320bbf29562f40d22995b2f5946f8.png" src="_images/ac54a0de454d5b491634322112dd399aa93320bbf29562f40d22995b2f5946f8.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">myDens</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">myDens</span><span class="p">[</span><span class="mi">200</span><span class="p">:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x13f72bb90&gt;]
+</pre></div>
+</div>
+<img alt="_images/f1d093eff9ef6635fcabe1f6122a0379eca5a62f8c6e23b9634af7edcb3fbae0.png" src="_images/f1d093eff9ef6635fcabe1f6122a0379eca5a62f8c6e23b9634af7edcb3fbae0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">myT</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">myT</span><span class="p">[</span><span class="mi">200</span><span class="p">:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x12f204740&gt;]
+</pre></div>
+</div>
+<img alt="_images/3a0a3f89eff51466eb3bcfee4cbbd2d7e55413d078a6c43d51ec5168de444efb.png" src="_images/3a0a3f89eff51466eb3bcfee4cbbd2d7e55413d078a6c43d51ec5168de444efb.png" />
+</div>
+</div>
+<p>Your turn</p>
+<ul class="simple">
+<li><p>In a similar fashion as above, plot the kinetic energy, the total energy of the system, and the temperature</p></li>
+<li><p>Why is the kinetic energy always positive and the potential always negative?</p></li>
+<li><p>At what portion of the simulation are your properties stable enough that allow you to start “measuring”?</p></li>
+</ul>
+<p>The heat capacity can also be computed from the simulation using the total energy average of squares.</p>
+<div class="math notranslate nohighlight">
+\[
+&lt;E&gt;^2 - &lt;E^2&gt;
+\]</div>
+<ul class="simple">
+<li><p>Build a loop to calculate the heat capacity (we won’t be discussing its units for now)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">totE</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">4</span><span class="p">]</span>
+
+<span class="n">aveE</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">aveE2</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">totE</span><span class="p">:</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">aveE</span> <span class="o">+=</span> <span class="n">e</span>
+    <span class="n">aveE2</span> <span class="o">+=</span> <span class="n">e</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">totSteps</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">totE</span><span class="p">)</span>
+
+<span class="n">averageE_squared</span> <span class="o">=</span> <span class="p">(</span><span class="n">aveE</span><span class="o">/</span><span class="n">totSteps</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">averageSquared_E</span> <span class="o">=</span> <span class="p">(</span><span class="n">aveE2</span><span class="o">/</span><span class="n">totSteps</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">averageSquared_E</span><span class="o">-</span><span class="n">averageE_squared</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>70213.67867276073
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>You can use MDanalysis to read the trajectory. Here below is an example where we monitor the distance between two oxygens in two different waters. How can you explain the big jumps in distance?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">MDAnalysis</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mda</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">u</span> <span class="o">=</span> <span class="n">mda</span><span class="o">.</span><span class="n">Universe</span><span class="p">(</span><span class="s1">&#39;water_box/water-processed.pdb&#39;</span><span class="p">,</span><span class="s1">&#39;water_box/water.dcd&#39;</span><span class="p">)</span>
+
+<span class="n">dist</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">snap</span> <span class="ow">in</span> <span class="n">u</span><span class="o">.</span><span class="n">trajectory</span><span class="p">:</span>
+    <span class="c1">#selecting the central atom</span>
+    <span class="n">myO1</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s2">&quot;name O and segid 2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">center_of_geometry</span><span class="p">()</span>
+    <span class="n">myO2</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">select_atoms</span><span class="p">(</span><span class="s2">&quot;name O and resid 2 and segid 3&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">center_of_geometry</span><span class="p">()</span>
+    <span class="c1">#selecting</span>
+    <span class="n">myDist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">myO1</span><span class="o">-</span><span class="n">myO2</span><span class="p">)</span>
+    <span class="n">dist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">myDist</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dist</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ede17469d6469905dfa14ad5a151c626410c223ab6b44e114486d40d431a08b9.png" src="_images/ede17469d6469905dfa14ad5a151c626410c223ab6b44e114486d40d431a08b9.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Fun exercise: Using raw python (no extra modules) open the initial pdb file, read line by line, and find the water that is closest to first water and follow its distance throughout the trajectory.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="questions">
+<h1>Questions<a class="headerlink" href="#questions" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Submit the answers to the questions listed above</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="M4.D1._Introduction_to_molecular_dynamics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">M4.D1: Introduction to molecular dynamics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="M4.D3._Calculating_free_energies_of_chemical_systems.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">M4.D3: Calculating free energies of chemical systems</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">M4.D2: Introduction to molecular simulations</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-the-main-charactersitics-of-molecular-simulations">Identifying the main charactersitics of molecular simulations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#running-a-molecular-dynamics-simulation-of-water">Running a molecular dynamics simulation of water</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-a-molecular-dynamics-simulation-of-water">Analyzing a molecular dynamics simulation of water</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Xavier Prat-Resina pratr001@r.umn.edu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024 CC BY.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

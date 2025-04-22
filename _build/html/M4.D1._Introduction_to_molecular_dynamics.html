@@ -1,0 +1,867 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>M4.D1: Introduction to molecular dynamics &#8212; Physical Chemistry with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'M4.D1._Introduction_to_molecular_dynamics';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="M4.D2: Introduction to molecular simulations" href="M4.D2._Introduction_to_molecular_simulations.html" />
+    <link rel="prev" title="Module 4: Molecular simulations and Thermodynamics" href="Module_4_Molecular_simulations_and_Thermodynamics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="Introduction.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Physical Chemistry with Python - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Physical Chemistry with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Introduction.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Module_0_Introduction_to_Python.html">M0: Introduction to Python</a></li>
+
+
+
+
+
+
+<li class="toctree-l1 has-children"><a class="reference internal" href="Module_1_Energy_levels_of_atoms_and_molecules.html">Module 1: Energy levels of atoms and molecules</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="M1.D1._Bohrs_hydrogen_atom.html">M1.D1: Bohr’s hydrogen atom</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D2._Introduction_to_Quantum_Mechanics._Particle_in_a_box.html">M1.D2: Introduction to Quantum Mechanics. Particle in a box.</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D3._Schrodingers_hydrogen_atom.html">M1.D3: Schrodinger’s hydrogen atom</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D4._Polyelectronic_atoms._Electronic_correlation_and_self_consistent_field_methods.html">Module 1 - Day 4: Polyelectronic atoms. Electronic correlation and self-consistent field methods</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D5._Electronic_energy_of_molecules.html">M1.D5: Electronic energy of molecules</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D6._Vibrational_levels_of_diatomic_molecules.html">M1.D6: Vibrational levels of diatomic molecules</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D7._Vibrational_levels_of_polyatomic_molecules.html">M1.D7: Vibrational levels of polyatomic molecules</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D8._Rotational_levels_of_molecules.html">M1.D8: Rotational levels of molecules</a></li>
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Module_2_Exploration_of_the_potential_energy_surface.html">Module 2: Exploration of the PES</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Module_3_Statistical_Thermodynamics.html">Module 3: Statistical Thermodynamics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="M3.D1._Boltzmann_factor_and_partition_functions.html">M3.D1: Boltzmann factor and partition functions</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D2._Partition_functions_of_atoms.html">M3.D2: Partition functions of atoms</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D3._Thermodynamic_properties_of_molecular_ideal_gases.html">M3.D3: Thermodynamic properties of molecular ideal gases</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D4._Thermodynamic%20potentials.html">M3.D4: Thermodynamic potentials for spontaneity and other thermodynamic properties</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Module_4_Molecular_simulations_and_Thermodynamics.html">Module 4: Molecular simulations and Thermodynamics</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">M4.D1: Introduction to molecular dynamics</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M4.D2._Introduction_to_molecular_simulations.html">M4.D2: Introduction to molecular simulations</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M4.D3._Calculating_free_energies_of_chemical_systems.html">M4.D3: Calculating free energies of chemical systems</a></li>
+
+
+
+
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FM4.D1._Introduction_to_molecular_dynamics.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/M4.D1._Introduction_to_molecular_dynamics.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>M4.D1: Introduction to molecular dynamics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">M4.D1: Introduction to molecular dynamics</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#for-non-ideal-gases-the-partition-function-is-not-analytical">For non-ideal gases, the partition function is not analytical</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#first-step-of-moelcular-dynamics-initial-position-of-particles">First step of moelcular dynamics: Initial position of particles</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#second-step-calculate-the-potential-energy">Second step: Calculate the potential energy</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#third-step-give-velocity-to-particles-for-thermal-distribution">Third step: Give velocity to particles for thermal distribution</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-equations-of-motion-step-by-step-run-a-simple-molecular-dynamics">Solve equations of motion step by step: run a simple molecular dynamics</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="m4-d1-introduction-to-molecular-dynamics">
+<h1>M4.D1: Introduction to molecular dynamics<a class="headerlink" href="#m4-d1-introduction-to-molecular-dynamics" title="Link to this heading">#</a></h1>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Explain what part of the assumptions and equations that we used in module 3 to calculate macroscopic properties are not valid any more for interacting or condensed matter systems.</p></li>
+<li><p>Build a script that randomly places particles in a volume that matches a certain density</p></li>
+<li><p>Build a script that assigns random velocities to particles according to a thermal distribution</p></li>
+<li><p>Given a time-step and a certain number of steps or simulation time, build a script that iteratively solves the equations of motion of a set of particles.</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="for-non-ideal-gases-the-partition-function-is-not-analytical">
+<h1>For non-ideal gases, the partition function is not analytical<a class="headerlink" href="#for-non-ideal-gases-the-partition-function-is-not-analytical" title="Link to this heading">#</a></h1>
+<p>We learned that the heat capacity of a monoatomic ideal gas is <span class="math notranslate nohighlight">\(\frac{3}{2}RT\)</span>, this result was obtained assuming that, as ideal, the atoms do not interact with each other so that the total partition function is just a product of independent particles <span class="math notranslate nohighlight">\(Q = \frac{q^N}{N!}\)</span></p>
+<p>However, when that is not the case, we are left with having to calculate the macroscopic partition function as a summation of all possible macrostates</p>
+<div class="math notranslate nohighlight">
+\[
+Q = \sum_i e^{-\frac{E_i}{k_B T}} \neq \frac{q^N}{N!}
+\]</div>
+<p>Notice that <span class="math notranslate nohighlight">\(E_1, E_2, E_3...\)</span> are not the internal energy levels of one molecule, it is all the possible positions and speeds of particles, in other words, the microstates of the macroscopic system.</p>
+<p>We will have to <strong>sample the phase space</strong> that is consider all possible positions and velocities of our particles to calculate our partition function.</p>
+<p>Traditionally in molecular simulations there are two main strategies to “sample” the phase space, molecular dynamics and montecarlo. However, <a class="reference external" href="https://en.wikipedia.org/wiki/Sampling_(statistics)">sampling methods</a> are a vast area of computational physics.</p>
+<p>Try to have a picture of the vast number of configurations in which the picture below can arrange. The phase space is enourmous for any realistic model. This where the “art of modeling” needs to be considered.</p>
+<ol class="arabic simple">
+<li><p>The number of particles in the system has to be large enough that allow us to calculate realistic properties</p></li>
+<li><p>The energy among the particles has to be accurate enough. The energy will have a kinetic component (related to temparature) and a potential energy component.</p></li>
+<li><p>The sampling (number of positions and velocities considered) has to be large enough so that the properties converge. If the sampling involves the equations of motion we will have to calculate the derivative of the potential to obtain the forces.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Source: https://gist.github.com/jhjensen2/71bdb95ca0b12e22fa176c86b46e28b5#file-noninteracting_particle_md-ipynb</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">box_width</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">n_particles</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="n">x_coord</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_particles</span><span class="p">):</span>
+    <span class="n">x_coord</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="n">box_width</span> <span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">y_coord</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_particles</span><span class="p">):</span>
+    <span class="n">y_coord</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="n">box_width</span> <span class="p">)</span>
+
+<span class="n">x_vel</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">*</span><span class="n">box_width</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_particles</span><span class="p">)]</span>
+<span class="n">y_vel</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">*</span><span class="n">box_width</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_particles</span><span class="p">)]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_coord</span><span class="p">,</span><span class="n">y_coord</span><span class="p">,</span><span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x_coord</span><span class="p">,</span><span class="n">y_coord</span><span class="p">,</span><span class="n">x_vel</span><span class="p">,</span><span class="n">y_vel</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/39dc1abe5bd5f64860fe9ac1b84a81d304223b2e3c00f66f31b7108e0edf6121.png" src="_images/39dc1abe5bd5f64860fe9ac1b84a81d304223b2e3c00f66f31b7108e0edf6121.png" />
+</div>
+</div>
+<p>Or more realistically, we can plot them in 3D</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">plotly.express</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">px</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">z_coord</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_particles</span><span class="p">):</span>
+    <span class="n">z_coord</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="n">box_width</span> <span class="p">)</span>
+<span class="n">coords</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">coords</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">x_coord</span>
+<span class="n">coords</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">y_coord</span>
+<span class="n">coords</span><span class="p">[</span><span class="s2">&quot;z&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">z_coord</span>    
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter_3d</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="first-step-of-moelcular-dynamics-initial-position-of-particles">
+<h1>First step of moelcular dynamics: Initial position of particles<a class="headerlink" href="#first-step-of-moelcular-dynamics-initial-position-of-particles" title="Link to this heading">#</a></h1>
+<p>Let’s say we want to simulate liquid water. We need to place water molecules so that it matches with its density, which is 1g/mL. How many molecules of water would you place in a cube with a boxsize=10 angstroms?</p>
+<p><span class="math notranslate nohighlight">\(1Å=10^{-10}m\)</span></p>
+<ul class="simple">
+<li><p>What volume of your box would contain 100 particles?</p></li>
+<li><p>Each student should generate a random box with 100 particles and calculate the average distance among particles?</p>
+<ul>
+<li><p>You will have to build a double loop, for 100 particles there will be 99 distances.</p></li>
+<li><p>Remember the cartesian distance between two points <br />
+<span class="math notranslate nohighlight">\(p_1 = (x_1,y_1,z_1)\)</span> and <span class="math notranslate nohighlight">\(p_2 = (x_2,y_2,z_2)\)</span><br />
+<span class="math notranslate nohighlight">\(r = \sqrt{ (x_1-x_2)^2 + (y_1-y_2)^2 + (z_1-z_2)^2}\)</span></p></li>
+</ul>
+</li>
+<li><p>Build a histogram showing the distance among molecules</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="second-step-calculate-the-potential-energy">
+<h1>Second step: Calculate the potential energy<a class="headerlink" href="#second-step-calculate-the-potential-energy" title="Link to this heading">#</a></h1>
+<p>How do particles interact with each other? In previous chemistry semesters you learned about different types of intermolecular forces (Hydrogen bonds, dipole dipole interactions, and London or dispersion forces). One of the earliest potential energy expressions to describe dispersion forces are the Lennar-Jones potentials</p>
+<p>Lennard-Jones, J. E. Proc. Royal Soc. Lond. A. 1924, 106 (738), 463–477. 10.1098/rspa.1924.0082.</p>
+<div class="math notranslate nohighlight">
+\[
+E_{LJ}(r)= 4\epsilon\left[\left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r} \right)^6 \right]
+\]</div>
+<p><span class="math notranslate nohighlight">\(\sigma\)</span> is the so-called Van der Waals radius, that is the radius where the potential is zero. The parameter <span class="math notranslate nohighlight">\(\epsilon\)</span> is the energy at the well of potential.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="n">num</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span> <span class="c1"># Make a radius vector</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Energy minimum</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Distance to zero crossing point</span>
+<span class="n">E_LJ</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">epsilon</span><span class="o">*</span><span class="p">((</span><span class="n">sigma</span><span class="o">/</span><span class="n">r</span><span class="p">)</span><span class="o">**</span><span class="mi">12</span><span class="o">-</span><span class="p">(</span><span class="n">sigma</span><span class="o">/</span><span class="n">r</span><span class="p">)</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span> <span class="c1"># Lennard-Jones potential</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">E_LJ</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/80e414820f6a9b3230f802ddf59018811b3d90e302a78a3b333bea6718695ac0.png" src="_images/80e414820f6a9b3230f802ddf59018811b3d90e302a78a3b333bea6718695ac0.png" />
+</div>
+</div>
+<p><strong>Your turn</strong></p>
+<ul class="simple">
+<li><p>Plot below a Lennard-Jones potential of a larger particle with a stronger interaction.</p></li>
+<li><p>Given the Lennard-Jones potential, calculate the potential energy of the whole system.</p></li>
+<li><p>Build a histogram of the energy of each particle.</p></li>
+<li><p>You probably will have obtained some very high energies due to overlapping atoms. You can set a maxmimum energy to a relatively small and positive value, say 1.5 (arbitrary number).</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="third-step-give-velocity-to-particles-for-thermal-distribution">
+<h1>Third step: Give velocity to particles for thermal distribution<a class="headerlink" href="#third-step-give-velocity-to-particles-for-thermal-distribution" title="Link to this heading">#</a></h1>
+<p>Given that the contribution from translations was <span class="math notranslate nohighlight">\(\frac{3}{2}RT\)</span>, each direction of space x,y,z contributes with <span class="math notranslate nohighlight">\(\frac{1}{2}RT\)</span> which comes exclusively from kinetic energy <span class="math notranslate nohighlight">\(\frac{1}{2}mv^2\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{2}RT = \frac{1}{2} m v_x^2
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+v_x = \sqrt{\frac{RT}{m}}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mass_of_water</span> <span class="o">=</span> <span class="mi">18</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mf">8.31</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">300</span>
+
+<span class="n">rand_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_particles</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span>
+<span class="n">vels_x</span> <span class="o">=</span> <span class="n">rand_dist</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">R</span><span class="o">*</span> <span class="n">T</span> <span class="o">/</span> <span class="p">(</span><span class="n">mass_of_water</span><span class="p">))</span>
+<span class="n">vels_y</span> <span class="o">=</span> <span class="n">rand_dist</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">R</span><span class="o">*</span> <span class="n">T</span> <span class="o">/</span> <span class="p">(</span><span class="n">mass_of_water</span><span class="p">))</span>
+<span class="n">vels_z</span> <span class="o">=</span> <span class="n">rand_dist</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">R</span><span class="o">*</span> <span class="n">T</span> <span class="o">/</span> <span class="p">(</span><span class="n">mass_of_water</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">vels_x</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/4cb17527f9938c5369c0eba0808bdbdf3dfbf9c209c3536af5ea3f5f70c5ed54.png" src="_images/4cb17527f9938c5369c0eba0808bdbdf3dfbf9c209c3536af5ea3f5f70c5ed54.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Now that each particle has a potential interaction and a velocity, calculate the energy of the system by adding the kinetic and the potential.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="solve-equations-of-motion-step-by-step-run-a-simple-molecular-dynamics">
+<h1>Solve equations of motion step by step: run a simple molecular dynamics<a class="headerlink" href="#solve-equations-of-motion-step-by-step-run-a-simple-molecular-dynamics" title="Link to this heading">#</a></h1>
+<p>The number of possible configurations of position and velocity in an atomic system is very large. However, not all those configurations will contribute significantly to the partition function as some of them may have high energy.</p>
+<p>A way to sample the most <em>accessible configurations</em> is using thermal molecular dynamics in which the system evolves accoding to the Newton equations of motion.</p>
+<div class="math notranslate nohighlight">
+\[
+x = x_0 + v_0 t + 0.5 a t^2
+\]</div>
+<p>where the acceleration comes from the second law of Newton <span class="math notranslate nohighlight">\(F=ma\)</span> and the force is the derivative of the energy <span class="math notranslate nohighlight">\(F=-\frac{dE}{dx}\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+a= - \frac{dE}{m dx}
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+v = v_0 + at
+\]</div>
+<ol class="arabic" start="0">
+<li><p>Decide units and parameters</p>
+<p>0.1 Length: angstrom. This is decided so that your 14.04 angstrom box has 100 particles to match the density of water. Maybe start with fewer particles and a smaller box.</p>
+<p>0.2 Mass: atomic mass units. Water 18 amu</p>
+<p>0.3 Energy: electron-volts. This means that R gas constant is rather <span class="math notranslate nohighlight">\(\frac{k_B}{q_e} = 8.63e-5\)</span></p>
+<p>0.4 The units of energy also effect the sigma and epsilon values. Sigma is in angstroms and it can be set to 1 angstrom. Epsilon is in electron-volts can be set to 0.2</p>
+<p>0.5 The Time step should be 0.1 angstroms.</p>
+</li>
+<li><p>Initialize your system. Build a function for each task.</p>
+<p>1.1 Randomize xyz coordinates positions.</p>
+<p>1.2 Assign random velocities according to the temperature 300K</p>
+<div class="math notranslate nohighlight">
+\[
+    v_x = \sqrt{\frac{RT}{m}}
+    \]</div>
+<p>1.3 Calculate accelerations based on the positions</p>
+<div class="math notranslate nohighlight">
+\[
+    a= - \frac{dE}{m dx}
+    \]</div>
+</li>
+<li><p>Loop for a number_of_steps. Set a low number of steps to test things.</p>
+<p>2.1 Update positions according to velocities and accelearations</p>
+<p>2.2 Get new accelerations</p>
+<p>2.3 Update velocities</p>
+<p>2.4 Calculate the new position using</p>
+<div class="math notranslate nohighlight">
+\[
+    x = x_0 + v_0 t + 0.5 a t^2
+    \]</div>
+<p>2.5 Calculate kinetic, potential, and total Energy</p>
+<p>2.6 Calculate temperature</p>
+<p>2.6 Save positions to a list of lists</p>
+</li>
+</ol>
+<p>Run it for few steps and see if it works. If it explodes you probably have some overlapping particles. If that’s the case, diminish the time step.</p>
+<ul class="simple">
+<li><p>Analyze/plot how the energies (kinetic, potential and total) change through time</p></li>
+<li><p>Analyze how the distances and size of the box is maintained</p></li>
+<li><p>Make any corrections necessary.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="questions">
+<h1>Questions<a class="headerlink" href="#questions" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Explain with your words why we need to sample the phase space of the system and can’t use the previous independent particle model.</p></li>
+<li><p>Solve the rest of the exercises</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Module_4_Molecular_simulations_and_Thermodynamics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Module 4: Molecular simulations and Thermodynamics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="M4.D2._Introduction_to_molecular_simulations.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">M4.D2: Introduction to molecular simulations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">M4.D1: Introduction to molecular dynamics</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#for-non-ideal-gases-the-partition-function-is-not-analytical">For non-ideal gases, the partition function is not analytical</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#first-step-of-moelcular-dynamics-initial-position-of-particles">First step of moelcular dynamics: Initial position of particles</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#second-step-calculate-the-potential-energy">Second step: Calculate the potential energy</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#third-step-give-velocity-to-particles-for-thermal-distribution">Third step: Give velocity to particles for thermal distribution</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-equations-of-motion-step-by-step-run-a-simple-molecular-dynamics">Solve equations of motion step by step: run a simple molecular dynamics</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Xavier Prat-Resina pratr001@r.umn.edu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024 CC BY.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

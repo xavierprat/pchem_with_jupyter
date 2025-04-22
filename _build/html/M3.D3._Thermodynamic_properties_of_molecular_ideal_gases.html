@@ -1,0 +1,956 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>M3.D3: Thermodynamic properties of molecular ideal gases &#8212; Physical Chemistry with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'M3.D3._Thermodynamic_properties_of_molecular_ideal_gases';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="M3.D4: Thermodynamic potentials for spontaneity and other thermodynamic properties" href="M3.D4._Thermodynamic%20potentials.html" />
+    <link rel="prev" title="M3.D2: Partition functions of atoms" href="M3.D2._Partition_functions_of_atoms.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="Introduction.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Physical Chemistry with Python - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Physical Chemistry with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Introduction.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Module_0_Introduction_to_Python.html">M0: Introduction to Python</a></li>
+
+
+
+
+
+
+<li class="toctree-l1 has-children"><a class="reference internal" href="Module_1_Energy_levels_of_atoms_and_molecules.html">Module 1: Energy levels of atoms and molecules</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="M1.D1._Bohrs_hydrogen_atom.html">M1.D1: Bohr’s hydrogen atom</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D2._Introduction_to_Quantum_Mechanics._Particle_in_a_box.html">M1.D2: Introduction to Quantum Mechanics. Particle in a box.</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D3._Schrodingers_hydrogen_atom.html">M1.D3: Schrodinger’s hydrogen atom</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D4._Polyelectronic_atoms._Electronic_correlation_and_self_consistent_field_methods.html">Module 1 - Day 4: Polyelectronic atoms. Electronic correlation and self-consistent field methods</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D5._Electronic_energy_of_molecules.html">M1.D5: Electronic energy of molecules</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D6._Vibrational_levels_of_diatomic_molecules.html">M1.D6: Vibrational levels of diatomic molecules</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D7._Vibrational_levels_of_polyatomic_molecules.html">M1.D7: Vibrational levels of polyatomic molecules</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D8._Rotational_levels_of_molecules.html">M1.D8: Rotational levels of molecules</a></li>
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Module_2_Exploration_of_the_potential_energy_surface.html">Module 2: Exploration of the PES</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Module_3_Statistical_Thermodynamics.html">Module 3: Statistical Thermodynamics</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="M3.D1._Boltzmann_factor_and_partition_functions.html">M3.D1: Boltzmann factor and partition functions</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D2._Partition_functions_of_atoms.html">M3.D2: Partition functions of atoms</a></li>
+
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">M3.D3: Thermodynamic properties of molecular ideal gases</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D4._Thermodynamic%20potentials.html">M3.D4: Thermodynamic potentials for spontaneity and other thermodynamic properties</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Module_4_Molecular_simulations_and_Thermodynamics.html">Module 4: Molecular simulations and Thermodynamics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="M4.D1._Introduction_to_molecular_dynamics.html">M4.D1: Introduction to molecular dynamics</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M4.D2._Introduction_to_molecular_simulations.html">M4.D2: Introduction to molecular simulations</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M4.D3._Calculating_free_energies_of_chemical_systems.html">M4.D3: Calculating free energies of chemical systems</a></li>
+
+
+
+
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FM3.D3._Thermodynamic_properties_of_molecular_ideal_gases.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/M3.D3._Thermodynamic_properties_of_molecular_ideal_gases.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>M3.D3: Thermodynamic properties of molecular ideal gases</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">M3.D3: Thermodynamic properties of molecular ideal gases</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learnig-objectives">Learnig Objectives:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-internal-energy-of-a-molecular-ideal-gas">The internal energy of a molecular ideal gas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#vibrational-partition-function-harmonic-vibrational-oscillator">Vibrational partition function: Harmonic vibrational oscillator</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vibrational-contributions-to-the-internal-energy">Vibrational contributions to the internal energy</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rotational-partition-function-rigid-rotor">Rotational partition function: Rigid rotor</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rotational-contribution-to-the-internal-energy">Rotational contribution to the internal energy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-total-internal-energy-of-a-diatomic-ideal-gas">The total internal energy of a diatomic ideal gas</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-capacity-of-a-gas">Heat capacity of a gas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-macroscopic-thermodynamic-properties-with-pyscf">Calculating macroscopic thermodynamic properties with PySCF</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="m3-d3-thermodynamic-properties-of-molecular-ideal-gases">
+<h1>M3.D3: Thermodynamic properties of molecular ideal gases<a class="headerlink" href="#m3-d3-thermodynamic-properties-of-molecular-ideal-gases" title="Link to this heading">#</a></h1>
+<section id="learnig-objectives">
+<h2>Learnig Objectives:<a class="headerlink" href="#learnig-objectives" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Describe and represent how the vibrational partition function changes with the frequency and mass of the harmonic oscillator</p></li>
+<li><p>Calculate the vibrational contribution to the internal energy</p></li>
+<li><p>Describe and represent how the rotational partition function changes with molecular parameters such as bond distance and reduced mass</p></li>
+<li><p>Calculate the heat capacity of an ideal gas and assess how molecular parameters to contribute to it</p></li>
+<li><p>Use PySCF to calculate properties of a list of diatomic molecules and their corresponding macroscopic properties such as internal energy and heat capacity.</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-internal-energy-of-a-molecular-ideal-gas">
+<h1>The internal energy of a molecular ideal gas<a class="headerlink" href="#the-internal-energy-of-a-molecular-ideal-gas" title="Link to this heading">#</a></h1>
+<p>Let’s remember that in order to calculate the internal energy of a gas, one needs to consider the macrostate (sum of states) of the macroscopic system (all particles)</p>
+<div class="math notranslate nohighlight">
+\[
+U = &lt;E&gt; = k_B T^2 \left(\frac{\partial ln(Q)}{\partial T}\right)_{NV}
+\]</div>
+<p>And that if we assume that the particles of an ideal gas do not interact with each other, we can express the macroscopic partition function Q as a function of independent microscopic or molecular partition functions</p>
+<div class="math notranslate nohighlight">
+\[
+Q = \frac{q_{\text{molecule}}^N}{N!}
+\]</div>
+<p>So our next quest is to figure out the components of <span class="math notranslate nohighlight">\(q_{\text{molecule}}\)</span>.
+Compared to an atom, a molecule has now vibrational and rotational energy levels:</p>
+<div class="math notranslate nohighlight">
+\[
+E_{\text{molecule}} = E_{\text{translational}} + E_{\text{electronic}} 
++ E_{\text{rotational} } + E_{\text{vibrational} }\]</div>
+<p>And therefore the partition function of the molecule is:</p>
+<div class="math notranslate nohighlight">
+\[
+q_{molecule} = \sum_k^{all states}  e^{-\frac{E_k(molec)}{K_B T}} =\sum_k^{all states}  e^{-\frac{E_k(elec)+E_k(transl)+E_k(vib)+E_k(rot)}{K_B T}}=q_{elec}\cdot q_{transl}\cdot q_{vib}\cdot q_{rot}  
+\]</div>
+<p>In our previous session we already covered <span class="math notranslate nohighlight">\(q_{elec}\)</span> and <span class="math notranslate nohighlight">\(q_{transl}\)</span>, now we can figure out the vibrational and rotational partition functions</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="vibrational-partition-function-harmonic-vibrational-oscillator">
+<h1>Vibrational partition function: Harmonic vibrational oscillator<a class="headerlink" href="#vibrational-partition-function-harmonic-vibrational-oscillator" title="Link to this heading">#</a></h1>
+<p>Remember that under the harmonic oscillator approximation the vibrational levels were given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\epsilon_{vib} = (v + 1/2)h\omega 
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(v=0,1,2,3...\)</span></p>
+<p>In that case, the molecule vibrational partition function is</p>
+<div class="math notranslate nohighlight">
+\[
+q_{vib} = \sum_i e^{\frac{-\epsilon_{vib,i}}{k_B T}}=...= \frac{e^{\frac{-h\omega}{2k_B T}}}{1-e^{\frac{-h\omega}{k_B T}}}
+\]</div>
+<p>You may see in some context the use of the vibrational temperature <span class="math notranslate nohighlight">\(\Theta_{vib}=\frac{h\omega}{k_B T}\)</span> and rewrite the vibrational partition function as</p>
+<div class="math notranslate nohighlight">
+\[
+q_{vib} = \frac{e^{\frac{-\Theta_{vib}}{2 T}}}{1-e^{\frac{-\Theta_{vib}}{T}}}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plot the value of the vibrational partition function at different temperatures</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Constants</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">6.626e-34</span>  <span class="c1"># Planck&#39;s constant (J·s)</span>
+<span class="n">k_B</span> <span class="o">=</span> <span class="mf">1.381e-23</span>  <span class="c1"># Boltzmann constant (J/K)</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="mf">1e13</span>  <span class="c1"># Vibrational frequency (Hz)</span>
+
+<span class="c1"># Temperature range</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>  <span class="c1"># Temperature from 50 K to 1000 K</span>
+
+<span class="c1"># Vibrational partition function</span>
+<span class="n">q_v</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">h</span> <span class="o">*</span> <span class="n">nu</span> <span class="o">/</span> <span class="p">(</span><span class="n">k_B</span> <span class="o">*</span> <span class="n">T</span><span class="p">)))</span>
+
+<span class="c1"># Plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">q_v</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$q_v = \frac</span><span class="si">{1}</span><span class="s1">{1 - e^{-\frac{h \nu}{k_B T}}}$&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature (K)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Vibrational Partition Function $q_v$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Vibrational Partition Function vs Temperature with freq= </span><span class="si">{</span><span class="n">nu</span><span class="si">:</span><span class="s1">.0e</span><span class="si">}</span><span class="s1"> Hz&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/389cc6131db29e7dac155029e257ce85744a7a8c9710ac50b47c702d53989be6.png" src="_images/389cc6131db29e7dac155029e257ce85744a7a8c9710ac50b47c702d53989be6.png" />
+</div>
+</div>
+<p><strong>Your turn</strong></p>
+<ul class="simple">
+<li><p>Plot several curves investigating how the frequency and mass of the harmonic oscillator affects its partition function</p></li>
+</ul>
+<section id="vibrational-contributions-to-the-internal-energy">
+<h2>Vibrational contributions to the internal energy<a class="headerlink" href="#vibrational-contributions-to-the-internal-energy" title="Link to this heading">#</a></h2>
+<p>If we use the above expression to see the vibrational contribution to the internal energy we get two contributions, the first one corresponds to a T-independent contribution from the Zero Point Energy and second is the contribution from excited vibrational states:</p>
+<div class="math notranslate nohighlight">
+\[
+U_{vib} = &lt;E_{vib}&gt; = N k_B T^2 \frac{\partial ln q_{vib}}{\partial T} = N k_B \left( \frac{\Theta_{vib}}{2} + \frac{\Theta_{vib}}{e^{\Theta_{vib}/T}-1} \right) = &lt;E_{vib,ZPE}&gt; + &lt;E_{vib,excited}&gt;
+\]</div>
+<p><strong>Your turn</strong></p>
+<ul class="simple">
+<li><p>Calculate the vibrational contributions to the internal energy at 300K for the different harmonic oscillators that you chose to represent on the plot.</p></li>
+<li><p>In each case build a table showing the ZPE contribution to the internal energy and the “excited” contribution at that Temperature.</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="rotational-partition-function-rigid-rotor">
+<h1>Rotational partition function: Rigid rotor<a class="headerlink" href="#rotational-partition-function-rigid-rotor" title="Link to this heading">#</a></h1>
+<p>Remember that under the rigid rotor approximation the rotational levels are given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\epsilon_{rot} = \frac{\hbar^2}{2I}J(J+1)
+\]</div>
+<p>with J = 0,1,2,3…</p>
+<p>And if we define the rotational temperature as <span class="math notranslate nohighlight">\(\Theta_{rot}=\frac{\hbar^2}{2I k_B} \)</span> the rotational partition function would be (skipping many steps here, check McQuarrie’s textbook)</p>
+<div class="math notranslate nohighlight">
+\[
+q_{rot} = \sum_i (2J+1)e^{\frac{-\epsilon_{rot,i}}{k_B T}} =...=\frac{T}{\sigma\Theta_{rot}}
+\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\sigma\)</span> is a symmetry factor <span class="math notranslate nohighlight">\(\sigma=2\)</span> for homonuclear diatomic and <span class="math notranslate nohighlight">\(\sigma=1\)</span> for heteronuclear diatomic.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Constants</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">6.626e-34</span>  <span class="c1"># Planck&#39;s constant (J·s)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mf">3.00e8</span>     <span class="c1"># speed of light (m/s)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mf">1.381e-23</span>  <span class="c1"># Boltzmann constant (J/K)</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">rotational_partition_function</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">I</span> <span class="o">=</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">h</span> <span class="o">/</span> <span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="n">pi</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">c</span> <span class="o">*</span> <span class="n">I</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="n">T</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">sigma</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="n">c</span> <span class="o">*</span> <span class="n">B</span><span class="p">)</span>
+
+<span class="c1"># Temperatures (K)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># Molecule definitions: (mu, r, sigma)</span>
+<span class="n">molecules</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Mol 1&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mf">1.0e-27</span><span class="p">,</span> <span class="mf">1.0e-10</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>       <span class="c1"># Arbitrary</span>
+    <span class="s2">&quot;Mol 2&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mf">2.0e-27</span><span class="p">,</span> <span class="mf">2.0e-10</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>       <span class="c1"># Double mass, double distance</span>
+    <span class="s2">&quot;Mol 3&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mf">1.5e-27</span><span class="p">,</span> <span class="mf">1.0e-10</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>       <span class="c1"># Even mass, homonuclear (σ = 2)</span>
+    <span class="s2">&quot;Mol 4&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mf">3.0e-27</span><span class="p">,</span> <span class="mf">1.5e-10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>        <span class="c1"># Large mass, longer bond</span>
+<span class="p">}</span>
+
+<span class="c1"># Plotting</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span> <span class="ow">in</span> <span class="n">molecules</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">q_rot</span> <span class="o">=</span> <span class="n">rotational_partition_function</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">q_rot</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Rotational Partition Function vs Temperature&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Temperature (K)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Rotational Partition Function $q_</span><span class="si">{rot}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e4ec24fb63af26a36a7d19d47663bc6c173b706354cba864caf37376ba917766.png" src="_images/e4ec24fb63af26a36a7d19d47663bc6c173b706354cba864caf37376ba917766.png" />
+</div>
+</div>
+<p><strong>Your turn</strong></p>
+<ul class="simple">
+<li><p>Explain with your words what is the effect of mass, reduced mass and bond distance on the rotational partition function and how it changes with temperature</p></li>
+</ul>
+<section id="rotational-contribution-to-the-internal-energy">
+<h2>Rotational contribution to the internal energy<a class="headerlink" href="#rotational-contribution-to-the-internal-energy" title="Link to this heading">#</a></h2>
+<p>Then using the expression of <span class="math notranslate nohighlight">\(q_{rot}\)</span> we can calculate that the rotational contribution to the internal energy is approximately RT.</p>
+<div class="math notranslate nohighlight">
+\[
+U_{rot} = &lt;E_{rot}&gt; = N k_B T^2 \frac{\partial ln q_{rot}}{\partial T} \approx RT
+\]</div>
+</section>
+<section id="the-total-internal-energy-of-a-diatomic-ideal-gas">
+<h2>The total internal energy of a diatomic ideal gas<a class="headerlink" href="#the-total-internal-energy-of-a-diatomic-ideal-gas" title="Link to this heading">#</a></h2>
+<p>Putting everything together we have four terms one for each different type of energy levels.</p>
+<div class="math notranslate nohighlight">
+\[
+U = &lt;E_{total}&gt; = &lt;E_{transl}&gt; + &lt;E_{elec}&gt; + &lt;E_{vib}&gt; + &lt;E_{rot}&gt;
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+U = \frac{3}{2}RT + &quot;0&quot; + R\left( \frac{\Theta_{vib}}{2} + \frac{\Theta_{vib}}{e^{\Theta_{vib}/T}-1} \right) + RT
+\]</div>
+<p>We see that the largest contributions to the internal energy are translations (3/2R) and rotations (R).</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="heat-capacity-of-a-gas">
+<h1>Heat capacity of a gas<a class="headerlink" href="#heat-capacity-of-a-gas" title="Link to this heading">#</a></h1>
+<p>The heat capacity is by defintion how the internal energy changes as the temperature changes.</p>
+<div class="math notranslate nohighlight">
+\[
+C = \left(\frac{\partial U}{\partial T}\right)
+\]</div>
+<p>Depending on what variables we hold constant we will obtain the “<span class="math notranslate nohighlight">\(C_V\)</span> heat capacity at constant volume” or “<span class="math notranslate nohighlight">\(C_p\)</span> heat capacity at constant pressure”</p>
+<div class="math notranslate nohighlight">
+\[
+C_V = \left(\frac{\partial U}{\partial T}\right)_V\;\;C_p=\left(\frac{\partial U}{\partial T}\right)_p
+\]</div>
+<p>Since we already know the expression for <span class="math notranslate nohighlight">\(U\)</span> we just need to derivate with respect to the temperature.</p>
+<p>For a monoatomic ideal gas</p>
+<div class="math notranslate nohighlight">
+\[
+C_V = \left( \frac{\partial (3/2 RT)}{\partial T}\right )_V = 3/2 R
+\]</div>
+<p>For a diatomic ideal gas the largest contributions will be translational and rotational, but vibrational will depend on the molecule and the temperature. In general, the closer the energy levels are, the higher the partition function and the larger its contribution to the internal energy and heat capacity.</p>
+<p>For diatomic ideal gas:</p>
+<div class="math notranslate nohighlight">
+\[
+C_V = translations + rotations + vibrationZPE \cdot vibrationExcited
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+C_V = \frac{3}{2}R + R + \frac{\Theta_{vib}^2}{T^2} \frac{e^{-\Theta_{vib}T}}{(1-e^{-\Theta_{vib}T})^2}
+\]</div>
+<p><strong>Your turn</strong></p>
+<ul class="simple">
+<li><p>Build a table that shows for a generic molecule (use a generic bond distance, frequency, and mass) the value of translational, rotational, vibrational contributions to the heat capacity at different temperatures</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="calculating-macroscopic-thermodynamic-properties-with-pyscf">
+<h1>Calculating macroscopic thermodynamic properties with PySCF<a class="headerlink" href="#calculating-macroscopic-thermodynamic-properties-with-pyscf" title="Link to this heading">#</a></h1>
+<p>As you saw above molecular parameters such as vibrational frequency, bond distance as moment of inertia will be needed to calculate macroscopic properties such as internal energy and heat capacity. We can use the PySCF library to calculate the parameters of real molecules.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#pip install geometric</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.geomopt.geometric_solver</span><span class="w"> </span><span class="kn">import</span> <span class="n">optimize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.hessian</span><span class="w"> </span><span class="kn">import</span> <span class="n">thermo</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">lib</span>
+
+<span class="c1"># Convert from Bohr to Angstroms</span>
+<span class="n">bohr_to_angstrom</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">BOHR</span> 
+
+<span class="n">molCO</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
+    <span class="n">atom</span> <span class="o">=</span> <span class="s1">&#39;O 0 0 0; C 0 0 1.3&#39;</span><span class="p">,</span>  <span class="c1"># in Angstrom</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;631g&#39;</span><span class="p">,</span>
+    <span class="n">symmetry</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+    <span class="n">spin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="s1">&#39;m3d2_co_fq.out&#39;</span>
+<span class="p">)</span>
+<span class="c1"># Perform the Hartree-Fock calculation</span>
+<span class="n">co_sp</span> <span class="o">=</span> <span class="n">molCO</span><span class="o">.</span><span class="n">RHF</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">co_opt</span> <span class="o">=</span> <span class="n">optimize</span><span class="p">(</span><span class="n">co_sp</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimized CO structure:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">co_opt</span><span class="o">.</span><span class="n">atom_coords</span><span class="p">()</span><span class="o">*</span><span class="n">bohr_to_angstrom</span><span class="p">)</span>
+<span class="n">hessian</span> <span class="o">=</span> <span class="n">co_sp</span><span class="o">.</span><span class="n">Hessian</span><span class="p">()</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+<span class="c1"># Frequency analysis</span>
+<span class="n">freq_info</span> <span class="o">=</span> <span class="n">thermo</span><span class="o">.</span><span class="n">harmonic_analysis</span><span class="p">(</span><span class="n">co_sp</span><span class="o">.</span><span class="n">mol</span><span class="p">,</span> <span class="n">hessian</span><span class="p">)</span>
+<span class="c1"># Thermochemistry analysis at 298.15 K and 1 atmospheric pressure</span>
+<span class="n">thermo_info</span> <span class="o">=</span> <span class="n">thermo</span><span class="o">.</span><span class="n">thermo</span><span class="p">(</span><span class="n">co_sp</span><span class="p">,</span> <span class="n">freq_info</span><span class="p">[</span><span class="s1">&#39;freq_au&#39;</span><span class="p">],</span> <span class="mf">298.15</span><span class="p">,</span> <span class="mi">101325</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rotation constant&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">thermo_info</span><span class="p">[</span><span class="s1">&#39;rot_const&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Zero-point energy&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">thermo_info</span><span class="p">[</span><span class="s1">&#39;ZPE&#39;</span>   <span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Internal energy at 0 K&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">thermo_info</span><span class="p">[</span><span class="s1">&#39;E_0K&#39;</span>  <span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Internal energy at 298.15 K&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">thermo_info</span><span class="p">[</span><span class="s1">&#39;E_tot&#39;</span> <span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Heat capacity at 298.15 K&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">thermo_info</span><span class="p">[</span><span class="s1">&#39;Cv_tot&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">freq_info</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">thermo_info</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Your turn</strong></p>
+<p>Use the CO example above to calculate other molecules:
+In a separate notebook, for each of the following molecules: CO, N2, O2(use singlet!), F2, HF, HCl, CN(-), OH(-), H2</p>
+<ul class="simple">
+<li><p>Optimize the structure</p></li>
+<li><p>Run a frequency analysis of the optimized structure. Save the output each in a separate file</p></li>
+<li><p>Build a function that for a given output file it reports a list of thermodynamic data such as the electronic, translational, rotational, and vibrational contributions to internal energy and heat capacity.</p></li>
+</ul>
+<p>Build a table with those data.</p>
+<p>Identify the most important contributions: compare what contributes the most to the internal/thermal energy, is it translational, rotational, and vibrational contributions?</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="questions">
+<h1>Questions<a class="headerlink" href="#questions" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Submit in a separate notebook the exercises listed above</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="M3.D2._Partition_functions_of_atoms.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">M3.D2: Partition functions of atoms</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="M3.D4._Thermodynamic%20potentials.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">M3.D4: Thermodynamic potentials for spontaneity and other thermodynamic properties</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">M3.D3: Thermodynamic properties of molecular ideal gases</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learnig-objectives">Learnig Objectives:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-internal-energy-of-a-molecular-ideal-gas">The internal energy of a molecular ideal gas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#vibrational-partition-function-harmonic-vibrational-oscillator">Vibrational partition function: Harmonic vibrational oscillator</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vibrational-contributions-to-the-internal-energy">Vibrational contributions to the internal energy</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#rotational-partition-function-rigid-rotor">Rotational partition function: Rigid rotor</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rotational-contribution-to-the-internal-energy">Rotational contribution to the internal energy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-total-internal-energy-of-a-diatomic-ideal-gas">The total internal energy of a diatomic ideal gas</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-capacity-of-a-gas">Heat capacity of a gas</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-macroscopic-thermodynamic-properties-with-pyscf">Calculating macroscopic thermodynamic properties with PySCF</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Xavier Prat-Resina pratr001@r.umn.edu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024 CC BY.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

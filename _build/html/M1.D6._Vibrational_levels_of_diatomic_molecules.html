@@ -1,0 +1,1176 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>M1.D6: Vibrational levels of diatomic molecules &#8212; Physical Chemistry with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'M1.D6._Vibrational_levels_of_diatomic_molecules';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="M1.D7: Vibrational levels of polyatomic molecules" href="M1.D7._Vibrational_levels_of_polyatomic_molecules.html" />
+    <link rel="prev" title="M1.D5: Electronic energy of molecules" href="M1.D5._Electronic_energy_of_molecules.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="Introduction.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Physical Chemistry with Python - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Physical Chemistry with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Introduction.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Module_0_Introduction_to_Python.html">M0: Introduction to Python</a></li>
+
+
+
+
+
+
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Module_1_Energy_levels_of_atoms_and_molecules.html">Module 1: Energy levels of atoms and molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="M1.D1._Bohrs_hydrogen_atom.html">M1.D1: Bohr’s hydrogen atom</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D2._Introduction_to_Quantum_Mechanics._Particle_in_a_box.html">M1.D2: Introduction to Quantum Mechanics. Particle in a box.</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D3._Schrodingers_hydrogen_atom.html">M1.D3: Schrodinger’s hydrogen atom</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D4._Polyelectronic_atoms._Electronic_correlation_and_self_consistent_field_methods.html">Module 1 - Day 4: Polyelectronic atoms. Electronic correlation and self-consistent field methods</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D5._Electronic_energy_of_molecules.html">M1.D5: Electronic energy of molecules</a></li>
+
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">M1.D6: Vibrational levels of diatomic molecules</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D7._Vibrational_levels_of_polyatomic_molecules.html">M1.D7: Vibrational levels of polyatomic molecules</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D8._Rotational_levels_of_molecules.html">M1.D8: Rotational levels of molecules</a></li>
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Module_2_Exploration_of_the_potential_energy_surface.html">Module 2: Exploration of the PES</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Module_3_Statistical_Thermodynamics.html">Module 3: Statistical Thermodynamics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="M3.D1._Boltzmann_factor_and_partition_functions.html">M3.D1: Boltzmann factor and partition functions</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D2._Partition_functions_of_atoms.html">M3.D2: Partition functions of atoms</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D3._Thermodynamic_properties_of_molecular_ideal_gases.html">M3.D3: Thermodynamic properties of molecular ideal gases</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D4._Thermodynamic%20potentials.html">M3.D4: Thermodynamic potentials for spontaneity and other thermodynamic properties</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Module_4_Molecular_simulations_and_Thermodynamics.html">Module 4: Molecular simulations and Thermodynamics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="M4.D1._Introduction_to_molecular_dynamics.html">M4.D1: Introduction to molecular dynamics</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M4.D2._Introduction_to_molecular_simulations.html">M4.D2: Introduction to molecular simulations</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M4.D3._Calculating_free_energies_of_chemical_systems.html">M4.D3: Calculating free energies of chemical systems</a></li>
+
+
+
+
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FM1.D6._Vibrational_levels_of_diatomic_molecules.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/M1.D6._Vibrational_levels_of_diatomic_molecules.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>M1.D6: Vibrational levels of diatomic molecules</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">M1.D6: Vibrational levels of diatomic molecules</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-schrodinger-equation-of-nuclear-motion">The Schrodinger Equation of Nuclear Motion</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-harmonic-approximation-to-nuclear-motion">The harmonic approximation to nuclear motion</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-energy-levels-of-the-harmonic-oscillator">The energy levels of the harmonic oscillator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-harmonic-oscillator-wavefunctions">The harmonic oscillator wavefunctions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-classical-harmonic-oscillator-to-assess-the-quantumness-of-the-system">Using the classical harmonic oscillator to assess the “quantumness” of the system</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#infrared-spectroscopy">Infrared spectroscopy</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#anharmonic-corrections">Anharmonic corrections</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="m1-d6-vibrational-levels-of-diatomic-molecules">
+<h1>M1.D6: Vibrational levels of diatomic molecules<a class="headerlink" href="#m1-d6-vibrational-levels-of-diatomic-molecules" title="Link to this heading">#</a></h1>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Introducing the Schrodinger equation for nuclear motion and proposing a harmonic approximation for its solution.</p></li>
+<li><p>Plotting the solution of the harmonic oscillation and graphically investigate how the energy levels are affected by the harmonic constant or frequency of vibration.</p></li>
+<li><p>Graphically investigate how the vibrational levels are affected by the bond strength and atomic mass.</p></li>
+<li><p>Plot the wavefunction for the quantum oscillator. Assess with plots how mass and bond strength affects the “quantumness” of the system.</p></li>
+<li><p>Use the pyscf package to calculate the frequency of vibration of heterodiatomic molecules. Compare these frequencies with experimental Infrared spectra.</p></li>
+<li><p>Discuss the harmonic approximation and when it is important to introduce anharmanocity</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-schrodinger-equation-of-nuclear-motion">
+<h1>The Schrodinger Equation of Nuclear Motion<a class="headerlink" href="#the-schrodinger-equation-of-nuclear-motion" title="Link to this heading">#</a></h1>
+<p>In our previous sessions we have studied the electronic levels of atoms and molecules.
+The electronic energy is the energy considering the kinetic and potential energy of electrons when nuclei are fixed at a given position. Using this approach (Born-Oppenheimer approximation) we have a Potential Energy Surface (defined as <span class="math notranslate nohighlight">\(U(r)\)</span> where r are the nuclear coordinates) that is the potential where the nuclei move.</p>
+<p>U(r) = Electronic energy + Repulsion between nuclei</p>
+<p>Assuming that we have calculated <span class="math notranslate nohighlight">\(U(r)\)</span> we can build the Hamiltonian and solve the whole Schrodinger equation with now considering the nuclear motion.</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H}_{nuclear} = \sum_{k=nuclei}-\frac{1}{2m_k}\nabla_{k} + U(r) 
+\]</div>
+<p>So we have a new differential equation to solve that depends on the nuclear coordinates “r” for any molecular system.</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{k=nuclei}-\frac{1}{2m_k}\nabla_{k}\Psi(r) + U(r)\Psi(r) = E\Psi(r)
+\]</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-harmonic-approximation-to-nuclear-motion">
+<h1>The harmonic approximation to nuclear motion<a class="headerlink" href="#the-harmonic-approximation-to-nuclear-motion" title="Link to this heading">#</a></h1>
+<p>To simplify things, let’s start with the simplest system, a diatomic molecule. Remember what we did for the hydrogen atom, when treating systems of two particles we can always reduce it as one particle of reduced mass <span class="math notranslate nohighlight">\(\mu\)</span>. In that case the Schrodinger equation of the nuclear motion is (in atomic units)</p>
+<div class="math notranslate nohighlight">
+\[
+-\frac{1}{2\mu}\frac{\delta^2\Psi(r)}{\delta r^2} + U(r)\Psi(r) = E\Psi(r)
+\]</div>
+<p>Remember that the potential U(r) comes from solving the electronic states for each nuclear position. This is a hard task and it makes the differential equation not to have an analytical solution.</p>
+<p>Here comes the approximation. Let’s assume that around the bond distance the potential is a parabola, or in physics terms, an harmonic potential</p>
+<img width="300" src="https://chem.libretexts.org/@api/deki/files/344391/5.3.2-1.svg?revision=2&size=bestfit&width=428&height=300" />
+<p>Remember from physics that the potential energy of an harmonic spring is</p>
+<div class="math notranslate nohighlight">
+\[
+E_{harmonic} = \frac{1}{2}kr^2
+\]</div>
+<p>We do this approximation because then the Schrodinger equation for the nuclear motion is solvable.</p>
+<div class="math notranslate nohighlight">
+\[
+-\frac{1}{2\mu}\frac{\delta^2\Psi(r)}{\delta r^2} + \frac{1}{2}kr^2\Psi(r) = E\Psi(r)
+\]</div>
+<p>A note here: We automagically simplified the nuclear coordinates “r” into just the distance between the atoms. Of course if we are using polar coordinates, besides “r” there will also be the other two angular coordinates (<span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span>) that will be addressed later when considering molecular rotations. A molecule with 3N degrees of freedom (N being the number of nuclei) has 3 translational normal modes (along the x,y, and z axes), 3 rotational normal modes (around each of the three axes), and 3N-6 (the remaining number) different vibrational normal modes of motion.</p>
+<p>The solutions are famously known as the <a class="reference external" href="https://en.wikipedia.org/wiki/Quantum_harmonic_oscillator">quantum harmonic oscillator</a>. The wavefunction (the eigenfunctions of the Schrodinger equation) is what is known as the Hermite polynomials and the energy (the eigenvalues of the Schrodinger equation) of the Quantum harmonic oscillator depends again on quantum number, the vibrational quantum number</p>
+<div class="math notranslate nohighlight">
+\[
+E = \hbar\sqrt{\frac{k}{\mu}} (v + \frac{1}{2}) \textrm{    where  } v = 0,1,2,3...
+\]</div>
+<p>the frequency of vibration is</p>
+<div class="math notranslate nohighlight">
+\[
+\omega = \sqrt{\frac{k}{\mu}}
+\]</div>
+<p>so the eigenstates can also be expressed as</p>
+<div class="math notranslate nohighlight">
+\[
+E = \hbar \omega (v + \frac{1}{2}) \textrm{    where    } v = 0,1,2,3...
+\]</div>
+<p>We will use the <a class="reference external" href="https://en.wikipedia.org/wiki/Harmonic_oscillator">classical harmonic oscillator</a> to compare the quantum behavior with the classical one.</p>
+<section id="the-energy-levels-of-the-harmonic-oscillator">
+<h2>The energy levels of the harmonic oscillator<a class="headerlink" href="#the-energy-levels-of-the-harmonic-oscillator" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A molecule with 3N degrees of freedom (N being the number of nuclei) has 3 translational normal modes (along the x,y, and z axes), 3 rotational normal modes (around each of the three axes), and 3N-6 (the remaining number) different vibrational normal modes of motion. How many translational, rotational, and vibrational modes does a diatomic molecule have?</p></li>
+<li><p>Your turn. Plot the energy of the different vibrational levels. Use atomic units so that <span class="math notranslate nohighlight">\(\hbar=1\)</span> and start with simple numbers of <span class="math notranslate nohighlight">\(k = 1,2,3\)</span> or <span class="math notranslate nohighlight">\(\mu=1,2,3..\)</span></p></li>
+<li><p>Investigate the role of the spring constant k and the mass of the system. You may use the plots below to overlap the energy levels.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span> <span class="c1">#121 means: the subplots will be 1 row 2 columns and this one is subplot number 1</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">,</span> <span class="n">sharey</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">)</span> <span class="c1">#share-y means that it will share the y-axis with the ax1 plot</span>
+
+<span class="n">k1</span> <span class="o">=</span><span class="mi">1</span>
+<span class="n">k2</span> <span class="o">=</span><span class="mi">2</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="mf">0.5</span><span class="o">*</span><span class="n">k1</span><span class="o">*</span><span class="n">x1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Energy levels for k=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k1</span><span class="p">))</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="mf">0.5</span><span class="o">*</span><span class="n">k2</span><span class="o">*</span><span class="n">x2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Energy levels for k=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k2</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/b7c1d709a44a1e60e7eea5eb4d0dfc91ae97f464f79cc36e555eb8c0ad255241.png" src="_images/b7c1d709a44a1e60e7eea5eb4d0dfc91ae97f464f79cc36e555eb8c0ad255241.png" />
+</div>
+</div>
+</section>
+<section id="the-harmonic-oscillator-wavefunctions">
+<h2>The harmonic oscillator wavefunctions<a class="headerlink" href="#the-harmonic-oscillator-wavefunctions" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy.polynomial.hermite</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">Herm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="c1">#Choose simple units</span>
+<span class="n">m</span><span class="o">=</span><span class="mf">1.</span>
+<span class="n">w</span><span class="o">=</span><span class="mf">1.</span>
+<span class="n">hbar</span><span class="o">=</span><span class="mf">1.</span>
+<span class="c1">#Discretized space</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">x_lim</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">x_lim</span><span class="p">,</span><span class="n">x_lim</span><span class="p">,</span><span class="n">dx</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">hermite</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">w</span><span class="o">/</span><span class="n">hbar</span><span class="p">)</span><span class="o">*</span><span class="n">x</span>
+    <span class="n">herm_coeffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">herm_coeffs</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">Herm</span><span class="o">.</span><span class="n">hermval</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">herm_coeffs</span><span class="p">)</span>
+  
+<span class="k">def</span><span class="w"> </span><span class="nf">stationary_state</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">w</span><span class="o">/</span><span class="n">hbar</span><span class="p">)</span><span class="o">*</span><span class="n">x</span>
+    <span class="n">prefactor</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="o">**</span><span class="n">n</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">w</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">hbar</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">psi</span> <span class="o">=</span> <span class="n">prefactor</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="n">xi</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">hermite</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">psi</span>
+
+<span class="n">v</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">stationary_state</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">v</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\psi(r)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Vibrational function $\psi(r)$ for quantum number &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/66a6e840c5bc5c6edbc149d3e585aa95e0d180730296aa792b94434950987fb6.png" src="_images/66a6e840c5bc5c6edbc149d3e585aa95e0d180730296aa792b94434950987fb6.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Your turn: plot the first three wavefunctions of the quantum oscillator.</p></li>
+<li><p>Plot the square of the wavefunctions as it indicates the probability</p></li>
+</ul>
+</section>
+<section id="using-the-classical-harmonic-oscillator-to-assess-the-quantumness-of-the-system">
+<h2>Using the classical harmonic oscillator to assess the “quantumness” of the system<a class="headerlink" href="#using-the-classical-harmonic-oscillator-to-assess-the-quantumness-of-the-system" title="Link to this heading">#</a></h2>
+<p>It can be shown that for the classical harmonic oscillator <a class="reference external" href="https://en.wikipedia.org/wiki/Classical_probability_density">the classical probability density</a> is the probability depends on the maximum amplitude <span class="math notranslate nohighlight">\(A\)</span> of the oscillator</p>
+<div class="math notranslate nohighlight">
+\[
+P(r) = \frac{1}{\pi}\frac{1}{\sqrt{A^2 - r^2}}
+\]</div>
+<p>The maximum amplitude is when the oscillator only has potential energy and zero kinetic energy. So if we solve for r in the potential energy we obtain the amplitude</p>
+<div class="math notranslate nohighlight">
+\[
+E_{pot} = \frac{1}{2}kr^2
+\]</div>
+<p>so</p>
+<div class="math notranslate nohighlight">
+\[
+r_{max} = A = \sqrt{\frac{2E}{k}}
+\]</div>
+<p>or in terms of frequency and mass, since <span class="math notranslate nohighlight">\(k = m\omega^2\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+r_{max} = A = \sqrt{\frac{2E}{m\omega^2}}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#source: UCD_Chem_110A%3A_Physical_Chemistry_I_(Larsen)/Text/05%3A_The_Harmonic_Oscillator_and_the_Rigid_Rotor/5.I%3A_Interactive_Worksheets/5.I1%3A_Simple_Harmonic_Oscillator_-_Plotting_Eigenstates</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1">#Choose simple units</span>
+<span class="n">m</span><span class="o">=</span><span class="mf">1.</span>
+<span class="n">w</span><span class="o">=</span><span class="mf">1.</span>
+<span class="n">hbar</span><span class="o">=</span><span class="mf">1.</span>
+<span class="c1">#Discretized space</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">x_lim</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">x_lim</span><span class="p">,</span><span class="n">x_lim</span><span class="p">,</span><span class="n">dx</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">classical_P</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">E</span> <span class="o">=</span> <span class="n">hbar</span><span class="o">*</span><span class="n">w</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">x_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">E</span><span class="o">/</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">classical_prob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">x_inside</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">x_max</span> <span class="o">-</span> <span class="mf">0.025</span><span class="p">)</span>
+    <span class="n">classical_prob</span><span class="p">[</span><span class="n">x_inside</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x_max</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="n">x_inside</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">x_inside</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">classical_prob</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">classical_P</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$P_</span><span class="si">{classical}</span><span class="s2">(x,4)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Classical Probability Density of a Harmonic Oscillator, $E=E_4$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e84ca17091dbae57655d03cdadb4b7cec6ae79697af155ec4b90a7ebae8b799b.png" src="_images/e84ca17091dbae57655d03cdadb4b7cec6ae79697af155ec4b90a7ebae8b799b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy.polynomial.hermite</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">Herm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="c1">#Choose simple units</span>
+<span class="n">m</span><span class="o">=</span><span class="mf">1.</span>
+<span class="n">w</span><span class="o">=</span><span class="mf">1.</span>
+<span class="n">hbar</span><span class="o">=</span><span class="mf">1.</span>
+<span class="c1">#Discretized space</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">x_lim</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">x_lim</span><span class="p">,</span><span class="n">x_lim</span><span class="p">,</span><span class="n">dx</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">hermite</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">xi</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">w</span><span class="o">/</span><span class="n">hbar</span><span class="p">)</span><span class="o">*</span><span class="n">x</span>
+    <span class="n">herm_coeffs</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">herm_coeffs</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">Herm</span><span class="o">.</span><span class="n">hermval</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">herm_coeffs</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">stationary_state</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">xi</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">w</span><span class="o">/</span><span class="n">hbar</span><span class="p">)</span><span class="o">*</span><span class="n">x</span>
+    <span class="n">prefactor</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="o">**</span><span class="n">n</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">w</span><span class="o">/</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">hbar</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">psi</span> <span class="o">=</span> <span class="n">prefactor</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="n">xi</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">hermite</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">psi</span>
+  
+<span class="k">def</span><span class="w"> </span><span class="nf">classical_P</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">E</span> <span class="o">=</span> <span class="n">hbar</span><span class="o">*</span><span class="n">w</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">x_max</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">E</span><span class="o">/</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">classical_prob</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">x_inside</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">x_max</span> <span class="o">-</span> <span class="mf">0.025</span><span class="p">)</span>
+    <span class="n">classical_prob</span><span class="p">[</span><span class="n">x_inside</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="n">numpy</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x_max</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="n">x_inside</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">x_inside</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">classical_prob</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">conjugate</span><span class="p">(</span><span class="n">stationary_state</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span><span class="o">*</span><span class="n">stationary_state</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;n=0&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">classical_P</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">conjugate</span><span class="p">(</span><span class="n">stationary_state</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="o">*</span><span class="n">stationary_state</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;n=3&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">classical_P</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">conjugate</span><span class="p">(</span><span class="n">stationary_state</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span><span class="o">*</span><span class="n">stationary_state</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;n=8&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">classical_P</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">conjugate</span><span class="p">(</span><span class="n">stationary_state</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span><span class="o">*</span><span class="n">stationary_state</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">15</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;n=15&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">classical_P</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">conjugate</span><span class="p">(</span><span class="n">stationary_state</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">25</span><span class="p">))</span><span class="o">*</span><span class="n">stationary_state</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">25</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;n=25&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">classical_P</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">25</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">conjugate</span><span class="p">(</span><span class="n">stationary_state</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">40</span><span class="p">))</span><span class="o">*</span><span class="n">stationary_state</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">40</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;n=40&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">classical_P</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">40</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/69a2d55d83a27b610d6d12fa2ded9f023eb5dc2b94c7709bc87287c0d04f9bcf.png" src="_images/69a2d55d83a27b610d6d12fa2ded9f023eb5dc2b94c7709bc87287c0d04f9bcf.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>What conclusions do you extract from the above computational comparisons? When does a quantum oscillator compare to a classical oscillator?</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="infrared-spectroscopy">
+<h1>Infrared spectroscopy<a class="headerlink" href="#infrared-spectroscopy" title="Link to this heading">#</a></h1>
+<p>Remember that in our previous session we were able to calculate a frequency analysis of molecules (from the second derivative of the energy). These calculations can give us a good approximation to the peaks of absorbance in Infrared Spectroscopy.</p>
+<p>Let’s run a frequency analysis of carbon monoxide. Notice that first we must optimize the structure so that the frequency analysis</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#pip install geometric</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">scf</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.geomopt.geometric_solver</span><span class="w"> </span><span class="kn">import</span> <span class="n">optimize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.hessian</span><span class="w"> </span><span class="kn">import</span> <span class="n">thermo</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">lib</span>
+
+<span class="c1"># Convert from Bohr to Angstroms</span>
+<span class="n">bohr_to_angstrom</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">BOHR</span> 
+
+<span class="n">molCO</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
+    <span class="n">atom</span> <span class="o">=</span> <span class="s1">&#39;O 0 0 0; C 0 0 1.3&#39;</span><span class="p">,</span>  <span class="c1"># in Angstrom</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;631g&#39;</span><span class="p">,</span>
+    <span class="n">symmetry</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+    <span class="n">spin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="s1">&#39;m1d6_co_fq.out&#39;</span>
+<span class="p">)</span>
+<span class="c1"># Perform the Hartree-Fock calculation</span>
+<span class="n">co_sp</span> <span class="o">=</span> <span class="n">molCO</span><span class="o">.</span><span class="n">RHF</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">co_opt</span> <span class="o">=</span> <span class="n">optimize</span><span class="p">(</span><span class="n">co_sp</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimized CO structure:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">co_opt</span><span class="o">.</span><span class="n">atom_coords</span><span class="p">()</span><span class="o">*</span><span class="n">bohr_to_angstrom</span><span class="p">)</span>
+<span class="n">hessian</span> <span class="o">=</span> <span class="n">co_sp</span><span class="o">.</span><span class="n">Hessian</span><span class="p">()</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+<span class="c1"># Frequency analysis</span>
+<span class="n">freq_info</span> <span class="o">=</span> <span class="n">thermo</span><span class="o">.</span><span class="n">harmonic_analysis</span><span class="p">(</span><span class="n">co_sp</span><span class="o">.</span><span class="n">mol</span><span class="p">,</span> <span class="n">hessian</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>overwrite output file: m1d6_co_fq.out
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>geometric-optimize called with the following command line:
+/Users/pratr001/miniconda3/envs/pchem/lib/python3.12/site-packages/ipykernel_launcher.py --f=/Users/pratr001/Library/Jupyter/runtime/kernel-v30bf7441fdfe734567d2f39bf552819b8eeaaf6cd.json
+
+                                        ())))))))))))))))/                     
+                                    ())))))))))))))))))))))))),                
+                                *)))))))))))))))))))))))))))))))))             
+                        #,    ()))))))))/                .)))))))))),          
+                      #%%%%,  ())))))                        .))))))))*        
+                      *%%%%%%,  ))              ..              ,))))))).      
+                        *%%%%%%,         ***************/.        .)))))))     
+                #%%/      (%%%%%%,    /*********************.       )))))))    
+              .%%%%%%#      *%%%%%%,  *******/,     **********,      .))))))   
+                .%%%%%%/      *%%%%%%,  **              ********      .))))))  
+          ##      .%%%%%%/      (%%%%%%,                  ,******      /)))))  
+        %%%%%%      .%%%%%%#      *%%%%%%,    ,/////.       ******      )))))) 
+      #%      %%      .%%%%%%/      *%%%%%%,  ////////,      *****/     ,))))) 
+    #%%  %%%  %%%#      .%%%%%%/      (%%%%%%,  ///////.     /*****      ))))).
+  #%%%%.      %%%%%#      /%%%%%%*      #%%%%%%   /////)     ******      ))))),
+    #%%%%##%  %%%#      .%%%%%%/      (%%%%%%,  ///////.     /*****      ))))).
+      ##     %%%      .%%%%%%/      *%%%%%%,  ////////.      *****/     ,))))) 
+        #%%%%#      /%%%%%%/      (%%%%%%      /)/)//       ******      )))))) 
+          ##      .%%%%%%/      (%%%%%%,                  *******      ))))))  
+                .%%%%%%/      *%%%%%%,  **.             /*******      .))))))  
+              *%%%%%%/      (%%%%%%   ********/*..,*/*********       *))))))   
+                #%%/      (%%%%%%,    *********************/        )))))))    
+                        *%%%%%%,         ,**************/         ,))))))/     
+                      (%%%%%%   ()                              ))))))))       
+                      #%%%%,  ())))))                        ,)))))))),        
+                        #,    ())))))))))                ,)))))))))).          
+                                 ()))))))))))))))))))))))))))))))/             
+                                    ())))))))))))))))))))))))).                
+                                         ())))))))))))))),                     
+
+-=# <span class=" -Color -Color-Bold"> geomeTRIC started. Version: 1.1 </span> #=-
+Current date and time: 2025-04-17 09:18:59
+#========================================================#
+#|     Arguments passed to driver run_optimizer():      |#
+#========================================================#
+customengine              &lt;pyscf.geomopt.geometric_solver.PySCFEngine object at 0x12fa03440&gt; 
+input                     /var/folders/1b/pw4sp5tj3_16kjl12vvf8vt40000gq/T/tmp9jxui42q/e755909d-da98-40d0-ba86-cc14bfe0450f 
+logIni                    /Users/pratr001/miniconda3/envs/pchem/lib/python3.12/site-packages/pyscf/geomopt/log.ini 
+----------------------------------------------------------
+Custom engine selected.
+Bonds will be generated from interatomic distances less than 1.20 times sum of covalent radii
+6 internal coordinates being used (instead of 6 Cartesians)
+Internal coordinate system (atoms numbered from 1):
+Distance 1-2
+Translation-X 1-2
+Translation-Y 1-2
+Translation-Z 1-2
+Rotation-A 1-2
+Rotation-B 1-2
+Rotation-C 1-2
+&lt;class &#39;geometric.internal.Distance&#39;&gt; : 1
+&lt;class &#39;geometric.internal.TranslationX&#39;&gt; : 1
+&lt;class &#39;geometric.internal.TranslationY&#39;&gt; : 1
+&lt;class &#39;geometric.internal.TranslationZ&#39;&gt; : 1
+&lt;class &#39;geometric.internal.RotationA&#39;&gt; : 1
+&lt;class &#39;geometric.internal.RotationB&#39;&gt; : 1
+&lt;class &#39;geometric.internal.RotationC&#39;&gt; : 1
+&gt; ===== Optimization Info: ====
+&gt; Job type: Energy minimization
+&gt; Maximum number of optimization cycles: 300
+&gt; Initial / maximum trust radius (Angstrom): 0.100 / 0.300
+&gt; Convergence Criteria:
+&gt; Will converge when all 5 criteria are reached:
+&gt;  |Delta-E| &lt; 1.00e-06
+&gt;  RMS-Grad  &lt; 3.00e-04
+&gt;  Max-Grad  &lt; 4.50e-04
+&gt;  RMS-Disp  &lt; 1.20e-03
+&gt;  Max-Disp  &lt; 1.80e-03
+&gt; === End Optimization Info ===
+Step    0 : Gradient = 2.498e-01/2.498e-01 (rms/max) Energy = -112.6189499615
+Hessian Eigenvalues: 5.00000e-02 5.00000e-02 5.00000e-02 ... 5.00000e-02 5.00000e-02 6.71931e-01
+Step    1 : Displace = 9.837e-02/9.837e-02 (rms/max) Trust = 1.000e-01 (=) Grad = 7.714e-02/7.714e-02 (rms/max) E (change) = -112.6652860802 (-4.634e-02) Quality = 0.998
+Hessian Eigenvalues: 5.00000e-02 5.00000e-02 5.00000e-02 ... 5.00000e-02 5.00000e-02 8.79414e-01
+Step    2 : Displace = 2.321e-02/2.321e-02 (rms/max) Trust = 1.414e-01 (+) Grad = 4.568e-02/4.568e-02 (rms/max) E (change) = -112.6663834887 (-1.097e-03) Quality = 0.324
+Hessian Eigenvalues: 5.00000e-02 5.00000e-02 5.00000e-02 ... 5.00000e-02 5.00000e-02 1.40021e+00
+Step    3 : Displace = 8.632e-03/8.632e-03 (rms/max) Trust = 1.414e-01 (=) Grad = 4.454e-03/4.454e-03 (rms/max) E (change) = -112.6672145698 (-8.311e-04) Quality = 1.115
+Hessian Eigenvalues: 5.00000e-02 5.00000e-02 5.00000e-02 ... 5.00000e-02 5.00000e-02 1.26368e+00
+Step    4 : Displace = 9.326e-04/9.326e-04 (rms/max) Trust = 2.000e-01 (+) Grad = 3.002e-04/3.002e-04 (rms/max) E (change) = -112.6672219101 (-7.340e-06) Quality = 0.935
+Hessian Eigenvalues: 5.00000e-02 5.00000e-02 5.00000e-02 ... 5.00000e-02 5.00000e-02 1.34887e+00
+Step    5 : Displace = 5.889e-05/5.889e-05 (rms/max) Trust = 2.828e-01 (+) Grad = 3.235e-06/3.235e-06 (rms/max) E (change) = -112.6672219430 (-3.293e-08) Quality = 0.985
+Hessian Eigenvalues: 5.00000e-02 5.00000e-02 5.00000e-02 ... 5.00000e-02 5.00000e-02 1.34887e+00
+Converged! =D
+
+    #==========================================================================#
+    #| If this code has benefited your research, please support us by citing: |#
+    #|                                                                        |#
+    #| Wang, L.-P.; Song, C.C. (2016) &quot;Geometry optimization made simple with |#
+    #| translation and rotation coordinates&quot;, J. Chem, Phys. 144, 214108.     |#
+    #| http://dx.doi.org/10.1063/1.4952956                                    |#
+    #==========================================================================#
+    Time elapsed since start of run_optimizer: 0.775 seconds
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimized CO structure:
+[[0.         0.         0.08466366]
+ [0.         0.         1.21533634]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">freq_info</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;freq_error&#39;: 0, &#39;freq_au&#39;: array([0.23108101]), &#39;freq_wavenumber&#39;: array([1187.86897303]), &#39;norm_mode&#39;: array([[[ 0.        ,  0.        , -0.1637143 ],
+        [ 0.        ,  0.        ,  0.21807219]]]), &#39;reduced_mass&#39;: array([13.44847911]), &#39;vib_temperature&#39;: array([1709.07897771]), &#39;force_const_au&#39;: array([0.05339843]), &#39;force_const_dyne&#39;: array([11.18048088])}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.hessian.rhf</span><span class="w"> </span><span class="kn">import</span> <span class="n">Hessian</span>
+<span class="c1"># Compute the Hessian for frequency analysis</span>
+<span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">(</span><span class="n">co_opt</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">hessian_calculator</span> <span class="o">=</span> <span class="n">Hessian</span><span class="p">(</span><span class="n">mf</span><span class="p">)</span>
+<span class="n">hessian_matrix</span> <span class="o">=</span> <span class="n">hessian_calculator</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="c1"># Convert Hessian to vibrational frequencies (in cm⁻¹)</span>
+<span class="n">frequencies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvalsh</span><span class="p">(</span><span class="n">hessian_matrix</span><span class="p">)</span>
+<span class="n">frequencies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">frequencies</span><span class="p">))</span> <span class="o">*</span> <span class="mf">5140.48</span>  <span class="c1"># Conversion factor for atomic units to cm⁻¹</span>
+
+<span class="c1"># Print results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimized CO structure:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">co_opt</span><span class="o">.</span><span class="n">atom_coords</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Vibrational frequencies (in cm⁻¹):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">frequencies</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimized CO structure:
+[[0.         0.         0.15999114]
+ [0.         0.         2.29665282]]
+
+Vibrational frequencies (in cm⁻¹):
+[[[   6.20971779    6.20971926 5985.86892547]
+  [5985.86892548    6.20971022    6.20971021]]
+
+ [[5985.86892548    6.20971022    6.20971021]
+  [   6.20970714    6.20970733 5985.86892548]]]
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Look at the calculation above: find the force constant and the reduced mass of the CO molecule. Use the formula relating those to find the frequency of vibration. Notice that it’s giving you the wavenumber in cm-1. How are those magnitudes related?</p></li>
+<li><p>Your turn: Choose 3 other diatomic molecules. Based on the information that the calculations are giving you, plot the energy levels of each. (Do not use symmetric molecules N2, O2… as only molecules with dipole will absorb in the IR spectrum)</p></li>
+<li><p>Find online the experimental frequency of absorption of your molecules and compare them with your results.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="anharmonic-corrections">
+<h1>Anharmonic corrections<a class="headerlink" href="#anharmonic-corrections" title="Link to this heading">#</a></h1>
+<p>We can use the <a class="reference external" href="https://en.wikipedia.org/wiki/Morse_potential">Morse potential</a></p>
+<div class="math notranslate nohighlight">
+\[
+E(r) = D(1-e^{a(r-r_{eq})})^2
+\]</div>
+<p>Where D is the depth of the well (bond energy), <span class="math notranslate nohighlight">\(r_{eq}\)</span> is the equilibrium bond distance, and “a” is related to the square root of the force constant</p>
+<div class="math notranslate nohighlight">
+\[
+a = \sqrt{\frac{k}{2D}}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="c1">#the x axis is the atomic number</span>
+
+<span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">req</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">D</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">D</span><span class="p">))</span>
+
+<span class="n">harmEne</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">anharmEne</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">distances</span><span class="p">:</span>
+    <span class="n">harmEne</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">req</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span>
+    <span class="n">anharmEne</span><span class="o">.</span><span class="n">append</span> <span class="p">(</span> <span class="n">D</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="n">r</span><span class="o">-</span><span class="n">req</span><span class="p">)))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span><span class="n">harmEne</span><span class="p">,</span><span class="s1">&#39;.r-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span><span class="n">anharmEne</span><span class="p">,</span><span class="s1">&#39;.b-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;dist&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Energy&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Harmonic vs Anharmonic potential&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/57e51dc6c8f5b22aad29a065916a080ab2877e94deabefb5657eed48951b11aa.png" src="_images/57e51dc6c8f5b22aad29a065916a080ab2877e94deabefb5657eed48951b11aa.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>How do you think adding anharmonicity will affect the vibrational levels? Will they be equally distanced? Will they be further apart than in the harmonic potential?</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="questions">
+<h1>Questions<a class="headerlink" href="#questions" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Submit in a separate notebook the questions listed above</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="M1.D5._Electronic_energy_of_molecules.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">M1.D5: Electronic energy of molecules</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="M1.D7._Vibrational_levels_of_polyatomic_molecules.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">M1.D7: Vibrational levels of polyatomic molecules</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">M1.D6: Vibrational levels of diatomic molecules</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-schrodinger-equation-of-nuclear-motion">The Schrodinger Equation of Nuclear Motion</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-harmonic-approximation-to-nuclear-motion">The harmonic approximation to nuclear motion</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-energy-levels-of-the-harmonic-oscillator">The energy levels of the harmonic oscillator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-harmonic-oscillator-wavefunctions">The harmonic oscillator wavefunctions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-classical-harmonic-oscillator-to-assess-the-quantumness-of-the-system">Using the classical harmonic oscillator to assess the “quantumness” of the system</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#infrared-spectroscopy">Infrared spectroscopy</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#anharmonic-corrections">Anharmonic corrections</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Xavier Prat-Resina pratr001@r.umn.edu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024 CC BY.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

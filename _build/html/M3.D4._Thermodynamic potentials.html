@@ -1,0 +1,913 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>M3.D4: Thermodynamic potentials for spontaneity and other thermodynamic properties &#8212; Physical Chemistry with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'M3.D4._Thermodynamic potentials';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Module 4: Molecular simulations and Thermodynamics" href="Module_4_Molecular_simulations_and_Thermodynamics.html" />
+    <link rel="prev" title="M3.D3: Thermodynamic properties of molecular ideal gases" href="M3.D3._Thermodynamic_properties_of_molecular_ideal_gases.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="Introduction.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Physical Chemistry with Python - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Physical Chemistry with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Introduction.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Module_0_Introduction_to_Python.html">M0: Introduction to Python</a></li>
+
+
+
+
+
+
+<li class="toctree-l1 has-children"><a class="reference internal" href="Module_1_Energy_levels_of_atoms_and_molecules.html">Module 1: Energy levels of atoms and molecules</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="M1.D1._Bohrs_hydrogen_atom.html">M1.D1: Bohr’s hydrogen atom</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D2._Introduction_to_Quantum_Mechanics._Particle_in_a_box.html">M1.D2: Introduction to Quantum Mechanics. Particle in a box.</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D3._Schrodingers_hydrogen_atom.html">M1.D3: Schrodinger’s hydrogen atom</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D4._Polyelectronic_atoms._Electronic_correlation_and_self_consistent_field_methods.html">Module 1 - Day 4: Polyelectronic atoms. Electronic correlation and self-consistent field methods</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D5._Electronic_energy_of_molecules.html">M1.D5: Electronic energy of molecules</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D6._Vibrational_levels_of_diatomic_molecules.html">M1.D6: Vibrational levels of diatomic molecules</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D7._Vibrational_levels_of_polyatomic_molecules.html">M1.D7: Vibrational levels of polyatomic molecules</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D8._Rotational_levels_of_molecules.html">M1.D8: Rotational levels of molecules</a></li>
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Module_2_Exploration_of_the_potential_energy_surface.html">Module 2: Exploration of the PES</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Module_3_Statistical_Thermodynamics.html">Module 3: Statistical Thermodynamics</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="M3.D1._Boltzmann_factor_and_partition_functions.html">M3.D1: Boltzmann factor and partition functions</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D2._Partition_functions_of_atoms.html">M3.D2: Partition functions of atoms</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D3._Thermodynamic_properties_of_molecular_ideal_gases.html">M3.D3: Thermodynamic properties of molecular ideal gases</a></li>
+
+
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">M3.D4: Thermodynamic potentials for spontaneity and other thermodynamic properties</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Module_4_Molecular_simulations_and_Thermodynamics.html">Module 4: Molecular simulations and Thermodynamics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="M4.D1._Introduction_to_molecular_dynamics.html">M4.D1: Introduction to molecular dynamics</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M4.D2._Introduction_to_molecular_simulations.html">M4.D2: Introduction to molecular simulations</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M4.D3._Calculating_free_energies_of_chemical_systems.html">M4.D3: Calculating free energies of chemical systems</a></li>
+
+
+
+
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FM3.D4._Thermodynamic potentials.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/M3.D4._Thermodynamic potentials.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>M3.D4: Thermodynamic potentials for spontaneity and other thermodynamic properties</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">M3.D4: Thermodynamic potentials for spontaneity and other thermodynamic properties</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ensembles-and-variables-and-thermodynamic-potentials-for-the-2nd-law">Ensembles and variables and Thermodynamic potentials for the 2nd law</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-thermodynamic-potentials-using-pyscf">Calculating thermodynamic potentials using pyscf</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="m3-d4-thermodynamic-potentials-for-spontaneity-and-other-thermodynamic-properties">
+<h1>M3.D4: Thermodynamic potentials for spontaneity and other thermodynamic properties<a class="headerlink" href="#m3-d4-thermodynamic-potentials-for-spontaneity-and-other-thermodynamic-properties" title="Link to this heading">#</a></h1>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Calculate thermodynamic potentials using PySCF of several diatomic ideal gases</p></li>
+</ul>
+</section>
+<section id="ensembles-and-variables-and-thermodynamic-potentials-for-the-2nd-law">
+<h2>Ensembles and variables and Thermodynamic potentials for the 2nd law<a class="headerlink" href="#ensembles-and-variables-and-thermodynamic-potentials-for-the-2nd-law" title="Link to this heading">#</a></h2>
+<p>Thermodynamic functions can be calculated as a function of its partition function. We will just summarize the most relevant thermodynamic potentials down here.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Extensive property</p></th>
+<th class="head"><p>Corresponding intensive property</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>(depends on the size of the system)</p></td>
+<td><p>(it can be measured at any point of the system)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Volume (V)</p></td>
+<td><p>Pressure (p)</p></td>
+</tr>
+<tr class="row-even"><td><p>Energy (E)</p></td>
+<td><p>Temperature (T)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Moles (N)</p></td>
+<td><p>Chemical potential (<span class="math notranslate nohighlight">\(\mu\)</span>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p> </p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ensembles</p></th>
+<th class="head"><p>Potential measuring spontaneity</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Microcanonical (NVE)</p></td>
+<td><p>Entropy <span class="math notranslate nohighlight">\(\Delta S_{N,V,E} &gt; 0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Canonical (NVT)</p></td>
+<td><p>Helmholtz Free Energy <span class="math notranslate nohighlight">\(\Delta A_{N,V,T} &lt; 0\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Isothermal-Isobaric (NPT)</p></td>
+<td><p>Gibbs Free Energy <span class="math notranslate nohighlight">\(\Delta G_{N,P,T} &lt; 0\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In the microcanonical ensemble, meaning, energy, volume and number of particles being constant, the entropy has a simple expression that we have seen before.</p>
+<div class="math notranslate nohighlight">
+\[
+\textrm{Entropy}: S(N,V,E) = k_B ln W
+\]</div>
+<p>Where W implies the number of states (the partition function if all states were equally probable).</p>
+<p>However, when instead of constant energy we keep temperature constant, that is, considering the NVT ensemble, keeping temperature, volume and number of particle constant not all states “j” are equally probable, so the average would be:</p>
+<div class="math notranslate nohighlight">
+\[
+\textrm{Entropy}: S(N,V,T) = k_B \sum_j p_j lnp_j
+\]</div>
+<p>and using now the canonical partition function instead of <span class="math notranslate nohighlight">\(p_j\)</span> we get a potential that is not as elegant.</p>
+<div class="math notranslate nohighlight">
+\[
+\textrm{Entropy}: S(N,V,T) = k_B lnQ + k_B T \left(\frac{\partial ln Q}{\partial T}\right)_{N,V}
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\Delta S_{N,V,E}&gt;0\)</span> as the criteria for spontaneity</p>
+<p>In the canonical ensemble, it is the free energy (Helmholtz free energy) that has a simple expression</p>
+<div class="math notranslate nohighlight">
+\[
+\textrm{Helmholtz Free Energy}: A(N,V,T) = -k_B T ln Q
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\Delta A_{V,T}&lt;0\)</span> as the criteria for spontaneity</p>
+<p>In the so-called isothermic isobaric ensemble where the variables held constant are N,P,T the Gibbs free energy is the thermodynamic potential with the simple expression</p>
+<div class="math notranslate nohighlight">
+\[
+\textrm{Gibbs Free Energy}: G(N,P,T) = -k_B T ln Q
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\Delta G_{P,T}&lt;0\)</span> as the criteria for spontaneity</p>
+<p>Before we proceed with more mathematical expressions, it may be useful to look at real calculations of molecules and see what contributions from vibrational, translational, rotational, and electronic we should expect</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="calculating-thermodynamic-potentials-using-pyscf">
+<h1>Calculating thermodynamic potentials using pyscf<a class="headerlink" href="#calculating-thermodynamic-potentials-using-pyscf" title="Link to this heading">#</a></h1>
+<p>In a separate notebook, for each of the following molecules: CO, N2, O2(use singlet!), F2, HF, HCl, CN(-), OH(-), H2.
+See below an example for CO.</p>
+<ul class="simple">
+<li><p>Optimize the structure</p></li>
+<li><p>Run a frequency analysis of the optimized structure. Save the output each in a separate file</p></li>
+</ul>
+<p>Build a function that for a given output file it reports a list of thermodynamic data such as the electronic, translational, rotational, and vibrational contributions to thermal energy, enthalpy, and free energy.</p>
+<p>Build a table with those data.</p>
+<p>Identify the most important contributions: compare what contributes the most to the internal/thermal energy, is it translational, rotational, and vibrational contributions?</p>
+<p>Compare among molecules.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#pip install geometric</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.geomopt.geometric_solver</span><span class="w"> </span><span class="kn">import</span> <span class="n">optimize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.hessian</span><span class="w"> </span><span class="kn">import</span> <span class="n">thermo</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">lib</span>
+
+<span class="c1"># Convert from Bohr to Angstroms</span>
+<span class="n">bohr_to_angstrom</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">BOHR</span> 
+
+<span class="n">molCO</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
+    <span class="n">atom</span> <span class="o">=</span> <span class="s1">&#39;O 0 0 0; C 0 0 1.3&#39;</span><span class="p">,</span>  <span class="c1"># in Angstrom</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;631g&#39;</span><span class="p">,</span>
+    <span class="n">symmetry</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+    <span class="n">spin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="s1">&#39;m3d2_co_fq.out&#39;</span>
+<span class="p">)</span>
+<span class="c1"># Perform the Hartree-Fock calculation</span>
+<span class="n">co_sp</span> <span class="o">=</span> <span class="n">molCO</span><span class="o">.</span><span class="n">RHF</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">co_opt</span> <span class="o">=</span> <span class="n">optimize</span><span class="p">(</span><span class="n">co_sp</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimized CO structure:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">co_opt</span><span class="o">.</span><span class="n">atom_coords</span><span class="p">()</span><span class="o">*</span><span class="n">bohr_to_angstrom</span><span class="p">)</span>
+<span class="n">hessian</span> <span class="o">=</span> <span class="n">co_sp</span><span class="o">.</span><span class="n">Hessian</span><span class="p">()</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+<span class="c1"># Frequency analysis</span>
+<span class="n">freq_info</span> <span class="o">=</span> <span class="n">thermo</span><span class="o">.</span><span class="n">harmonic_analysis</span><span class="p">(</span><span class="n">co_sp</span><span class="o">.</span><span class="n">mol</span><span class="p">,</span> <span class="n">hessian</span><span class="p">)</span>
+<span class="c1"># Thermochemistry analysis at 298.15 K and 1 atmospheric pressure</span>
+<span class="n">thermo_info</span> <span class="o">=</span> <span class="n">thermo</span><span class="o">.</span><span class="n">thermo</span><span class="p">(</span><span class="n">co_sp</span><span class="p">,</span> <span class="n">freq_info</span><span class="p">[</span><span class="s1">&#39;freq_au&#39;</span><span class="p">],</span> <span class="mf">298.15</span><span class="p">,</span> <span class="mi">101325</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rotation constant&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">thermo_info</span><span class="p">[</span><span class="s1">&#39;rot_const&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Zero-point energy&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">thermo_info</span><span class="p">[</span><span class="s1">&#39;ZPE&#39;</span>   <span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Internal energy at 0 K&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">thermo_info</span><span class="p">[</span><span class="s1">&#39;E_0K&#39;</span>  <span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Internal energy at 298.15 K&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">thermo_info</span><span class="p">[</span><span class="s1">&#39;E_tot&#39;</span> <span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Enthalpy energy at 298.15 K&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">thermo_info</span><span class="p">[</span><span class="s1">&#39;H_tot&#39;</span> <span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Gibbs free energy at 298.15 K&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">thermo_info</span><span class="p">[</span><span class="s1">&#39;G_tot&#39;</span> <span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Heat capacity at 298.15 K&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">thermo_info</span><span class="p">[</span><span class="s1">&#39;Cv_tot&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>output file: m3d2_co_fq.out
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>geometric-optimize called with the following command line:
+/Users/pratr001/miniconda3/envs/pchem/lib/python3.12/site-packages/ipykernel_launcher.py --f=/Users/pratr001/Library/Jupyter/runtime/kernel-v3248b0861d0d945a8ae00f635235d9ec3a3ebeebc.json
+
+                                        ())))))))))))))))/                     
+                                    ())))))))))))))))))))))))),                
+                                *)))))))))))))))))))))))))))))))))             
+                        #,    ()))))))))/                .)))))))))),          
+                      #%%%%,  ())))))                        .))))))))*        
+                      *%%%%%%,  ))              ..              ,))))))).      
+                        *%%%%%%,         ***************/.        .)))))))     
+                #%%/      (%%%%%%,    /*********************.       )))))))    
+              .%%%%%%#      *%%%%%%,  *******/,     **********,      .))))))   
+                .%%%%%%/      *%%%%%%,  **              ********      .))))))  
+          ##      .%%%%%%/      (%%%%%%,                  ,******      /)))))  
+        %%%%%%      .%%%%%%#      *%%%%%%,    ,/////.       ******      )))))) 
+      #%      %%      .%%%%%%/      *%%%%%%,  ////////,      *****/     ,))))) 
+    #%%  %%%  %%%#      .%%%%%%/      (%%%%%%,  ///////.     /*****      ))))).
+  #%%%%.      %%%%%#      /%%%%%%*      #%%%%%%   /////)     ******      ))))),
+    #%%%%##%  %%%#      .%%%%%%/      (%%%%%%,  ///////.     /*****      ))))).
+      ##     %%%      .%%%%%%/      *%%%%%%,  ////////.      *****/     ,))))) 
+        #%%%%#      /%%%%%%/      (%%%%%%      /)/)//       ******      )))))) 
+          ##      .%%%%%%/      (%%%%%%,                  *******      ))))))  
+                .%%%%%%/      *%%%%%%,  **.             /*******      .))))))  
+              *%%%%%%/      (%%%%%%   ********/*..,*/*********       *))))))   
+                #%%/      (%%%%%%,    *********************/        )))))))    
+                        *%%%%%%,         ,**************/         ,))))))/     
+                      (%%%%%%   ()                              ))))))))       
+                      #%%%%,  ())))))                        ,)))))))),        
+                        #,    ())))))))))                ,)))))))))).          
+                                 ()))))))))))))))))))))))))))))))/             
+                                    ())))))))))))))))))))))))).                
+                                         ())))))))))))))),                     
+
+-=# <span class=" -Color -Color-Bold"> geomeTRIC started. Version: 1.1 </span> #=-
+Current date and time: 2025-04-17 09:39:39
+#========================================================#
+#|     Arguments passed to driver run_optimizer():      |#
+#========================================================#
+customengine              &lt;pyscf.geomopt.geometric_solver.PySCFEngine object at 0x179ce6570&gt; 
+input                     /var/folders/1b/pw4sp5tj3_16kjl12vvf8vt40000gq/T/tmpxbj0cqve/f3510fde-899e-48dd-b6a4-3c5e95daf0f8 
+logIni                    /Users/pratr001/miniconda3/envs/pchem/lib/python3.12/site-packages/pyscf/geomopt/log.ini 
+----------------------------------------------------------
+Custom engine selected.
+Bonds will be generated from interatomic distances less than 1.20 times sum of covalent radii
+6 internal coordinates being used (instead of 6 Cartesians)
+Internal coordinate system (atoms numbered from 1):
+Distance 1-2
+Translation-X 1-2
+Translation-Y 1-2
+Translation-Z 1-2
+Rotation-A 1-2
+Rotation-B 1-2
+Rotation-C 1-2
+&lt;class &#39;geometric.internal.Distance&#39;&gt; : 1
+&lt;class &#39;geometric.internal.TranslationX&#39;&gt; : 1
+&lt;class &#39;geometric.internal.TranslationY&#39;&gt; : 1
+&lt;class &#39;geometric.internal.TranslationZ&#39;&gt; : 1
+&lt;class &#39;geometric.internal.RotationA&#39;&gt; : 1
+&lt;class &#39;geometric.internal.RotationB&#39;&gt; : 1
+&lt;class &#39;geometric.internal.RotationC&#39;&gt; : 1
+&gt; ===== Optimization Info: ====
+&gt; Job type: Energy minimization
+&gt; Maximum number of optimization cycles: 300
+&gt; Initial / maximum trust radius (Angstrom): 0.100 / 0.300
+&gt; Convergence Criteria:
+&gt; Will converge when all 5 criteria are reached:
+&gt;  |Delta-E| &lt; 1.00e-06
+&gt;  RMS-Grad  &lt; 3.00e-04
+&gt;  Max-Grad  &lt; 4.50e-04
+&gt;  RMS-Disp  &lt; 1.20e-03
+&gt;  Max-Disp  &lt; 1.80e-03
+&gt; === End Optimization Info ===
+Step    0 : Gradient = 2.498e-01/2.498e-01 (rms/max) Energy = -112.6189499615
+Hessian Eigenvalues: 5.00000e-02 5.00000e-02 5.00000e-02 ... 5.00000e-02 5.00000e-02 6.71931e-01
+Step    1 : Displace = 9.837e-02/9.837e-02 (rms/max) Trust = 1.000e-01 (=) Grad = 7.714e-02/7.714e-02 (rms/max) E (change) = -112.6652860802 (-4.634e-02) Quality = 0.998
+Hessian Eigenvalues: 5.00000e-02 5.00000e-02 5.00000e-02 ... 5.00000e-02 5.00000e-02 8.79414e-01
+Step    2 : Displace = 2.321e-02/2.321e-02 (rms/max) Trust = 1.414e-01 (+) Grad = 4.568e-02/4.568e-02 (rms/max) E (change) = -112.6663834887 (-1.097e-03) Quality = 0.324
+Hessian Eigenvalues: 5.00000e-02 5.00000e-02 5.00000e-02 ... 5.00000e-02 5.00000e-02 1.40021e+00
+Step    3 : Displace = 8.632e-03/8.632e-03 (rms/max) Trust = 1.414e-01 (=) Grad = 4.454e-03/4.454e-03 (rms/max) E (change) = -112.6672145698 (-8.311e-04) Quality = 1.115
+Hessian Eigenvalues: 5.00000e-02 5.00000e-02 5.00000e-02 ... 5.00000e-02 5.00000e-02 1.26368e+00
+Step    4 : Displace = 9.326e-04/9.326e-04 (rms/max) Trust = 2.000e-01 (+) Grad = 3.002e-04/3.002e-04 (rms/max) E (change) = -112.6672219101 (-7.340e-06) Quality = 0.935
+Hessian Eigenvalues: 5.00000e-02 5.00000e-02 5.00000e-02 ... 5.00000e-02 5.00000e-02 1.34887e+00
+Step    5 : Displace = 5.889e-05/5.889e-05 (rms/max) Trust = 2.828e-01 (+) Grad = 3.235e-06/3.235e-06 (rms/max) E (change) = -112.6672219430 (-3.293e-08) Quality = 0.985
+Hessian Eigenvalues: 5.00000e-02 5.00000e-02 5.00000e-02 ... 5.00000e-02 5.00000e-02 1.34887e+00
+Converged! =D
+
+    #==========================================================================#
+    #| If this code has benefited your research, please support us by citing: |#
+    #|                                                                        |#
+    #| Wang, L.-P.; Song, C.C. (2016) &quot;Geometry optimization made simple with |#
+    #| translation and rotation coordinates&quot;, J. Chem, Phys. 144, 214108.     |#
+    #| http://dx.doi.org/10.1063/1.4952956                                    |#
+    #==========================================================================#
+    Time elapsed since start of run_optimizer: 0.757 seconds
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimized CO structure:
+[[0.         0.         0.08466366]
+ [0.         0.         1.21533634]]
+Rotation constant
+(array([        inf, 43.58846729, 43.58846729]), &#39;GHz&#39;)
+Zero-point energy
+(np.float64(0.002706164641888301), &#39;Eh&#39;)
+Internal energy at 0 K
+(np.float64(-112.6162437968851), &#39;Eh&#39;)
+Internal energy at 298.15 K
+(np.float64(-112.61386574425926), &#39;Eh&#39;)
+Enthalpy energy at 298.15 K
+(np.float64(-112.61292155970314), &#39;Eh&#39;)
+Gibbs free energy at 298.15 K
+(np.float64(-112.63563803079069), &#39;Eh&#39;)
+Heat capacity at 298.15 K
+(np.float64(8.25633742976514e-06), &#39;Eh/K&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="questions">
+<h1>Questions<a class="headerlink" href="#questions" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>For the Canonical NVT ensemble use PySCF to build a table calculating the entropy, the enthalpy, and the free energy at room temperature of the molecules you already calculated in the previous M3.D3 notebook.</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="M3.D3._Thermodynamic_properties_of_molecular_ideal_gases.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">M3.D3: Thermodynamic properties of molecular ideal gases</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Module_4_Molecular_simulations_and_Thermodynamics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Module 4: Molecular simulations and Thermodynamics</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">M3.D4: Thermodynamic potentials for spontaneity and other thermodynamic properties</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ensembles-and-variables-and-thermodynamic-potentials-for-the-2nd-law">Ensembles and variables and Thermodynamic potentials for the 2nd law</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-thermodynamic-potentials-using-pyscf">Calculating thermodynamic potentials using pyscf</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Xavier Prat-Resina pratr001@r.umn.edu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024 CC BY.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

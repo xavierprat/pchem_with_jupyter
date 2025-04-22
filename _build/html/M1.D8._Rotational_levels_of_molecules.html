@@ -1,0 +1,918 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>M1.D8: Rotational levels of molecules &#8212; Physical Chemistry with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'M1.D8._Rotational_levels_of_molecules';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Module 2: Exploration of the PES" href="Module_2_Exploration_of_the_potential_energy_surface.html" />
+    <link rel="prev" title="M1.D7: Vibrational levels of polyatomic molecules" href="M1.D7._Vibrational_levels_of_polyatomic_molecules.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="Introduction.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Physical Chemistry with Python - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Physical Chemistry with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Introduction.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Module_0_Introduction_to_Python.html">M0: Introduction to Python</a></li>
+
+
+
+
+
+
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Module_1_Energy_levels_of_atoms_and_molecules.html">Module 1: Energy levels of atoms and molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="M1.D1._Bohrs_hydrogen_atom.html">M1.D1: Bohr’s hydrogen atom</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D2._Introduction_to_Quantum_Mechanics._Particle_in_a_box.html">M1.D2: Introduction to Quantum Mechanics. Particle in a box.</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D3._Schrodingers_hydrogen_atom.html">M1.D3: Schrodinger’s hydrogen atom</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D4._Polyelectronic_atoms._Electronic_correlation_and_self_consistent_field_methods.html">Module 1 - Day 4: Polyelectronic atoms. Electronic correlation and self-consistent field methods</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D5._Electronic_energy_of_molecules.html">M1.D5: Electronic energy of molecules</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D6._Vibrational_levels_of_diatomic_molecules.html">M1.D6: Vibrational levels of diatomic molecules</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D7._Vibrational_levels_of_polyatomic_molecules.html">M1.D7: Vibrational levels of polyatomic molecules</a></li>
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">M1.D8: Rotational levels of molecules</a></li>
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Module_2_Exploration_of_the_potential_energy_surface.html">Module 2: Exploration of the PES</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Module_3_Statistical_Thermodynamics.html">Module 3: Statistical Thermodynamics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="M3.D1._Boltzmann_factor_and_partition_functions.html">M3.D1: Boltzmann factor and partition functions</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D2._Partition_functions_of_atoms.html">M3.D2: Partition functions of atoms</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D3._Thermodynamic_properties_of_molecular_ideal_gases.html">M3.D3: Thermodynamic properties of molecular ideal gases</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D4._Thermodynamic%20potentials.html">M3.D4: Thermodynamic potentials for spontaneity and other thermodynamic properties</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Module_4_Molecular_simulations_and_Thermodynamics.html">Module 4: Molecular simulations and Thermodynamics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="M4.D1._Introduction_to_molecular_dynamics.html">M4.D1: Introduction to molecular dynamics</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M4.D2._Introduction_to_molecular_simulations.html">M4.D2: Introduction to molecular simulations</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M4.D3._Calculating_free_energies_of_chemical_systems.html">M4.D3: Calculating free energies of chemical systems</a></li>
+
+
+
+
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FM1.D8._Rotational_levels_of_molecules.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/M1.D8._Rotational_levels_of_molecules.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>M1.D8: Rotational levels of molecules</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">M1.D8: Rotational levels of molecules</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-schrodinger-equation-for-nuclear-coordinates-the-polar-coordinates-of-the-nuclear-motion-show-rotation">The Schrodinger equation for nuclear coordinates: the polar coordinates of the nuclear motion show rotation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-rigid-rotor-approximation">The rigid rotor approximation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-energy-levels-of-the-rigid-rotor-approximation">The energy levels of the rigid rotor approximation.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-spacing-between-rotational-levels">Energy spacing between rotational levels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-of-mass">Effect of mass</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-of-bond-distance">Effect of bond distance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#degeneracy-of-the-rigid-rotor">Degeneracy of the rigid rotor</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#microwave-spectroscopy">Microwave spectroscopy</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="m1-d8-rotational-levels-of-molecules">
+<h1>M1.D8: Rotational levels of molecules<a class="headerlink" href="#m1-d8-rotational-levels-of-molecules" title="Link to this heading">#</a></h1>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Describing the rigid rotor approximation for the angular solution of quantum nuclear motion of a diatomic molecule. List the energy of rotational levels using the quantum number J.</p></li>
+<li><p>Plotting how the rotational levels are affected by the mass, the bond distance, and the moment of inertia of a diatomic molecule.</p></li>
+<li><p>Applying the rigid rotor model to real diatomic molecules.</p></li>
+<li><p>Discussing and plotting the degeneracy of rotational levels for each quantum number J.</p></li>
+<li><p>Calculating and plotting spectroscopic lines of microwave spectroscopy of diatomic molecules. Listing allowed transitions using the selection rule <span class="math notranslate nohighlight">\(\Delta\)</span>J = <span class="math notranslate nohighlight">\(\pm\)</span> 1.</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-schrodinger-equation-for-nuclear-coordinates-the-polar-coordinates-of-the-nuclear-motion-show-rotation">
+<h1>The Schrodinger equation for nuclear coordinates: the polar coordinates of the nuclear motion show rotation<a class="headerlink" href="#the-schrodinger-equation-for-nuclear-coordinates-the-polar-coordinates-of-the-nuclear-motion-show-rotation" title="Link to this heading">#</a></h1>
+<p>The Hamiltonian for the nuclear motion (after we have split the electronic from the nuclear motion) was already written before</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H}_{nuclear} = \sum_{k=nuclei}-\frac{1}{2m_k}\nabla_{k} + U(r) 
+\]</div>
+<p>So we have a new differential equation to solve that depends on the nuclear coordinates “xyz” for any molecular system.</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{k=nuclei}-\frac{1}{2m_k}\nabla_{k}\Psi(xyz) + U(r)\Psi(xyz) = E\Psi(xyz)
+\]</div>
+<p>For a non-linear molecule with N atoms, it will have 3N coordinates. Out of these 3N coordinates, 3 will be translations in the xyz directions, 3 more will be rotations, and 3N-6 will be vibrations.</p>
+<p>When we solved the vibrational levels we had to split the nuclear motion and focus only on the interatomic distance <span class="math notranslate nohighlight">\(r\)</span>. This means that we change the <span class="math notranslate nohighlight">\(xyz\)</span> coordinates into the same polar coordinates that we used for the hydrogen atom .</p>
+<div class="math notranslate nohighlight">
+\[
+\Psi(xyz) \rightarrow \Psi(r\theta\phi)
+\]</div>
+<p>Under the harmonic and rigid rotor approximation that we will show below the radial solution (vibrational) and the angular solution (rotational) become separable.</p>
+<div class="math notranslate nohighlight">
+\[
+\Psi(r\theta\phi) = \Psi_{vib}(r) \Psi_{rot}(\theta\phi)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Energy_{nuclear} = E_{vib} + E_{rot}
+\]</div>
+<p>In any case the Schrodinger equation that describes the quantum rotation of a molecule is</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H}\Psi = \frac{\hat{L}^2}{2I}\Psi(\theta\phi) = E_{rot}\Psi(\theta\phi) 
+\]</div>
+<p>Where <span class="math notranslate nohighlight">\(I\)</span> is the moment of inertia and <span class="math notranslate nohighlight">\(\hat{L}\)</span> is the angular momentum operator in polar coordinates</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{L} = -\frac{\hbar^2}{2I}\left[\frac{1}{sin\theta}\frac{\partial}{\partial\theta}\left(sin\theta\frac{\partial\Psi}{\partial\theta}\right)+ \frac{1}{sin^2\theta}\frac{\partial^2\Psi}{\partial\phi^2}\right]
+\]</div>
+<p>Notice that if we consider only the angular coordinates <span class="math notranslate nohighlight">\((\theta,\phi)\)</span> of the system, it should remind us of the proton-electron system that we saw for the Hydrogen atom. In fact, the solutions to the angular coordinates are related to the quantum angular momentum of the system and, like in the hydrogen atom, are the <a class="reference external" href="https://en.wikipedia.org/wiki/Associated_Legendre_polynomials">Associated Legendre Polynomials</a>.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-rigid-rotor-approximation">
+<h1>The rigid rotor approximation<a class="headerlink" href="#the-rigid-rotor-approximation" title="Link to this heading">#</a></h1>
+<p>The rigid rotor approximation assumes that the moment of inertia <span class="math notranslate nohighlight">\(I\)</span> is constant at all rotational levels, which is an approximation as one would expect that as the molecule rotates faster the moment of inertia is larger.
+This is why at higher rotational levels we would need to correct this approximation with some vibrational-rotational coupling, in a similar way that for the electron-proton there was also coupling between the angular and radial part.</p>
+<img src="http://hyperphysics.phy-astr.gsu.edu/hbase/molecule/imgmol/midiat1.png" />
+<p>The moment of inertia of a diatomic molecule is</p>
+<div class="math notranslate nohighlight">
+\[
+I = m_1 r_1^2 + m_2 r_2^2
+\]</div>
+<p>or using the reduced mass <span class="math notranslate nohighlight">\(\mu\)</span> definition and the bond distance <span class="math notranslate nohighlight">\(R = r_1 + r_2\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\mu = \frac{m_1 m_2}{m_1 + m_2}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+I = \mu R^2
+\]</div>
+<section id="the-energy-levels-of-the-rigid-rotor-approximation">
+<h2>The energy levels of the rigid rotor approximation.<a class="headerlink" href="#the-energy-levels-of-the-rigid-rotor-approximation" title="Link to this heading">#</a></h2>
+<p>The energy levels of the rigid rotor depend on the quantum number <span class="math notranslate nohighlight">\(J=0,1,2,3...\)</span>, and its expression is</p>
+<div class="math notranslate nohighlight">
+\[
+E_J = \frac{\hbar^2}{2I} J(J+1)
+\]</div>
+<p>The value of <span class="math notranslate nohighlight">\(\frac{\hbar^2}{2I}\)</span> depends on the molecular structure and it’s called the rotational constant <span class="math notranslate nohighlight">\(B\)</span> and it plays a similar role as the frequency in the vibrational levels. So the energy levels can be written as</p>
+<div class="math notranslate nohighlight">
+\[
+B = \frac{\hbar^2}{2I}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+E_J = B J(J+1)
+\]</div>
+<p>Again, B is a constant for a molecule and the quantum number <span class="math notranslate nohighlight">\(J=0,1,2,3,4...\)</span></p>
+<section id="energy-spacing-between-rotational-levels">
+<h3>Energy spacing between rotational levels<a class="headerlink" href="#energy-spacing-between-rotational-levels" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What is the zero point energy for the rigid rotor system?</p></li>
+<li><p>Plot the first 8 rotational levels</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1">#constants</span>
+<span class="n">hbar</span><span class="o">=</span><span class="mi">1</span>
+<span class="c1">#molecular properties</span>
+<span class="n">m1</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">m2</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">R</span><span class="o">=</span><span class="mi">1</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Rotational levels for m1=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">m1</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; m2=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">m2</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; R=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">R</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Rotational Energy&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/611ebfd8401b632b6b9bf7948f9d5b405c570a255c0086e78d252e1e6173a074.png" src="_images/611ebfd8401b632b6b9bf7948f9d5b405c570a255c0086e78d252e1e6173a074.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">rotationalTable</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="n">Jvalues</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">Em1m1R1</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">Em1m2R1</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">rotationalTable</span><span class="p">[</span><span class="s2">&quot;Eigenvalue J&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Jvalues</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">Jvalues</span><span class="p">:</span>
+    <span class="n">Em1m1R1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+    <span class="n">Em1m2R1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+<span class="n">rotationalTable</span><span class="p">[</span><span class="s2">&quot;E m=1, m=1, R=1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Em1m1R1</span>
+<span class="n">rotationalTable</span><span class="p">[</span><span class="s2">&quot;E m=1, m=2, R=1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Em1m2R1</span>
+<span class="n">display</span><span class="p">(</span><span class="n">rotationalTable</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Eigenvalue J</th>
+      <th>E m=1, m=1, R=1</th>
+      <th>E m=1, m=2, R=1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6</td>
+      <td>6</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>7</td>
+      <td>7</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="effect-of-mass">
+<h3>Effect of mass<a class="headerlink" href="#effect-of-mass" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Double the mass of one of the atoms to assess the effect of the mass. You may want to compare the two plots showing the energy levels next to each other.</p></li>
+<li><p>How does the distribution of mass effect the rotational levels? Does the system (m1=2,m2=2) have the same rotational levels as the system (m1=1, m2=3)?</p></li>
+<li><p>Besides a plot, build a table with the values.</p></li>
+</ul>
+</section>
+<section id="effect-of-bond-distance">
+<h3>Effect of bond distance<a class="headerlink" href="#effect-of-bond-distance" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Double the bond distance and assess the effect on rotational levels</p></li>
+<li><p>Besides a plot, build a table with the values.</p></li>
+<li><p>What has a larger impact on rotational levels, changes in the mass or changes in the bond distance?</p></li>
+<li><p>Based on this trend, compare the rotational energy levels for N2, O2, F2, CO, NO</p></li>
+</ul>
+</section>
+</section>
+<section id="degeneracy-of-the-rigid-rotor">
+<h2>Degeneracy of the rigid rotor<a class="headerlink" href="#degeneracy-of-the-rigid-rotor" title="Link to this heading">#</a></h2>
+<p>The quantum number <span class="math notranslate nohighlight">\(J\)</span> is the quantum number that appears in the eigenvalues of the angular momentum
+The degeneracy of the rigid rotor levels is <span class="math notranslate nohighlight">\(2J+1\)</span>.</p>
+<p>We say that for the rotational level J there are <span class="math notranslate nohighlight">\(2J+1\)</span> states.
+This expression should remind you of the degeneracy for the
+levels of the hydrogen atom.
+The “s” orbitals (<span class="math notranslate nohighlight">\(\ell=0\)</span>) had degeneracy of (<span class="math notranslate nohighlight">\(2\cdot 0 +1 =2 \)</span>), the “p” orbitals (<span class="math notranslate nohighlight">\(\ell=1\)</span>) had a degeneracy of <span class="math notranslate nohighlight">\(2\cdot 1+1=3\)</span>, the “d” orbitals (<span class="math notranslate nohighlight">\(\ell=2\)</span>) had a degeneacy of <span class="math notranslate nohighlight">\(2\cdot 2+1=5\)</span></p>
+<p>The degeneracy will be important to understand in our next module the most populated states in rotational levels.</p>
+<ul class="simple">
+<li><p>Build a table showing the degeneracy of the first 10 rotational levels.</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="microwave-spectroscopy">
+<h1>Microwave spectroscopy<a class="headerlink" href="#microwave-spectroscopy" title="Link to this heading">#</a></h1>
+<p>Some rotational levels absorb light in the microwave region of the electromagnetic spectrum.
+Non-polar molecules will not absorb because they have no dipole moment. In fact, out of the three directions in which a molecule rotates, only the directions that change the direction of the dipole will absorb light.
+This observation is the same as the vibrational levels. Only the vibrations that change the dipole moment (in magnitude or direction) will absorb in the IR spectrum.</p>
+<p>The rules however is that a molecule cannot “jump” from any rotational level to any other. The rules are (at this level of approximation) that it has to change by one unit</p>
+<p>The allowed rotational transitions are:</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta J = \pm 1
+\]</div>
+<ul class="simple">
+<li><p>Based on this rule, build a table showing the energy for all the possible absorptions between the first five rotational levels.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="questions">
+<h1>Questions<a class="headerlink" href="#questions" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Submit in a separate notebook the exercises listed above</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="M1.D7._Vibrational_levels_of_polyatomic_molecules.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">M1.D7: Vibrational levels of polyatomic molecules</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Module_2_Exploration_of_the_potential_energy_surface.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Module 2: Exploration of the PES</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">M1.D8: Rotational levels of molecules</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-schrodinger-equation-for-nuclear-coordinates-the-polar-coordinates-of-the-nuclear-motion-show-rotation">The Schrodinger equation for nuclear coordinates: the polar coordinates of the nuclear motion show rotation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-rigid-rotor-approximation">The rigid rotor approximation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-energy-levels-of-the-rigid-rotor-approximation">The energy levels of the rigid rotor approximation.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-spacing-between-rotational-levels">Energy spacing between rotational levels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-of-mass">Effect of mass</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-of-bond-distance">Effect of bond distance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#degeneracy-of-the-rigid-rotor">Degeneracy of the rigid rotor</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#microwave-spectroscopy">Microwave spectroscopy</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Xavier Prat-Resina pratr001@r.umn.edu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024 CC BY.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

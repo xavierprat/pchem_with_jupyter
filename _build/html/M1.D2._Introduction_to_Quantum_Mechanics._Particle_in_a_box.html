@@ -1,0 +1,1248 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>M1.D2: Introduction to Quantum Mechanics. Particle in a box. &#8212; Physical Chemistry with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'M1.D2._Introduction_to_Quantum_Mechanics._Particle_in_a_box';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="M1.D3: Schrodinger’s hydrogen atom" href="M1.D3._Schrodingers_hydrogen_atom.html" />
+    <link rel="prev" title="M1.D1: Bohr’s hydrogen atom" href="M1.D1._Bohrs_hydrogen_atom.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="Introduction.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Physical Chemistry with Python - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Physical Chemistry with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Introduction.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Module_0_Introduction_to_Python.html">M0: Introduction to Python</a></li>
+
+
+
+
+
+
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Module_1_Energy_levels_of_atoms_and_molecules.html">Module 1: Energy levels of atoms and molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="M1.D1._Bohrs_hydrogen_atom.html">M1.D1: Bohr’s hydrogen atom</a></li>
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">M1.D2: Introduction to Quantum Mechanics. Particle in a box.</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D3._Schrodingers_hydrogen_atom.html">M1.D3: Schrodinger’s hydrogen atom</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D4._Polyelectronic_atoms._Electronic_correlation_and_self_consistent_field_methods.html">Module 1 - Day 4: Polyelectronic atoms. Electronic correlation and self-consistent field methods</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D5._Electronic_energy_of_molecules.html">M1.D5: Electronic energy of molecules</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D6._Vibrational_levels_of_diatomic_molecules.html">M1.D6: Vibrational levels of diatomic molecules</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D7._Vibrational_levels_of_polyatomic_molecules.html">M1.D7: Vibrational levels of polyatomic molecules</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D8._Rotational_levels_of_molecules.html">M1.D8: Rotational levels of molecules</a></li>
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Module_2_Exploration_of_the_potential_energy_surface.html">Module 2: Exploration of the PES</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Module_3_Statistical_Thermodynamics.html">Module 3: Statistical Thermodynamics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="M3.D1._Boltzmann_factor_and_partition_functions.html">M3.D1: Boltzmann factor and partition functions</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D2._Partition_functions_of_atoms.html">M3.D2: Partition functions of atoms</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D3._Thermodynamic_properties_of_molecular_ideal_gases.html">M3.D3: Thermodynamic properties of molecular ideal gases</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D4._Thermodynamic%20potentials.html">M3.D4: Thermodynamic potentials for spontaneity and other thermodynamic properties</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Module_4_Molecular_simulations_and_Thermodynamics.html">Module 4: Molecular simulations and Thermodynamics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="M4.D1._Introduction_to_molecular_dynamics.html">M4.D1: Introduction to molecular dynamics</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M4.D2._Introduction_to_molecular_simulations.html">M4.D2: Introduction to molecular simulations</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M4.D3._Calculating_free_energies_of_chemical_systems.html">M4.D3: Calculating free energies of chemical systems</a></li>
+
+
+
+
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FM1.D2._Introduction_to_Quantum_Mechanics._Particle_in_a_box.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/M1.D2._Introduction_to_Quantum_Mechanics._Particle_in_a_box.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>M1.D2: Introduction to Quantum Mechanics. Particle in a box.</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">M1.D2: Introduction to Quantum Mechanics. Particle in a box.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-equations-to-solve">What are the equations to solve?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-schrodinger-equation-for-a-particle-in-a-box-1-dimension">The Schrodinger equation for a particle in a box (1-dimension)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-quantized-energy-of-the-particle-in-a-box">The quantized energy of the particle in a box</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-effect-of-mass-of-the-particle">The effect of mass of the particle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-of-the-size-of-the-box">Effect of the size of the box</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-point-energy">Zero point energy</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-wavefunctions-of-the-particle-in-a-box-and-their-meaning">The wavefunctions of the particle in a box and their meaning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#particle-in-a-box-in-2d">Particle in a box in 2D</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#degeneracy">Degeneracy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-2d-wavefunctions">Plotting the 2D wavefunctions</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#particle-in-a-box-in-3d">Particle in a box in 3D</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="m1-d2-introduction-to-quantum-mechanics-particle-in-a-box">
+<h1>M1.D2: Introduction to Quantum Mechanics. Particle in a box.<a class="headerlink" href="#m1-d2-introduction-to-quantum-mechanics-particle-in-a-box" title="Link to this heading">#</a></h1>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Use the expression of the energy of a particle to investigate how the energy levels change by changing a) the mass of the particle, b) the length of the box, c) both the mass and the length.</p></li>
+<li><p>Quantify the zero-point energy of the system and identify what variables affect its value.</p></li>
+<li><p>Use magnitudes such as energy gaps and zero-point energy to quantify and compare the quantum vs classical behavior of two systems.</p></li>
+<li><p>Plot the wavefunctions of a particle in a one-dimensional box for different particle masses and different box lengths. Plot the square of the wavefunctions and interpret it as density of probability to find the particle.</p></li>
+</ul>
+<p><strong>Context and goals</strong></p>
+<p>We saw that Bohr’s hydrogen atom gives us the energy levels that can reproduce the emission spectra of hydrogen. However, this is not a predictible model as it is not giving us the mechanics (how the system moves) of the atom. In order to understand how the atomic system moves we need to introduce quantum mechanics.</p>
+<p>Quantum mechanics is so different from the physics that you probably know, with so many new concepts, that we will have to start slowly with the simplest of the quantum systems: The particle in a box, it’s not an atom, but it will help us understand some concepts when we tackle the quantum atom.</p>
+<p>We want to know the equations of motion of the atom of Hydrogen (one proton and one electron) which we know must be studied with Quantum Mechanics. Before we solve that problem we will tackle the simplest of the problems in quantum mechanics, a free particle that does not interact with anything else but it is constained inside a box.</p>
+<p>By solving this simple system we will come up with some terms that are useful to keep in mind, such as.</p>
+<ul class="simple">
+<li><p>Hamiltonian</p></li>
+<li><p>Schrodinger equation</p></li>
+<li><p>Eigenfunctions and wavefunctions</p></li>
+<li><p>Eigenvalues and energy values</p></li>
+<li><p>Quantum numbers</p></li>
+<li><p>Probability and density</p></li>
+<li><p>The quantum/classical limit</p></li>
+<li><p>Degeneracy</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="what-are-the-equations-to-solve">
+<h1>What are the equations to solve?<a class="headerlink" href="#what-are-the-equations-to-solve" title="Link to this heading">#</a></h1>
+<p>The <strong>equations of motion</strong> are the equations that allow us to predict the motion of a system as it evolves over time.</p>
+<p>In Classical mechanics (the non-quantum one) there are three main formulations of such equations of motion: the newtonian, the lagrangian, and the hamiltonian.</p>
+<p>The one that you already know is the newtonian.</p>
+<div class="math notranslate nohighlight">
+\[ F = \frac{dp}{dt} = m\frac{dv}{dt} = m\frac{d^{2}x}{dt^{2}} \]</div>
+<p>and being force the derivative of the energy over position $<span class="math notranslate nohighlight">\( F=-\frac{dE(x)}{dr}\)</span><span class="math notranslate nohighlight">\( 
+we have
+\)</span><span class="math notranslate nohighlight">\( -\frac{dE(x)}{dx} = m\frac{d^{2}x}{dt^{2}}\)</span>$</p>
+<p>Which is a partial diferential equation which solutions would be x(t), that is a function that tell us the position (x) of particles that make up the system at any given time. In the case of a falling particle under constant gravity force the solution is a function x(t) that tell us where the particle is at any given time.</p>
+<div class="math notranslate nohighlight">
+\[
+x = x_0 + v_0 t + \frac{a}{2}t^2
+\]</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-schrodinger-equation-for-a-particle-in-a-box-1-dimension">
+<h1>The Schrodinger equation for a particle in a box (1-dimension)<a class="headerlink" href="#the-schrodinger-equation-for-a-particle-in-a-box-1-dimension" title="Link to this heading">#</a></h1>
+<table>
+    <tr>
+        <td>
+<img src="https://miro.medium.com/max/832/1*8cR-sK1COP8wSzEl2QDwwg.png" />
+        </td>
+        <td>
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Standing_waves_on_a_string.gif" />
+        </td>
+    </tr>
+</table>
+<p>We won’t be spending much time on the algebra. However, there are some steps and some terms that need to be emphasized.</p>
+<ul class="simple">
+<li><p>In quantum mechanics, the equations of motion are given by solving the <strong>Schrodinger equation</strong>.<br />
+$<span class="math notranslate nohighlight">\( \hat{H}\Psi = E\Psi \)</span>$</p></li>
+</ul>
+<p>This is a partial partial differential equation. The solution to this equation is a function. In fact, this type of equation has as a solution a collection of functions. This collection of functions are called <strong>eigenfunctions</strong></p>
+<p>Think of it like a string in a guitar (see here <a class="reference external" href="https://en.wikipedia.org/wiki/Eigenfunction#Vibrating_strings">https://en.wikipedia.org/wiki/Eigenfunction#Vibrating_strings</a>). In how many ways can a string in a guitar vibrate? It can vibrate with the fundamental note, then the first overtone(octave), the second, the third.. and so on. The sine functions describing all the vibrations would be called eigenfunctions and the energy of the string would be their corresponding eigenvalue.</p>
+<ol class="arabic simple" start="2">
+<li><p><strong>The wavefunction <span class="math notranslate nohighlight">\(\Psi\)</span></strong> is an eigenfunction of the Schrodinger equation: it gives information about the position of the system</p></li>
+<li><p><strong>The Energy <span class="math notranslate nohighlight">\(E\)</span></strong> is an eigenvalue of the Schrodinger equation: notice that the energy cannot have any value ,it is quantized (unlike a particle falling or any other classical system).</p></li>
+<li><p>The “<span class="math notranslate nohighlight">\(\hat{H}\)</span>” is called the the Hamiltonian. And it has the form:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\hat{H} = -\frac{\hbar^2}{2m}\frac{\delta^2}{\delta x^2} + V(x)\]</div>
+<p>Where the variable “x” is the position. Because the particle in a box does not experience any potential inside the box, the overall Schrodinger equation to solve is</p>
+<div class="math notranslate nohighlight">
+\[
+-\frac{\hbar^2}{2m}\frac{\delta^2\Psi}{\delta x^2} = E \Psi(x)
+\]</div>
+<p>and their solutions are</p>
+<p>Eigenfunctions (wavefunctions) :
+$<span class="math notranslate nohighlight">\(
+ \Psi(x)_n = \sqrt{\frac{2}{L}} sin\left(\frac{n \pi x}{L}\right)
+\)</span><span class="math notranslate nohighlight">\(
+Eigenvalues (energies):
+\)</span><span class="math notranslate nohighlight">\(
+ E_n =\frac{h^2 n^2}{8 m L^2}
+\)</span>$</p>
+<p>Few things to observe</p>
+<ul class="simple">
+<li><p>In the derivation of this equation one can see that the value of <span class="math notranslate nohighlight">\(n\)</span> can only have an integer positive number: <span class="math notranslate nohighlight">\(n=1,2,3,4...\)</span>. Because of how the whole solution depends on the choice of <span class="math notranslate nohighlight">\(n\)</span>, this number is called a <strong>quantum number</strong></p></li>
+<li><p>Notice that we have a collection of wavefunctions (eigenfunctions) that change depending on the value of “n”. If we change “n” the wavefunction changes.</p></li>
+<li><p>The Schrodinger equation in this case is saying that if you derive twice the same function you should get the same function again multiplied by a parameter (eigenvalue) <span class="math notranslate nohighlight">\(E\)</span></p></li>
+</ul>
+<p>Let’s use the library “sympy” (if you don’t have it, install it using: conda install sympy, you’ll have to restart the Kernel)</p>
+<p>If <span class="math notranslate nohighlight">\(\Psi(x) = sin(\pi x)\)</span> find the first and second derivative</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sympy</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">L</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x pi n L&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First derivative&quot;</span><span class="p">)</span>
+<span class="n">first</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">),</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">first</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Second derivative&quot;</span><span class="p">)</span>
+<span class="n">second</span><span class="o">=</span><span class="n">diff</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">),</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">second</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First derivative
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \pi \cos{\left(\pi x \right)}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Second derivative
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - \pi^{2} \sin{\left(\pi x \right)}\]</div>
+</div>
+</div>
+<p><strong>Can you trust a textbook?</strong>
+Try to derive twice what the textbook says it’s an eigenfunction of the Schdrodinger equation
+$<span class="math notranslate nohighlight">\(\Psi(x) = \sqrt{\frac{2}{L}} sin\left(\frac{n \pi x}{L}\right)\)</span>$</p>
+<p>Use sympy to find $<span class="math notranslate nohighlight">\(\frac{\delta \Psi(x)}{\delta x}\)</span><span class="math notranslate nohighlight">\( and \)</span><span class="math notranslate nohighlight">\(\frac{\delta^2 \Psi(x)}{\delta x^2}\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">L</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x pi n L&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First derivative&quot;</span><span class="p">)</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>
+<span class="n">first</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">first</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Second derivative&quot;</span><span class="p">)</span>
+<span class="n">second</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">second</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First derivative
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{\sqrt{2} n \pi \sqrt{\frac{1}{L}} \cos{\left(\frac{n \pi x}{L} \right)}}{L}\]</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Second derivative
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle - \frac{\sqrt{2} n^{2} \pi^{2} \sqrt{\frac{1}{L}} \sin{\left(\frac{n \pi x}{L} \right)}}{L^{2}}\]</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-quantized-energy-of-the-particle-in-a-box">
+<h1>The quantized energy of the particle in a box<a class="headerlink" href="#the-quantized-energy-of-the-particle-in-a-box" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Will energy levels be equally spaced?</p></li>
+<li><p>Will they get closer at a higher quantum number “n”?</p></li>
+<li><p>Will a higher mass affect the energy of the particle?</p></li>
+<li><p>Will a larger box affect the energh of the particle?</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+ E_n =\frac{h^2 n^2}{8 m L^2}
+\]</div>
+<p>h is Planck’s constant h = 6.626e-34 and m is the mass of the particle. In order to avoid very tiny numbers, we will use m=1 and h=1, so the Energy won’t be in Joules.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="c1">#Constants: we modify them so we can plot easy numbers. It&#39;s just a change of units (no Joules now!)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">1</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">getEnergyParticle</span><span class="p">(</span><span class="n">mass</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">length</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">mass</span><span class="o">*</span><span class="n">length</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">nmax</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1">#show the first ten levels of the particle in a box</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nmax</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">getEnergyParticle</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">L</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;L&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Energy&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Energy for box size L=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; and mass=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">m</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6bdbbbfd9553680bed14297bc98d4cae87618ff22760ceb6ef39dc8bca4cde5d.png" src="_images/6bdbbbfd9553680bed14297bc98d4cae87618ff22760ceb6ef39dc8bca4cde5d.png" />
+</div>
+</div>
+<section id="the-effect-of-mass-of-the-particle">
+<h2>The effect of mass of the particle<a class="headerlink" href="#the-effect-of-mass-of-the-particle" title="Link to this heading">#</a></h2>
+<p>Let’s compare two boxes, one containing a mass double than the other.
+Before we plot them, think first about how the mass may effect the energy levels
+$<span class="math notranslate nohighlight">\(
+ E_n =\frac{h^2 n^2}{8 m L^2}
+\)</span>$
+remember is the quantum number and it can only be a positive integer n=1,2,3,4…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nmax</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1">#show the first ten levels of the particle in a box</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span> <span class="c1">#121 means: the subplots will be 1 row 2 columns and this one is subplot number 1</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">,</span> <span class="n">sharey</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">)</span> <span class="c1">#share-y means that it will share the y-axis with the ax1 plot</span>
+
+<span class="n">thisMass</span> <span class="o">=</span> <span class="n">m</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nmax</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">getEnergyParticle</span><span class="p">(</span><span class="n">thisMass</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">L</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Energy levels for box size L=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; and mass=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">thisMass</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;L&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Energy&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">)</span>
+
+<span class="n">thisMass</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">m</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nmax</span><span class="o">+</span><span class="mi">4</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">getEnergyParticle</span><span class="p">(</span><span class="n">thisMass</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">L</span><span class="p">),</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Energy levels for box size L=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; and mass=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">thisMass</span><span class="p">))</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;L&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/33fcdbe04d6b8a21d57f945710a3ae6116cef441968345baf8bf7c6300fb0314.png" src="_images/33fcdbe04d6b8a21d57f945710a3ae6116cef441968345baf8bf7c6300fb0314.png" />
+</div>
+</div>
+</section>
+<section id="effect-of-the-size-of-the-box">
+<h2>Effect of the size of the box<a class="headerlink" href="#effect-of-the-size-of-the-box" title="Link to this heading">#</a></h2>
+<p>Your turn. Compare two diagrams of the energy levels, one having the box size twice as long as the other.</p>
+</section>
+<section id="zero-point-energy">
+<h2>Zero point energy<a class="headerlink" href="#zero-point-energy" title="Link to this heading">#</a></h2>
+<p>Notice that the lowest Energy that a particle can have (n=1) it is not zero. This is residual energy that can never leave the system is called the <strong>Zero Point Energy</strong> and it is a very quantum (weird) property.</p>
+<p>Also notice that the higher the mass, the lower this Zero Point Energy is. Again, the larger a system is the less quantum and more classical it behaves. (<a class="reference external" href="https://en.wikipedia.org/wiki/Zero-point_energy">https://en.wikipedia.org/wiki/Zero-point_energy</a>)</p>
+<ul class="simple">
+<li><p>Calculate the Zero point energy for 4 cases. (Hint:there’s already a function defined above called getEnergyParticle)</p>
+<ul>
+<li><p>m = 1, L = 1</p></li>
+<li><p>m = 2, L = 1</p></li>
+<li><p>m = 1, L = 2</p></li>
+<li><p>m = 2, L = 2</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-wavefunctions-of-the-particle-in-a-box-and-their-meaning">
+<h1>The wavefunctions of the particle in a box and their meaning<a class="headerlink" href="#the-wavefunctions-of-the-particle-in-a-box-and-their-meaning" title="Link to this heading">#</a></h1>
+<p>The wavefunction does not have as much physical meaning as its square. The square of the wavefunction <span class="math notranslate nohighlight">\(\Psi^2(x)\)</span> gives you <strong>the probability to find the particle</strong>.</p>
+<div class="math notranslate nohighlight">
+\[\Psi(x) = \sqrt{\frac{2}{L}} sin\left(\frac{n \pi x}{L}\right)\]</div>
+<div class="math notranslate nohighlight">
+\[\Psi^2(x) = \left(\sqrt{\frac{2}{L}} sin\left(\frac{n \pi x}{L}\right)\right)^2\]</div>
+<p>Notice that the wavefunction does not depend on the mass</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">psi</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">psi_2</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">psi</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">x</span><span class="p">))</span>
+
+<span class="c1">#Values for L and x</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">x_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span> <span class="c1">#this creates the numbers on the x axis</span>
+<span class="c1">#choose a quantum number</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">1</span>
+
+<span class="c1">#build the function</span>
+<span class="n">psi_2_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">psi_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">x_list</span><span class="p">:</span>
+    <span class="n">psi_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">psi</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">psi_2_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">psi_2</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span> <span class="c1">#121 means: the subplots will be 1 row 2 columns and this one is subplot number 1</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">,</span> <span class="n">sharey</span> <span class="o">=</span> <span class="n">ax1</span><span class="p">)</span> <span class="c1">#share-y means that it will share the y-axis with the ax1 plot</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_list</span><span class="p">,</span> <span class="n">psi_list</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Particle in a box: Wavefunction L=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; and n=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;L&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Ψ&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">17</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_list</span><span class="p">,</span> <span class="n">psi_2_list</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Particle in a box: Wavefunction Squared L=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; and n=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Ψ^2&quot;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">17</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;L&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c0bffcd6bef1a9128c70921bd88b9a64c6b45906f52445385fe18eecf4943344.png" src="_images/c0bffcd6bef1a9128c70921bd88b9a64c6b45906f52445385fe18eecf4943344.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>What should be the value of the integral of the wavefunction squared? Think about what should be the total probability if add up all the probabilities.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">L</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x pi n L&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;integration&quot;</span><span class="p">)</span>
+
+<span class="n">expr</span> <span class="o">=</span> <span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">display</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">integrate</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>integration
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \frac{2 \sin^{2}{\left(\frac{n \pi x}{L} \right)}}{L}\]</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\displaystyle \begin{cases} \frac{2 \left(\frac{n \pi}{2} - \frac{\sin{\left(n \pi \right)} \cos{\left(n \pi \right)}}{2}\right)}{n \pi} &amp; \text{for}\: \frac{n \pi}{L} \neq 0 \\0 &amp; \text{otherwise} \end{cases}\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maxEigen</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">maxEigen</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="c1">#Empty lists for energy and psi wave</span>
+    <span class="n">psi_2_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">psi_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">x_list</span><span class="p">:</span>
+        <span class="n">psi_2_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">psi_2</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">psi_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">psi</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">maxEigen</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_list</span><span class="p">,</span> <span class="n">psi_list</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;L&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Ψ&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Quantum number n=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">maxEigen</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_list</span><span class="p">,</span> <span class="n">psi_2_list</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;L&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Ψ*Ψ&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Quantum number n=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3c0f6ab33a7c4664470519ecda7b774b57c1d24d3c2142f45f30fc5dabee4ab5.png" src="_images/3c0f6ab33a7c4664470519ecda7b774b57c1d24d3c2142f45f30fc5dabee4ab5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#conda install -c conda-forge ipywidgets</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ipywidgets.widgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">interact</span><span class="p">,</span> <span class="n">Layout</span>
+<span class="n">Emax</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">xmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+<span class="n">Lmax</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">psi</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">L</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plt_psi</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">nmax</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Emax</span><span class="p">)</span><span class="o">*</span><span class="n">L</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nmax</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">psi</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">L</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">((</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span><span class="n">Lmax</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">Lmax</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axvspan</span><span class="p">(</span><span class="o">-</span><span class="n">Lmax</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#to get this running you need to &quot;trust this notebook&quot; and reload page</span>
+<span class="n">interact</span><span class="p">(</span><span class="n">plt_psi</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Lmax</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that as we increase the size of the box (increasing L) the energy levels get closer and closer. To the point that there would be a continuum of energy, that is, the particle could have any energy and therefore the quantum nature will be lost. The take home message is that the quantum nature of systems disappears and becomes our familiar classical world as the systems (in this case the box) gets bigger.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="particle-in-a-box-in-2d">
+<h1>Particle in a box in 2D<a class="headerlink" href="#particle-in-a-box-in-2d" title="Link to this heading">#</a></h1>
+<p>If instead of just one dimension (x) we solve the Schrodinger equation in two dimensions (x and y), the wavefunctions have the following form</p>
+<div class="math notranslate nohighlight">
+\[
+\Psi_{n,m}(x,y)=\Psi_n(x) \Psi_m(y) = \frac{2}{L_x L_y}sin\left(\frac{n\pi}{L_x}x\right)sin\left(\frac{m\pi}{L_y}y\right)
+\]</div>
+<p>Notice that now there are two quantum numbers <em>n and m</em> and the box has two sides of length <span class="math notranslate nohighlight">\(L_x\)</span> and <span class="math notranslate nohighlight">\(L_y\)</span></p>
+<p>The energy also depends on the two dimensions. If you compare it to the energy in one dimension notice that it looks like the total energy is the sum of the energy on each dimension</p>
+<div class="math notranslate nohighlight">
+\[
+E_{nm} = \frac{h^2}{8m}\frac{n^2}{L^{2}_x} + \frac{h^2}{8m}\frac{m^2}{L^{2}_y} = \frac{h^2}{8m}\left(\frac{n^2}{L^{2}_x} + \frac{m^2}{L^{2}_y} \right)
+\]</div>
+<p>An important concept here is <strong>degeneracy</strong> which is when more than one level has the same energy.</p>
+<section id="degeneracy">
+<h2>Degeneracy<a class="headerlink" href="#degeneracy" title="Link to this heading">#</a></h2>
+<p>If we plot the different levels of the 2D particle in a box, we see that some levels have the same energy. For example, when the state (n=1,m=2) has the same energy as the state (n=2,m=1). We call these two states a degenerate state.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#build a energy level graph for particle in a box</span>
+<span class="n">h</span> <span class="o">=</span><span class="mi">1</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">getEnergyParticle2d</span><span class="p">(</span><span class="n">mass</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">Lx</span><span class="p">,</span><span class="n">Ly</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">mass</span><span class="p">)</span><span class="o">*</span><span class="p">(</span> <span class="p">(</span><span class="n">nx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Lx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">ny</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">Ly</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">()</span>
+<span class="n">nmax</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">Lx</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">Ly</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">m</span> <span class="o">=</span><span class="mi">1</span>
+
+<span class="k">for</span> <span class="n">nx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nmax</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">ny</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nmax</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">getEnergyParticle2d</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">Lx</span><span class="p">,</span><span class="n">Ly</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">xmin</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">xmax</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">nx</span> <span class="o">&lt;</span> <span class="n">ny</span><span class="p">:</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="mf">0.1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">delta</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;,&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">ny</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+        
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Energy&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Energy levels for the 2D box size Lx=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">Lx</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;,Ly=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">Ly</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; and mass=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">m</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">Lx</span><span class="o">*</span><span class="mf">1.2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5a87c117bf288fe4f84f87d6d8f140994072da5c605515afc884f2bd687cb1ad.png" src="_images/5a87c117bf288fe4f84f87d6d8f140994072da5c605515afc884f2bd687cb1ad.png" />
+</div>
+</div>
+<p><strong>Your turn:</strong> Is there degneracy if the size of the 2D box is not a perfect square? Change Lx and Ly in the function above and show it.</p>
+</section>
+<section id="plotting-the-2d-wavefunctions">
+<h2>Plotting the 2D wavefunctions<a class="headerlink" href="#plotting-the-2d-wavefunctions" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#source: http://kleimanteach.chem.ufl.edu:4000/02_particle_in_an_infinite_potential_box.html</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
+<span class="c1"># Defining the wavefunction</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">psi2D</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span> <span class="k">return</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Here the users inputs the values of n and m</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Let&#39;s look at the Wavefunction for a 2D box </span><span class="se">\n</span><span class="s2">Enter the value for n = &quot;</span><span class="p">))</span>
+<span class="n">m</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the value for m = &quot;</span><span class="p">))</span>
+
+<span class="c1"># Generating the wavefunction graph</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">psi2D</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Heat plot of $\sqrt</span><span class="si">{L_xL_y}</span><span class="s1">\Psi_{n,m}(x,y)$ for $n=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">+</span><span class="sa">r</span><span class="s1">&#39;$ and $m=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">+</span><span class="sa">r</span><span class="s1">&#39;$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$y/L_y$&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x/L_x$&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plotting the colorbar for the density plots</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">colbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.80</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">])</span>
+<span class="n">norm</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=-</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">colorbar</span><span class="o">.</span><span class="n">ColorbarBase</span><span class="p">(</span><span class="n">colbar</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">)</span>
+
+<span class="c1"># Show the plots on the screen once the code reaches this point</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For other displays of the 2D particle in a box you can check here: <a class="github reference external" href="https://github.com/akey7/basic-quantum-models/blob/main/notebooks/particle-in-box.ipynb">akey7/basic-quantum-models</a></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="particle-in-a-box-in-3d">
+<h1>Particle in a box in 3D<a class="headerlink" href="#particle-in-a-box-in-3d" title="Link to this heading">#</a></h1>
+<p>Of course the particle in a box can be expanded to the three dimensions of space <span class="math notranslate nohighlight">\(x,y,z\)</span>. In this case there are three independent quantum numbers <span class="math notranslate nohighlight">\(n,m,l\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+E_{nml} = \frac{h^2}{8m}\left(\frac{n^2}{L^{2}_x} + \frac{m^2}{L^{2}_y} + \frac{l^2}{L^{2}_z} \right)
+\]</div>
+<p>and the wavefunctions are the sin product for the three dimensions</p>
+<div class="math notranslate nohighlight">
+\[
+\Psi_{n,m,l}(x,y,z)=\Psi_n(x) \Psi_m(y) \Psi_l(z) = \frac{8}{L_x L_y L_z}sin\left(\frac{n\pi}{L_x}x\right)sin\left(\frac{m\pi}{L_y}y \right) sin\left(\frac{l\pi}{L_z}z\right)
+\]</div>
+<p>Plotting a 3D function means that we need a 4th dimension which makes it hard to visualize. This is why
+we need to come up with a cutoff or threshold that allows us to draw an isosurface where the function has that value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#source: https://github.com/wmfschneider/CHE30324/blob/master/Outline/CHE30324-outline.org</span>
+<span class="c1"># conda install -c plotly plotly</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">plotly.graph_objects</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">go</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1">#It has now three quantum numbers. Change these to see what it looks like</span>
+<span class="n">l</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">xmesh</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">ymesh</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">zmesh</span><span class="o">=</span><span class="p">[]</span>
+<span class="c1"># psi=np.array([])</span>
+<span class="n">psi</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">points</span><span class="o">=</span><span class="mi">25</span>
+
+<span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="n">points</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="n">points</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="n">points</span><span class="p">):</span>
+            <span class="n">xmesh</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">ymesh</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+            <span class="n">zmesh</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+            <span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">l</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">z</span><span class="p">)</span>
+            <span class="n">psi</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="c1">#            np.append(value,psi)</span>
+<span class="c1">#            print(&quot;{0:8.6f} {1:8.6f} {2:8.6f} {3:8.6f}&quot;.format(x,y,z,value))</span>
+
+<span class="c1"># print(zmesh)</span>
+<span class="c1">#print(psi)</span>
+<span class="n">iso</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="n">fig</span><span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">go</span><span class="o">.</span><span class="n">Isosurface</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">xmesh</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">ymesh</span><span class="p">,</span>
+    <span class="n">z</span><span class="o">=</span><span class="n">zmesh</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="n">psi</span><span class="p">,</span>
+    <span class="n">isomin</span><span class="o">=-</span><span class="n">iso</span><span class="p">,</span>
+    <span class="n">isomax</span><span class="o">=</span><span class="n">iso</span><span class="p">,</span>
+    <span class="n">surface_count</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">opacity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">caps</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x_show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">y_show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">z_show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">))</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Particle_in_a_box">https://en.wikipedia.org/wiki/Particle_in_a_box</a></p></li>
+<li><p>For more information about what a hamiltonian is in classical physics see <a class="reference external" href="https://www.youtube.com/watch?v=0DHNGtsmmH8">here</a>
+<a class="reference external" href="http://www.youtube.com/watch?v=0DHNGtsmmH8" title="Lagrangian and Hamiltonian Mechanics in Under 20 Minutes: Physics Mini Lesson"><img alt="IMAGE ALT TEXT" src="http://img.youtube.com/vi/0DHNGtsmmH8/0.jpg" /></a></p></li>
+</ol>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="questions">
+<h1>Questions<a class="headerlink" href="#questions" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Create a new notebook with proper headers, writing the questions</p></li>
+</ul>
+<ol class="arabic">
+<li><p>Are the energy levels equally spaced? Write the formula for the energy of the particle and explain what factors makes it not equally spaced? Plot the energy levels indicating what L and mass you have used.</p></li>
+<li><p>What is the effect of making the mass of the particle larger?
+2.1 Plot two adjacent plots for the particle in a box, both of length 5 units. Graph on the left with mass = 3 units and the graph on the right with mass = 4 Comment on the differences.</p></li>
+<li><p>What is the effect of making the box larger?
+3.1 Plot two adjacent plots for the particle in a box, both of mass 5 units. Graph on the left with length = 3 units and the graph on the right with length = 4. Comment on the differences.</p></li>
+<li><p>Looking at the effect of length of the box and the mass of the particle. What will make the system less quantum-like, doubling the mass or doubling the size of the box?</p></li>
+<li><p>What will have a larger zero point energy, a system with a larger mass or smaller mass? a system with a larger box size or smaller box size?</p>
+<p>Calculate the Zero point energy for 4 cases
+m = 1, L = 1
+m = 2, L = 1
+m = 1, L = 2
+m = 2, L = 2
+do these results match with your answer on question 4?</p>
+</li>
+<li><p>Challenge: write a function that calculates the energy of the particle in a box for 3D given n, l, m and Lx, Ly, Lz.</p></li>
+<li><p>Further challenge: write a table showing the energy for all the possible combinations of n,l,m where n,l,m can have any number from 1 to 4.</p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="M1.D1._Bohrs_hydrogen_atom.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">M1.D1: Bohr’s hydrogen atom</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="M1.D3._Schrodingers_hydrogen_atom.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">M1.D3: Schrodinger’s hydrogen atom</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">M1.D2: Introduction to Quantum Mechanics. Particle in a box.</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-equations-to-solve">What are the equations to solve?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-schrodinger-equation-for-a-particle-in-a-box-1-dimension">The Schrodinger equation for a particle in a box (1-dimension)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-quantized-energy-of-the-particle-in-a-box">The quantized energy of the particle in a box</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-effect-of-mass-of-the-particle">The effect of mass of the particle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#effect-of-the-size-of-the-box">Effect of the size of the box</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zero-point-energy">Zero point energy</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-wavefunctions-of-the-particle-in-a-box-and-their-meaning">The wavefunctions of the particle in a box and their meaning</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#particle-in-a-box-in-2d">Particle in a box in 2D</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#degeneracy">Degeneracy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-2d-wavefunctions">Plotting the 2D wavefunctions</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#particle-in-a-box-in-3d">Particle in a box in 3D</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Xavier Prat-Resina pratr001@r.umn.edu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024 CC BY.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

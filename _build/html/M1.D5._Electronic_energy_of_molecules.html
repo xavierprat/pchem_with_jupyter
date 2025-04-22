@@ -1,0 +1,1287 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>M1.D5: Electronic energy of molecules &#8212; Physical Chemistry with Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'M1.D5._Electronic_energy_of_molecules';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="M1.D6: Vibrational levels of diatomic molecules" href="M1.D6._Vibrational_levels_of_diatomic_molecules.html" />
+    <link rel="prev" title="Module 1 - Day 4: Polyelectronic atoms. Electronic correlation and self-consistent field methods" href="M1.D4._Polyelectronic_atoms._Electronic_correlation_and_self_consistent_field_methods.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="Introduction.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Physical Chemistry with Python - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Physical Chemistry with Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Introduction.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Module_0_Introduction_to_Python.html">M0: Introduction to Python</a></li>
+
+
+
+
+
+
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Module_1_Energy_levels_of_atoms_and_molecules.html">Module 1: Energy levels of atoms and molecules</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="M1.D1._Bohrs_hydrogen_atom.html">M1.D1: Bohr’s hydrogen atom</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D2._Introduction_to_Quantum_Mechanics._Particle_in_a_box.html">M1.D2: Introduction to Quantum Mechanics. Particle in a box.</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D3._Schrodingers_hydrogen_atom.html">M1.D3: Schrodinger’s hydrogen atom</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D4._Polyelectronic_atoms._Electronic_correlation_and_self_consistent_field_methods.html">Module 1 - Day 4: Polyelectronic atoms. Electronic correlation and self-consistent field methods</a></li>
+
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">M1.D5: Electronic energy of molecules</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D6._Vibrational_levels_of_diatomic_molecules.html">M1.D6: Vibrational levels of diatomic molecules</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D7._Vibrational_levels_of_polyatomic_molecules.html">M1.D7: Vibrational levels of polyatomic molecules</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="M1.D8._Rotational_levels_of_molecules.html">M1.D8: Rotational levels of molecules</a></li>
+
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="Module_2_Exploration_of_the_potential_energy_surface.html">Module 2: Exploration of the PES</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Module_3_Statistical_Thermodynamics.html">Module 3: Statistical Thermodynamics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="M3.D1._Boltzmann_factor_and_partition_functions.html">M3.D1: Boltzmann factor and partition functions</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D2._Partition_functions_of_atoms.html">M3.D2: Partition functions of atoms</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D3._Thermodynamic_properties_of_molecular_ideal_gases.html">M3.D3: Thermodynamic properties of molecular ideal gases</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M3.D4._Thermodynamic%20potentials.html">M3.D4: Thermodynamic potentials for spontaneity and other thermodynamic properties</a></li>
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Module_4_Molecular_simulations_and_Thermodynamics.html">Module 4: Molecular simulations and Thermodynamics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="M4.D1._Introduction_to_molecular_dynamics.html">M4.D1: Introduction to molecular dynamics</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M4.D2._Introduction_to_molecular_simulations.html">M4.D2: Introduction to molecular simulations</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="M4.D3._Calculating_free_energies_of_chemical_systems.html">M4.D3: Calculating free energies of chemical systems</a></li>
+
+
+
+
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FM1.D5._Electronic_energy_of_molecules.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/M1.D5._Electronic_energy_of_molecules.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>M1.D5: Electronic energy of molecules</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">M1.D5: Electronic energy of molecules</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#electronic-energy-of-molecules">Electronic energy of molecules</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-born-oppenheimer-approximation-and-potential-energy-surface">The Born-Oppenheimer approximation and potential energy surface</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#single-point-energy-of-molecules">Single point energy of molecules</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-the-energy-of-different-spin-states">Assessing the energy of different spin states</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#population-analysis">Population analysis</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#scanning-a-distance-to-find-bond-distance">Scanning a distance to find bond distance</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homolytic-and-heterolytic-breaking-of-a-bond">Homolytic and heterolytic breaking of a bond</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-optimization">Structure optimization</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-of-the-molecule-of-water">Optimization of the molecule of water</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="m1-d5-electronic-energy-of-molecules">
+<h1>M1.D5: Electronic energy of molecules<a class="headerlink" href="#m1-d5-electronic-energy-of-molecules" title="Link to this heading">#</a></h1>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Use Cartesian coordinates to specify the geometry of a diatomic molecule.</p></li>
+<li><p>Run “single point” energy calculations of diatomic molecules using the pyscf package.</p></li>
+<li><p>Run “restricted/closed shell” and “unrestricted/open shell” calculations.</p></li>
+<li><p>Compare the energy of the singlet and triplet electronic state for the diatomic molecules of oxygen and nitrogen</p></li>
+<li><p>Given bond distances and bond angles, use internal coordinates to specify the geometry of water.</p></li>
+<li><p>Compare the homolytic and heterolytic bond breaking of H2.</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="electronic-energy-of-molecules">
+<h1>Electronic energy of molecules<a class="headerlink" href="#electronic-energy-of-molecules" title="Link to this heading">#</a></h1>
+<p>So far we have solved the following quantum systems:</p>
+<ul class="simple">
+<li><p>Particle in box: 1 particle’s kinetic energy, no potential. The solution was analytical (a function).</p></li>
+<li><p>Hydrogen atom: 2 particle’s kinetic energy, one attractive potential between the two. The solution albeit more complicated was still analytical.</p></li>
+<li><p>Polyelectronic atoms: many particle’s kinetic energy (independent of each other), atttactive potential and an extra electron-electron repulsion. The solution was not analytical and had to be solved computationally.</p></li>
+</ul>
+<p>Now we want to know how to solve molecules or groups of atoms interacting with each other. As usual the hamiltonian is the sum of kinetic and potential energy</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H} = \text{Kinetic Energy} + \text{Potential Energy}
+\]</div>
+<p>For molecules in atomic units:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H} = \sum_{k=nuclei}-\frac{1}{2m_k}\nabla_{k} -\frac{1}{2}\sum_{i=elec} \nabla_i + \sum_{k=nuclei}\sum_{i=elec} \frac{q_{i}q_{k}}{r_{ik}} + \sum_{i,j=elec} \frac{q_{i}q_{j}}{r_{ij}} + \sum_{k,l=nuc}\frac{q_{k}{q_{l}}}{r_{kl}}
+\]</div>
+<p>Translated into English we have:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H} = \sum\text{Kinetic of nucleus} + \sum{\text{Kinetic of e-}} + \sum{\text{attraction of elec-nucl}} + \sum{\text{Repulsion elec-elect}} + \sum{\text{repulsion between nuclei}}
+\]</div>
+<section id="the-born-oppenheimer-approximation-and-potential-energy-surface">
+<h2>The Born-Oppenheimer approximation and potential energy surface<a class="headerlink" href="#the-born-oppenheimer-approximation-and-potential-energy-surface" title="Link to this heading">#</a></h2>
+<p>“Let us define a molecule by a geometry structure determined by the nuclear positions. If the nuclei have fixed positions, the nuclear kinetic term vanishes and the nuclear repulsion term becomes a constant. The Hamiltonian expression of equation has a shortened form that we label as electronic Hamiltonian”</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H}_{elec} = -\frac{1}{2}\sum_{i=elec} \nabla_i + \sum_{k=nuclei}\sum_{i=elec} \frac{q_{i}q_{k}}{r_{ik}} + \sum_{i,j=elec} \frac{q_{i}q_{j}}{r_{ij}}
+\]</div>
+<p>So we can define the electronic energy <span class="math notranslate nohighlight">\(E_{elec}\)</span> of a molecule as the eigenvalues of the electronic Hamiltonian</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{H}_{elec}\Psi_{elec} = E_{elec}\Psi_{elec} 
+\]</div>
+<p>Without going into much detail it can be shown that the motion of the nuclei is mostly decoupled from the motion of the electrons, so we can imagine that the nuclei are moving on a single electronic state surface, the most common one being the ground electronic state. This surface is called the potential energy surface and the approximation that led us here is called the Born-Oppenheimer approximation.</p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Potential_Energy_Surface_and_Corresponding_Reaction_Coordinate_Diagram.png" width="500" /></section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="single-point-energy-of-molecules">
+<h1>Single point energy of molecules<a class="headerlink" href="#single-point-energy-of-molecules" title="Link to this heading">#</a></h1>
+<p>The calculation below is the “single point” energy calculation of H2.
+The output is saved in the file ‘h2_sp.txt’. Open it and try to rationalize the information in it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span>
+
+<span class="n">molh2</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
+    <span class="n">atom</span> <span class="o">=</span> <span class="s1">&#39;H 0 0 0; H 0 0 0.53&#39;</span><span class="p">,</span>  <span class="c1"># in Angstrom</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;6-31g&#39;</span><span class="p">,</span>
+    <span class="n">symmetry</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+    <span class="n">spin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="s1">&#39;m1d5_h2_sp.out&#39;</span><span class="p">)</span>  
+
+<span class="n">h2</span> <span class="o">=</span> <span class="n">molh2</span><span class="o">.</span><span class="n">RHF</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="c1">#RHF Restricted Hartree-Fock. All electrons are paired</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">h2</span><span class="o">.</span><span class="n">e_tot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>overwrite output file: m1d5_h2_sp.out
+-1.0790270257473757
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Why did we use rhf and not uhf?</p></li>
+<li><p>The geometry is introduced using cartesian coordinates (xyz). What is the bond distance in this case?</p></li>
+</ul>
+<p>Let’s calculate the energy of the molecule of water. Notice the alternative way to give the geometry. These are called internal coordinates and they are convenient to introduce bond distances and angles.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#entering the geometry with internal coordinates</span>
+<span class="n">molh2o</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
+    <span class="n">atom</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">    O</span>
+<span class="s1">    H    1  0.96</span>
+<span class="s1">    H    1  0.96 2 104.5</span>
+<span class="s1">    &#39;&#39;&#39;</span><span class="p">,</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;6-31g*&#39;</span><span class="p">,</span>
+    <span class="n">symmetry</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+    <span class="n">spin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="s1">&#39;m1d5_h2o_sp.out&#39;</span>
+<span class="p">)</span>
+<span class="n">h2o</span> <span class="o">=</span> <span class="n">molh2o</span><span class="o">.</span><span class="n">RHF</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">h2o</span><span class="o">.</span><span class="n">e_tot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>overwrite output file: m1d5_h2o_sp.out
+-76.00900934217299
+</pre></div>
+</div>
+</div>
+</div>
+<section id="assessing-the-energy-of-different-spin-states">
+<h2>Assessing the energy of different spin states<a class="headerlink" href="#assessing-the-energy-of-different-spin-states" title="Link to this heading">#</a></h2>
+<p>We cannot always foresee the most stable spin. If we want to calculate the energy of the molecule of oxygen, by drawing the Lewis structure we would see that all electrons are paired, therefore we would expect that the ground state is a singlet.</p>
+<p><strong>Let’s compare the energy for the singlet and triplet of N2 and O2</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">molo2_singlet</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
+    <span class="n">atom</span> <span class="o">=</span> <span class="s1">&#39;O 0 0 0; O 0 0 1.2&#39;</span><span class="p">,</span>  <span class="c1"># in Angstrom</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;6-31g&#39;</span><span class="p">,</span>
+    <span class="n">symmetry</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+    <span class="n">spin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="s1">&#39;m1d5_o2_1.out&#39;</span><span class="p">)</span>  
+
+<span class="n">o2_singlet</span> <span class="o">=</span> <span class="n">molo2_singlet</span><span class="o">.</span><span class="n">RHF</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="c1">#RHF Restricted Hartree-Fock. All electrons are paired</span>
+<span class="n">o2_singlet</span><span class="o">.</span><span class="n">analyze</span><span class="p">()</span>
+
+<span class="n">molo2_triplet</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
+    <span class="n">atom</span> <span class="o">=</span> <span class="s1">&#39;O 0 0 0; O 0 0 1.2&#39;</span><span class="p">,</span>  <span class="c1"># in Angstrom</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;6-31g&#39;</span><span class="p">,</span>
+    <span class="n">symmetry</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+    <span class="n">spin</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="c1">#two unpaired electrons</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="s1">&#39;m1d5_o2_3.out&#39;</span><span class="p">)</span>  
+
+<span class="n">o2_triplet</span> <span class="o">=</span> <span class="n">molo2_triplet</span><span class="o">.</span><span class="n">UHF</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="c1">#UHF Unrestricted Hartree-Fock. Two unpaired electrons</span>
+<span class="n">o2_triplet</span><span class="o">.</span><span class="n">analyze</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">o2_singlet</span><span class="o">.</span><span class="n">e_tot</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">o2_triplet</span><span class="o">.</span><span class="n">e_tot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>overwrite output file: m1d5_o2_1.out
+overwrite output file: m1d5_o2_3.out
+-149.4533513245776
+-149.54579333299034
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">moln2_singlet</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
+    <span class="n">atom</span> <span class="o">=</span> <span class="s1">&#39;N 0 0 0; N 0 0 1.1&#39;</span><span class="p">,</span>  <span class="c1"># in Angstrom</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;6-31g&#39;</span><span class="p">,</span>
+    <span class="n">symmetry</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+    <span class="n">spin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="s1">&#39;m1d5_n2_1.out&#39;</span><span class="p">)</span>  
+
+<span class="n">n2_singlet</span> <span class="o">=</span> <span class="n">moln2_singlet</span><span class="o">.</span><span class="n">RHF</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="c1">#RHF Restricted Hartree-Fock. All electrons are paired</span>
+<span class="n">n2_singlet</span><span class="o">.</span><span class="n">analyze</span><span class="p">()</span>
+
+<span class="n">moln2_triplet</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
+    <span class="n">atom</span> <span class="o">=</span> <span class="s1">&#39;N 0 0 0; N 0 0 1.1&#39;</span><span class="p">,</span>  <span class="c1"># in Angstrom</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;6-31g&#39;</span><span class="p">,</span>
+    <span class="n">symmetry</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+    <span class="n">spin</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="c1">#two unpaired electrons</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="s1">&#39;m1d5_n2_3.out&#39;</span><span class="p">)</span>  
+
+<span class="n">n2_triplet</span> <span class="o">=</span> <span class="n">moln2_triplet</span><span class="o">.</span><span class="n">UHF</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="c1">#UHF Unrestricted Hartree-Fock. Two unpaired electrons</span>
+<span class="n">n2_triplet</span><span class="o">.</span><span class="n">analyze</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">n2_singlet</span><span class="o">.</span><span class="n">e_tot</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">n2_triplet</span><span class="o">.</span><span class="n">e_tot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>overwrite output file: m1d5_n2_1.out
+overwrite output file: m1d5_n2_3.out
+-108.86761837305848
+-108.59455017417186
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>What spin state is most stable for N2 and O2? Compare it with their Lewis structures and assess if the Lewis structures can be used to predict the electronic stability.</p></li>
+<li><p>Look at the orbital energies of the output to explain this phenomenon. In the case of O2, the molecules has 16 electrons. Check the “Orbital Energies” and fill them up with 16 electrons.</p></li>
+</ul>
+</section>
+<section id="population-analysis">
+<h2>Population analysis<a class="headerlink" href="#population-analysis" title="Link to this heading">#</a></h2>
+<p>Partial charges are not really a quantum property because the electrons are not constrained to one atom. Rather, the square of the wavefunction extents over all space. That being said, there are methods to decide on what atom the electrons are most probable to be found.</p>
+<p>Below we can calculate the charges according using the Mulliken method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">molCO</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
+    <span class="n">atom</span> <span class="o">=</span> <span class="s1">&#39;C 0 0 0; O 0 0 1.4&#39;</span><span class="p">,</span>  <span class="c1"># in Angstrom</span>
+    <span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;6-31g&#39;</span><span class="p">,</span>
+    <span class="n">symmetry</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+    <span class="n">spin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="s1">&#39;m1d5_co_sp.out&#39;</span><span class="p">)</span>  
+
+<span class="n">co</span> <span class="o">=</span> <span class="n">molCO</span><span class="o">.</span><span class="n">RHF</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span> <span class="c1">#RHF Restricted Hartree-Fock. All electrons are paired</span>
+<span class="n">co</span><span class="o">.</span><span class="n">analyze</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>overwrite output file: m1d5_co_sp.out
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((array([1.99999186e+00, 1.73393973e+00, 1.17103529e-02, 4.46250338e-04,
+         4.13382584e-01, 4.13382584e-01, 1.01917143e+00, 2.29978258e-04,
+         2.29978258e-04, 1.11210209e-02, 2.19064334e-07, 2.19064334e-07,
+         4.58726884e-05, 9.82468610e-35, 4.68933508e-03, 7.18710213e-03,
+         4.68933508e-03, 2.25139348e-33, 1.99999328e+00, 1.79866648e+00,
+         4.66845337e-03, 9.99958974e-05, 1.57936995e+00, 1.57936995e+00,
+         1.40799362e+00, 4.82202347e-04, 4.82202347e-04, 1.44029039e-03,
+         4.04889972e-04, 4.04889972e-04, 9.93620981e-05, 3.78733935e-34,
+         1.44084349e-03, 3.42491238e-03, 1.44084349e-03, 9.88197247e-33]),
+  array([ 0.37978216, -0.37978216])),
+ array([ 0.        ,  0.        , -1.67449812]))
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Open the output file m1d5_co_sp.out. At the bottom of the file we added the dipole and Mulliken charges. What is the charge on C and O in the molecule of CO? Does it match with its Lewis structure?</p></li>
+<li><p>Charges depend a lot on the size of the basis set and the level of theory. You could try to redo the above calculation with b3lyp/6-311G** and see if the charges are the same.</p></li>
+</ul>
+<p>Notice though that we do not know whether or not the geometry we introduced so far is the actual bond distance. At different geometries we may obtain different results.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="scanning-a-distance-to-find-bond-distance">
+<h1>Scanning a distance to find bond distance<a class="headerlink" href="#scanning-a-distance-to-find-bond-distance" title="Link to this heading">#</a></h1>
+<p>We want to produce a binding energy curve for the <span class="math notranslate nohighlight">\(H_2\)</span> molecule using different levels of theory. The binding energy is given by:</p>
+<div class="math notranslate nohighlight">
+\[E_{bind} = E(H_2) - 2E(H)  \tag{1} \]</div>
+<p>Or if we build the binding curve, the binding energy would be the energy difference between the bottom of the well and the energy at which the H-H bond is infinitely apart.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">constants</span>
+
+<span class="n">hartree_value</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Value in Hartree</span>
+<span class="n">electronvolt_value</span> <span class="o">=</span> <span class="n">hartree_value</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">physical_constants</span><span class="p">[</span><span class="s2">&quot;Hartree energy in eV&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myGeom</span> <span class="o">=</span> <span class="s1">&#39;H 0 0 0; H 0 0 mydist&#39;</span>  <span class="c1">#using mydist as a string to replace in the loop by the actual distance</span>
+<span class="n">myoutput</span> <span class="o">=</span> <span class="s1">&#39;m1d5_h2_scanmydist.out&#39;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">runThisDist</span><span class="p">(</span><span class="n">mydist</span><span class="p">,</span><span class="n">method</span><span class="p">):</span>
+    <span class="n">molh2</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">M</span><span class="p">(</span>
+        <span class="n">atom</span> <span class="o">=</span> <span class="n">myGeom</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;mydist&#39;</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">mydist</span><span class="p">)),</span> <span class="c1">#str: need to convert float to string</span>
+        <span class="n">basis</span> <span class="o">=</span> <span class="s1">&#39;6-31g&#39;</span><span class="p">,</span>
+        <span class="n">symmetry</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+        <span class="n">spin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">output</span><span class="o">=</span><span class="n">myoutput</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;mydist&#39;</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">mydist</span><span class="p">)</span><span class="o">+</span><span class="n">method</span><span class="p">))</span>  
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;UHF&quot;</span><span class="p">:</span> 
+        <span class="n">h2</span> <span class="o">=</span> <span class="n">molh2</span><span class="o">.</span><span class="n">UHF</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;RHF&quot;</span><span class="p">:</span>
+        <span class="n">h2</span> <span class="o">=</span> <span class="n">molh2</span><span class="o">.</span><span class="n">RHF</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wrong method&quot;</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">h2</span><span class="o">.</span><span class="n">e_tot</span><span class="o">*</span><span class="n">electronvolt_value</span><span class="p">)</span>
+
+<span class="n">distances</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">1.</span> <span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mf">2.</span> <span class="p">]</span>
+<span class="c1">#the distance array can be done with np.linspace(0.3,2.0,18)</span>
+<span class="n">listEne</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">distances</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="n">listEne</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">runThisDist</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="s2">&quot;UHF&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3
+overwrite output file: m1d5_h2_scan0.3UHF.out
+0.4
+overwrite output file: m1d5_h2_scan0.4UHF.out
+0.5
+overwrite output file: m1d5_h2_scan0.5UHF.out
+0.6
+overwrite output file: m1d5_h2_scan0.6UHF.out
+0.7
+overwrite output file: m1d5_h2_scan0.7UHF.out
+0.8
+overwrite output file: m1d5_h2_scan0.8UHF.out
+0.9
+overwrite output file: m1d5_h2_scan0.9UHF.out
+1.0
+overwrite output file: m1d5_h2_scan1.0UHF.out
+1.1
+overwrite output file: m1d5_h2_scan1.1UHF.out
+1.2
+overwrite output file: m1d5_h2_scan1.2UHF.out
+1.3
+overwrite output file: m1d5_h2_scan1.3UHF.out
+1.4
+overwrite output file: m1d5_h2_scan1.4UHF.out
+1.5
+overwrite output file: m1d5_h2_scan1.5UHF.out
+1.6
+overwrite output file: m1d5_h2_scan1.6UHF.out
+1.7
+overwrite output file: m1d5_h2_scan1.7UHF.out
+1.8
+overwrite output file: m1d5_h2_scan1.8UHF.out
+1.9
+overwrite output file: m1d5_h2_scan1.9UHF.out
+2.0
+overwrite output file: m1d5_h2_scan2.0UHF.out
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="c1">#the x axis is the atomic number</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span><span class="n">listEne</span><span class="p">,</span><span class="s1">&#39;.r-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;dist&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;E(eV)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Dissociation curve of H2&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/602ab834cadc0e73270524ea0d127b4ed836f3499f7a23f1374bc86cfa81f640.png" src="_images/602ab834cadc0e73270524ea0d127b4ed836f3499f7a23f1374bc86cfa81f640.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Your turn: Build the bonding curve for H2(+) and H2(-).</p></li>
+<li><p>Plot these curves.</p></li>
+</ul>
+<section id="homolytic-and-heterolytic-breaking-of-a-bond">
+<h2>Homolytic and heterolytic breaking of a bond<a class="headerlink" href="#homolytic-and-heterolytic-breaking-of-a-bond" title="Link to this heading">#</a></h2>
+<p>One can break a bond homolitically, that is, each atom keeps one electron so that at the end you have two unpaired electrons (triplet) and both atoms remain neutral. Or you can break it heterolitically, so that one atom keeps both electrons and no electrons are unpaired. In gas phase (without solvent) the homolytical bond breaking takes less energy.</p>
+<p>The plot shown above was an homolytical breaking because we allowed the electrons to be separated. If we run the same H2 curve just using RHF we will obtain the heterolytical breaking.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">listEneRHF</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1">#using the same distances array defined above</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">distances</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="n">listEneRHF</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">runThisDist</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="s2">&quot;RHF&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3
+overwrite output file: m1d5_h2_scan0.3RHF.out
+0.4
+overwrite output file: m1d5_h2_scan0.4RHF.out
+0.5
+overwrite output file: m1d5_h2_scan0.5RHF.out
+0.6
+overwrite output file: m1d5_h2_scan0.6RHF.out
+0.7
+overwrite output file: m1d5_h2_scan0.7RHF.out
+0.8
+overwrite output file: m1d5_h2_scan0.8RHF.out
+0.9
+overwrite output file: m1d5_h2_scan0.9RHF.out
+1.0
+overwrite output file: m1d5_h2_scan1.0RHF.out
+1.1
+overwrite output file: m1d5_h2_scan1.1RHF.out
+1.2
+overwrite output file: m1d5_h2_scan1.2RHF.out
+1.3
+overwrite output file: m1d5_h2_scan1.3RHF.out
+1.4
+overwrite output file: m1d5_h2_scan1.4RHF.out
+1.5
+overwrite output file: m1d5_h2_scan1.5RHF.out
+1.6
+overwrite output file: m1d5_h2_scan1.6RHF.out
+1.7
+overwrite output file: m1d5_h2_scan1.7RHF.out
+1.8
+overwrite output file: m1d5_h2_scan1.8RHF.out
+1.9
+overwrite output file: m1d5_h2_scan1.9RHF.out
+2.0
+overwrite output file: m1d5_h2_scan2.0RHF.out
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="c1">#the x axis is the atomic number</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span><span class="n">listEne</span><span class="p">,</span><span class="s1">&#39;.r-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;UHF&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span><span class="n">listEneRHF</span><span class="p">,</span><span class="s1">&#39;.b-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;RHF&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;dist&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;E(eV)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Dissociation curve for H2: Comparing UHF and RHF&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+<span class="c1">#if you see the two curves showing the same energy at dissoviactions it means that the UHF method has not converged into the lower unpaired singlet. </span>
+<span class="c1"># Need to perturb the guess density matrix in that case</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ed8b79e4f2cc10b20b5b48d149c4a8d74c21019b1e91b70aae130ee6a6dfdfc0.png" src="_images/ed8b79e4f2cc10b20b5b48d149c4a8d74c21019b1e91b70aae130ee6a6dfdfc0.png" />
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="structure-optimization">
+<h1>Structure optimization<a class="headerlink" href="#structure-optimization" title="Link to this heading">#</a></h1>
+<p>A faster way to find the minimum of energy in the potential energy surface is by using an optimization algorithm. These algorithms will use the first derivative of the energy (the gradient) to move towards the minimum. It is an iterative process and it requires a threshold of gradient and energy for the computer to know when the minimum is found.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi4</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">clean</span><span class="p">()</span>
+<span class="n">h2_geo</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">H 0.0 0.0 0.0 </span>
+<span class="s2">H 0.0 0.0 0.6</span>
+
+<span class="s2">units angstrom</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">psi4</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">set_output_file</span><span class="p">(</span><span class="s1">&#39;h2_opt.txt&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">psi4</span><span class="o">.</span><span class="n">set_options</span><span class="p">({</span><span class="s1">&#39;reference&#39;</span><span class="p">:</span> <span class="s1">&#39;rhf&#39;</span><span class="p">})</span>
+<span class="n">psi4</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="s1">&#39;scf/6-31G**&#39;</span><span class="p">,</span> <span class="n">molecule</span><span class="o">=</span><span class="n">h2_geo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizer: Optimization complete!
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.1313348258320226
+</pre></div>
+</div>
+</div>
+</div>
+<p>Your turn</p>
+<ul class="simple">
+<li><p>Open the h2_opt.txt file and see the bond distance at which the algorithm has optimized the structure. Compare it with out previous scan.</p></li>
+<li><p>What is the criteria for gradient and energy to decide when convergence is achieved?</p></li>
+<li><p>Look at the code, what is the first loop doing? And the second?</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myOutput</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;h2_opt.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">myOutput</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s1">&#39;Total Energy =&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">myOutput</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="s1">&#39;Step     Total Energy&#39;</span> <span class="ow">in</span> <span class="n">myOutput</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;**Optimization step&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">myOutput</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">myOutput</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">myOutput</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">myOutput</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">myOutput</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">4</span><span class="p">])</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">4</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+        
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Total Energy =                         -1.1139361721990531
+
+    Total Energy =                         -1.1312540898766401
+
+    Total Energy =                         -1.1313243629427232
+
+    Total Energy =                         -1.1313334462445632
+
+    Total Energy =                         -1.1313348258320226
+
+**Optimization step
+   Step     Total Energy     Delta E     MAX Force     RMS Force      MAX Disp      RMS Disp    ~
+
+  --------------------------------------------------------------------------------------------- ~
+
+    Convergence Criteria    1.00e-06 *    3.00e-04 *             o    1.20e-03 *             o  ~
+
+  --------------------------------------------------------------------------------------------- ~
+
+      1      -1.11393617   -1.11e+00      1.62e-01      1.62e-01 o    2.31e-01      2.31e-01 o  ~
+
+**Optimization step
+   Step     Total Energy     Delta E     MAX Force     RMS Force      MAX Disp      RMS Disp   
+
+  ---------------------------------------------------------------------------------------------
+
+    Convergence Criteria    1.00e-06 *    3.00e-04 *             o    1.20e-03 *             o
+
+  ---------------------------------------------------------------------------------------------
+
+      2      -1.13125409   -1.73e-02      8.31e-03      8.31e-03 o    1.25e-02      1.25e-02 o  ~
+
+**Optimization step
+   Step     Total Energy     Delta E     MAX Force     RMS Force      MAX Disp      RMS Disp   
+
+  ---------------------------------------------------------------------------------------------
+
+    Convergence Criteria    1.00e-06 *    3.00e-04 *             o    1.20e-03 *             o
+
+  ---------------------------------------------------------------------------------------------
+
+      3      -1.13132436   -7.03e-05      2.95e-03      2.95e-03 o    4.53e-03      4.53e-03 o  ~
+
+**Optimization step
+   Step     Total Energy     Delta E     MAX Force     RMS Force      MAX Disp      RMS Disp   
+
+  ---------------------------------------------------------------------------------------------
+
+    Convergence Criteria    1.00e-06 *    3.00e-04 *             o    1.20e-03 *             o
+
+  ---------------------------------------------------------------------------------------------
+
+      4      -1.13133345   -9.08e-06      1.07e-03      1.07e-03 o    2.51e-03      2.51e-03 o  ~
+
+**Optimization step
+   Step     Total Energy     Delta E     MAX Force     RMS Force      MAX Disp      RMS Disp   
+
+  ---------------------------------------------------------------------------------------------
+
+    Convergence Criteria    1.00e-06 *    3.00e-04 *             o    1.20e-03 *             o
+
+  ---------------------------------------------------------------------------------------------
+
+      5      -1.13133483   -1.38e-06      3.45e-05 *    3.45e-05 o    8.33e-05 *    8.33e-05 o  ~
+</pre></div>
+</div>
+</div>
+</div>
+<section id="optimization-of-the-molecule-of-water">
+<h2>Optimization of the molecule of water<a class="headerlink" href="#optimization-of-the-molecule-of-water" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi4</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">clean</span><span class="p">()</span>
+<span class="n">psi4</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">set_output_file</span><span class="p">(</span><span class="s1">&#39;h2o_opt.txt&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">h2o</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">0 1</span>
+<span class="s2">O</span>
+<span class="s2">H 1 0.96</span>
+<span class="s2">H 1 0.96 2 104.5</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">psi4</span><span class="o">.</span><span class="n">set_options</span><span class="p">({</span><span class="s1">&#39;reference&#39;</span><span class="p">:</span> <span class="s1">&#39;rhf&#39;</span><span class="p">})</span>
+<span class="n">psi4</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="s1">&#39;scf/6-31g*&#39;</span><span class="p">,</span><span class="n">molecule</span><span class="o">=</span><span class="n">h2o</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimizer: Optimization complete!
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-76.01072051843589
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>See below how we can use psi4 to look at atomic distance</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#we can get the distances from the optimized structure directly</span>
+<span class="n">myDistMat</span> <span class="o">=</span> <span class="n">psi4</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">Molecule</span><span class="o">.</span><span class="n">distance_matrix</span><span class="p">(</span><span class="n">h2o</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">myDistMat</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">myDistMat</span><span class="o">.</span><span class="n">np</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">myDistMat</span><span class="o">.</span><span class="n">np</span><span class="o">*</span><span class="n">psi4</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">bohr2angstroms</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distances between atoms in Bohr
+[[0.         1.79021278 1.79021278]
+ [1.79021278 0.         2.85136018]
+ [1.79021278 2.85136018 0.        ]]
+[[0.         0.9473398  0.9473398 ]
+ [0.9473398  0.         1.50887483]
+ [0.9473398  1.50887483 0.        ]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="questions">
+<h1>Questions<a class="headerlink" href="#questions" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>What is more stable for the molecule of F2, the triplet or the singlet?</p></li>
+<li><p>What is more stable spin state for the molecule of NO? What is the Mulliken charge on these two atoms?</p></li>
+<li><p>Calculate the bonding curve for H2, H2(+), H2(-) and plot them in the same graph.</p></li>
+<li><p>Optimize the structure of HF and H2O and report the bond distances. (you will have to look at the output file or use psi4.core.Molecule.distance_matrix)</p></li>
+<li><p>Optimize the structure of OH(-) and single point energy for F(-). Use these results to predict what is a better acid, H2O or HF?</p></li>
+<li><p>Extra: you may also include in your acid comparison other molecules such as NH3, H2S, HCl, CH4</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="M1.D4._Polyelectronic_atoms._Electronic_correlation_and_self_consistent_field_methods.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Module 1 - Day 4: Polyelectronic atoms. Electronic correlation and self-consistent field methods</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="M1.D6._Vibrational_levels_of_diatomic_molecules.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">M1.D6: Vibrational levels of diatomic molecules</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">M1.D5: Electronic energy of molecules</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#electronic-energy-of-molecules">Electronic energy of molecules</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-born-oppenheimer-approximation-and-potential-energy-surface">The Born-Oppenheimer approximation and potential energy surface</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#single-point-energy-of-molecules">Single point energy of molecules</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-the-energy-of-different-spin-states">Assessing the energy of different spin states</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#population-analysis">Population analysis</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#scanning-a-distance-to-find-bond-distance">Scanning a distance to find bond distance</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homolytic-and-heterolytic-breaking-of-a-bond">Homolytic and heterolytic breaking of a bond</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-optimization">Structure optimization</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-of-the-molecule-of-water">Optimization of the molecule of water</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Xavier Prat-Resina pratr001@r.umn.edu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024 CC BY.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
