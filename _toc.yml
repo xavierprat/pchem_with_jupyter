@@ -1,0 +1,33 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: Introduction
+chapters:
+  - file: Module_0_Introduction_to_Python
+
+  - file: Module_1_Energy_levels_of_atoms_and_molecules
+    sections:
+    - file: M1.D1._Bohrs_hydrogen_atom
+    - file: M1.D2._Introduction_to_Quantum_Mechanics._Particle_in_a_box
+    - file: M1.D3._Schrodingers_hydrogen_atom
+    - file: M1.D4._Polyelectronic_atoms._Electronic_correlation_and_self_consistent_field_methods
+    - file: M1.D5._Electronic_energy_of_molecules
+    - file: M1.D6._Vibrational_levels_of_diatomic_molecules
+    - file: M1.D7._Vibrational_levels_of_polyatomic_molecules
+    - file: M1.D8._Rotational_levels_of_molecules
+
+  - file: Module_2_Exploration_of_the_potential_energy_surface
+
+  - file: Module_3_Statistical_Thermodynamics
+    sections:
+    - file: M3.D1._Boltzmann_factor_and_partition_functions
+    - file: M3.D2._Partition_functions_of_atoms
+    - file: M3.D3._Thermodynamic_properties_of_molecular_ideal_gases
+    - file: M3.D4._Thermodynamic potentials
+
+  - file: Module_4_Molecular_simulations_and_Thermodynamics
+    sections:
+    - file: M4.D1._Introduction_to_molecular_dynamics
+    - file: M4.D2._Introduction_to_molecular_simulations
+    - file: M4.D3._Calculating_free_energies_of_chemical_systems
